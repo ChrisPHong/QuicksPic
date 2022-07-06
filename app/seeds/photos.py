@@ -1,7 +1,8 @@
 from app.models import db, Photo, User
 from datetime import datetime
+from app.models.photo import photos_likes
 
-def seed_photo():
+def seed_photos():
     users = User.query.all()
     first_photo = [user for user in users if user.id in [3]]
     second_photo = [user for user in users if user.id in [1,3]]
@@ -10,26 +11,26 @@ def seed_photo():
     photo1 = Photo(
         user_id = 1,
         caption='I cant believe that just happened right now...',
-        image='',
+        image='this is a picture',
         created_at = datetime.now(),
-        updated = datetime.now(),
+        updated_at = datetime.now(),
         photo_users=first_photo
     )
     photo2 = Photo(
         user_id = 2,
         caption="WOAH!!! I'M ON TOP OF THE WORLD!",
-        image='',
+        image='this is a picture',
         created_at = datetime.now(),
-        updated = datetime.now(),
-        photos_users=second_photo
+        updated_at = datetime.now(),
+        photo_users=second_photo
     )
     photo3 = Photo(
         user_id = 3,
         caption='Did this really happen??!! That is insane',
-        image='',
+        image='this is a picture',
         created_at = datetime.now(),
-        updated = datetime.now(),
-        photos_users=third_photo
+        updated_at = datetime.now(),
+        photo_users=third_photo
     )
 
     db.session.add(photo1)
@@ -37,6 +38,6 @@ def seed_photo():
     db.session.add(photo3)
     db.session.commit()
 
-def undo_photo():
+def undo_photos():
     db.session.execute('TRUNCATE photos RESTART IDENTITY CASCADE;')
     db.session.commit()

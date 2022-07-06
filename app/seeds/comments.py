@@ -13,7 +13,7 @@ def seed_comments():
         photo_id = 1,
         comments ='Hey! This is great picture!',
         created_at = datetime.now(),
-        updated = datetime.now(),
+        updated_at = datetime.now(),
         comment_users=first_comment
     )
     comment2 = Comment(
@@ -21,7 +21,7 @@ def seed_comments():
         photo_id = 2,
         comments ='Wonderful picture! Hope everyone does well',
         created_at = datetime.now(),
-        updated = datetime.now(),
+        updated_at = datetime.now(),
         comment_users=second_comment
     )
     comment3 = Comment(
@@ -29,7 +29,7 @@ def seed_comments():
         photo_id = 3,
         comments ="I don't like this picture",
         created_at = datetime.now(),
-        updated = datetime.now(),
+        updated_at = datetime.now(),
         comment_users=third_comment
     )
 

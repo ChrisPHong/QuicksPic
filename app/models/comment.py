@@ -1,5 +1,4 @@
 from .db import db
-from .user import user_comments
 
 comments_likes = db.Table(
 
@@ -23,11 +22,10 @@ class Comment(db.Model):
     users = db.relationship('User', back_populates='comments')
 
     # one to many relationship
-    photos = db.relationship('Photo', back_populates='photos')
+    photos = db.relationship('Photo', back_populates='comments')
 
     # many to many relationship
     comment_users = db.relationship('User', secondary=comments_likes, back_populates='user_comments', cascade='all, delete')
-
 
     def to_dict(self):
         return {

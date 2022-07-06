@@ -3,24 +3,58 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    em = User(
-        username='em', email='em@aa.io', password='password'
+        username='Demo',
+        email='demo@aa.io',
+        password='password',
     )
+    em = User(
+        username='em',
+        email='em@aa.io',
+        password='password',
+
+    )
+
     chris = User(
-        username='chris', email='chris@aa.io', password='password')
+        username='chris',
+        email='chris@aa.io',
+        password='password',
+
+    )
     brian = User(
-        username='brian', email='brian@aa.io', password='password')
+        username='brian',
+        email='brian@aa.io',
+        password='password',
+
+    )
     uki = User(
-        username='uki', email='uki@aa.io', password='password'
+        username='uki',
+        email='uki@aa.io',
+        password='password',
+
     )
 
     db.session.add(demo)
-    db.session.add(chris)
     db.session.add(em)
+    db.session.add(chris)
     db.session.add(brian)
     db.session.add(uki)
+
+    demo.to_follow(chris)
+    em.to_follow(demo)
+    em.to_follow(chris)
+    chris.to_follow(em)
+    chris.to_follow(brian)
+    chris.to_follow(uki)
+    brian.to_follow(em)
+    brian.to_follow(demo)
+    brian.to_follow(chris)
+    brian.to_follow(uki)
+    uki.to_follow(brian)
+    uki.to_follow(chris)
+    uki.to_follow(uki)
+
 
     db.session.commit()
 

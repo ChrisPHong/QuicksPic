@@ -5,10 +5,10 @@ flask run
 
 flask db migrate
 flask db upgrade
+flask db downgrade
 flask seed all
 flask seed undo
 
-flask db downgrade
 
 heroku run -a sea-coin flask seed all
 heroku run -a sea-coin flask seed undo

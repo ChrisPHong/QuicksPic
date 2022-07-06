@@ -19,8 +19,12 @@ class Photo(db.Model):
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
+    # Many-to-One relationship with Photos
     users = db.relationship('User', back_populates='photos')
 
+    comments = db.relationship('Comment', back_populates='photos')
+
+    # Many-to-Many relationship with Photos
     photo_users = db.relationship('User', secondary=photos_likes, back_populates='user_photos', cascade='all, delete')
 
     def to_dict(self):
