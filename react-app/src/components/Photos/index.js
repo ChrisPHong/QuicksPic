@@ -8,20 +8,33 @@ import './Photos.css';
 
 function PhotosPage() {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state);
-    const photos = useSelector((state) => Object.values(state));
+    // const state = useSelector((state) => state);
+    const photoState = useSelector((state) => Object.values(state.photos));
+    const allPhotos = Object.values(photoState[0])
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState('hidden')
-    console.log(userId, "<<<<<<<<<<<<<<<<<<<< userId >>>>>>>>>>>>>")
+
+    console.log(' <<<<<<<<<<<<<<<<< photoState >>>>>>>>>>>', photoState)
+    console.log(' <<<<<<<<<<<<<<<<< all PHotos >>>>>>>>>>>', allPhotos)
+
 
     useEffect(()=>{
         dispatch(getPhotos(userId))
-    },[])
+    },[dispatch])
+
     return (
         <div className='entire-news-feed'>
+            {allPhotos.map((photo) => {
+                return (
             <div className='photo-container'>
-
+                {/* <img src={photo.image} /> */}
+                <p>{photo.caption}</p>
+                <p>{photo.createdAt}</p>
+                <h1>END OF PHOTO</h1>
             </div>
+
+                )
+            })}
         </div>
 
     )

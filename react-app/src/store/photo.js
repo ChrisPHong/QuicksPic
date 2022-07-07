@@ -14,7 +14,6 @@ export const getPhotos = (id) => async (dispatch) => {
     const response = await fetch(`/api/photos/${id}`, {
         method: 'GET',
     })
-    console.log('----------- repsonse ----------', response)
     if (response.ok) {
         const photos = await response.json()
         dispatch(loadPhotos(photos))
@@ -31,12 +30,13 @@ export const getPhotos = (id) => async (dispatch) => {
 const initialState = { entries: {}, isLoading: true }
 
 
-const photosReducer
- = (state = initialState, action) => {
+const photosReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_PHOTO:
-            console.log('<<<<<<<< IN THE PHOTOS REDUCER >>>>>', action.entries)
+            newState = { ...state, entries: { ...state.entries } }
+            action.photos.map(photo => { newState.entries[photo.id] = photo })
+            return newState
 
         default:
             return state
