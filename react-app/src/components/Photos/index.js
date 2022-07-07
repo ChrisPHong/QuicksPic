@@ -14,8 +14,6 @@ function PhotosPage() {
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState('hidden')
 
-    console.log(' <<<<<<<<<<<<<<<<< photoState >>>>>>>>>>>', photoState)
-    console.log(' <<<<<<<<<<<<<<<<< all PHotos >>>>>>>>>>>', allPhotos)
 
 
     useEffect(()=>{
@@ -27,7 +25,7 @@ function PhotosPage() {
             {allPhotos.map((photo) => {
                 return (
             <div className='photo-container'>
-                {/* <img src={photo.image} /> */}
+                <img src={photo.image} />
                 <p>{photo.caption}</p>
                 <p>{photo.createdAt}</p>
                 <h1>END OF PHOTO</h1>

@@ -1,4 +1,6 @@
 const LOAD_PHOTO = 'photo/LOAD'
+const POST_PHOTO = 'photo/CREATE'
+
 const CLEAR_ALL_PHOTOS = 'photo/CLEAR/LOGOUT'
 
 export const loadPhotos = (photos) => {
@@ -8,6 +10,12 @@ export const loadPhotos = (photos) => {
     }
 }
 
+export const createPhotos = (photo) =>{
+    return {
+        type: POST_PHOTO,
+        photo
+    }
+}
 
 
 export const getPhotos = (id) => async (dispatch) => {
@@ -17,6 +25,19 @@ export const getPhotos = (id) => async (dispatch) => {
     if (response.ok) {
         const photos = await response.json()
         dispatch(loadPhotos(photos))
+    }
+
+}
+export const postPhotos = (formData) => async (dispatch) => {
+
+    const response = await fetch(`/api/photos/`, {
+        method: 'POST',
+        body: formData
+    })
+    console.log('AFTER THE >>>>>>>>>>>>>> >>>>>>>', response)
+    if (response.ok) {
+        const photos = await response.json()
+        dispatch(createPhotos(photos))
     }
 
 }
@@ -36,6 +57,11 @@ const photosReducer = (state = initialState, action) => {
         case LOAD_PHOTO:
             newState = { ...state, entries: { ...state.entries } }
             action.photos.map(photo => { newState.entries[photo.id] = photo })
+            return newState
+        case POST_PHOTO:
+            newState = {...state, entries:{...state.entries,
+                [action.photo.id]: action.photo
+            }}
             return newState
 
         default:

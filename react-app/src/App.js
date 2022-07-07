@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import PhotosPage from './components/Photos';
 import { authenticate } from './store/session';
+import PhotoForm from './components/Photoform';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
           <PhotosPage />
+          <PhotoForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
