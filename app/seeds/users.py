@@ -53,7 +53,6 @@ def seed_users():
     brian.to_follow(uki)
     uki.to_follow(brian)
     uki.to_follow(chris)
-    uki.to_follow(uki)
 
 
     db.session.commit()
