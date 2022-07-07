@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, db, Photo
+from itsdangerous import json
+from app.models import User, db, Photo, photo
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -22,10 +23,23 @@ def validation_errors_to_error_messages(validation_errors):
 def get__photos(id):
     # get the current user and check to see which people they are following, from that list we get all the photos and have them displayed on the news feed
     user = User.query.get(id)
-    following_list = user.follower
-    print(' <<<<<<<<<<<<<<<<<<<<<<<<<<< FOLLOWINGLIST >>>>>>>>>>>>>>>>>', following_list.to_dict())
-    users = User.query.all()
-    print(users)
+
+    # These are the people that we're following
+    following_list = [follower for follower in user.follower]
+
+    # This gives us the id's of all the followers that we're following
+    followers_only = [int(follower.get_id()) for follower in following_list]
+
+    # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
+
+    photos = []
+    for i in range(len(followers_only)):
+        follower_id = followers_only[i]
+        photo = Photo.query.filter(Photo.user_id == follower_id).all()
+        if(len(photo) > 0):
+            photos.extend(photo)
+
+    return jsonify([photo.to_dict() for photo in photos])
 
 
 # Users can update their photo

@@ -42,6 +42,9 @@ def seed_users():
     db.session.add(uki)
 
     demo.to_follow(chris)
+    demo.to_follow(em)
+    demo.to_follow(uki)
+    demo.to_follow(brian)
     em.to_follow(demo)
     em.to_follow(chris)
     chris.to_follow(em)
