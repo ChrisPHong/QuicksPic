@@ -29,12 +29,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
-        }
 
 
     # One-to-Many relationship with Comments
@@ -51,6 +45,14 @@ class User(db.Model, UserMixin):
 
     # many-to-many relationship between users and users for people
     follower = db.relationship('User', secondary=followers, primaryjoin=(followers.c.follower_id == id), secondaryjoin = (followers.c.followed_id == id), backref = db.backref('followers', lazy = 'dynamic'), lazy = 'dynamic')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            "followers": [following.to_dict() for following in self.follower]
+        }
 
     def to_follow(self, user):
         if not self.to_following(user):
