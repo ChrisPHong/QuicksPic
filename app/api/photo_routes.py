@@ -22,10 +22,14 @@ def validation_errors_to_error_messages(validation_errors):
 def get__photos(id):
     # get the current user and check to see which people they are following, from that list we get all the photos and have them displayed on the news feed
     user = User.query.get(id)
+    photos = Photo.query.all()
+    follower = User.query.filter(User.id )
     following_list = user.follower
-    print(' <<<<<<<<<<<<<<<<<<<<<<<<<<< FOLLOWINGLIST >>>>>>>>>>>>>>>>>', following_list.to_dict())
+    print (' THIS IS THE PHOTOS ', photos)
+    print(' <<<<<<<<<<<<<<<<<<<<<<<<<<< FOLLOWINGLIST >>>>>>>>>>>>>>>>>', following_list)
     users = User.query.all()
-    print(users)
+    print(' ----------------------------- ', users[0].to_dict())
+    return 'testing'
 
 
 # Users can update their photo
