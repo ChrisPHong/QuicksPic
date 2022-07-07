@@ -6,7 +6,7 @@ photo_routes = Blueprint('photos', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
-    Simple function that turns the WTForms validation errors into a simple list
+
     """
     errorMessages = []
     for field in validation_errors:
@@ -15,10 +15,12 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # Users can get all their watchlists
-@photo_routes.route('/')
+@photo_routes.route('/<int:id>')
 @login_required
 def get__photos():
-    pass
+    user = User.query.get(id)
+    users = User.query.all()
+
 
 
 # Users can create a new watchlist
