@@ -37,7 +37,6 @@ def get__photos(id):
     photos = []
     for i in range(len(followers_only)):
         follower_id = followers_only[i]
-        print('<<<<<<<<<<<<< FOLLOWER ID >>>>>>>>>', follower_id)
         photo = Photo.query.filter(Photo.user_id == follower_id or Photo.user_id == user.id).all()
         if(len(photo) > 0):
             photos.extend(photo)
