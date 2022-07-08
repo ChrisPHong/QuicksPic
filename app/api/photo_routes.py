@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from itsdangerous import json
-from app.models import User, db, Photo
+from app.models import User, db, Photo, Comment
 from app.forms.photo_form import PhotoForm
 from datetime import datetime
 from app.s3_helpers import (
@@ -67,9 +67,9 @@ def patch_photo(photo_id):
 # Users can delete their photo
 @photo_routes.route('/<int:photo_id>/delete', methods=['DELETE'])
 def delete_photo(photo_id):
-    print('<<<<<<<<<<<<<<<<<<< PHOTO', type(photo_id))
     photo = Photo.query.get(photo_id)
     print('<<<<<<<<<<<<<<<<<<< PHOTO', photo.to_dict())
+
     db.session.delete(photo)
     db.session.commit()
 
