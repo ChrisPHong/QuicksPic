@@ -37,7 +37,8 @@ def get__photos(id):
     photos = []
     for i in range(len(followers_only)):
         follower_id = followers_only[i]
-        photo = Photo.query.filter(Photo.user_id == follower_id).all()
+        print('<<<<<<<<<<<<< FOLLOWER ID >>>>>>>>>', follower_id)
+        photo = Photo.query.filter(Photo.user_id == follower_id or Photo.user_id == user.id).all()
         if(len(photo) > 0):
             photos.extend(photo)
 
@@ -45,9 +46,10 @@ def get__photos(id):
 
 
 # # Users can update their photo
-# @photo_routes.route('/<int:id>', methods=['PATCH'])
-# def patch_photo(id):
-#     pass
+@photo_routes.route('/<int:photo_id>', methods=['PATCH'])
+def patch_photo(photo_id):
+    photo = Photo.query.get_id(photo_id)
+    print('<<<<<<<<<<<< photo >>>>>>>>>>>>', photo)
 
 
 # # Users can delete their photo
@@ -63,8 +65,6 @@ def upload_image():
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(request.files, '<<<<<<<<<< this is not real! >>>>>>>>>>>>>>>')
-    # print(request.json['image'], '<<<<<<<<<< image >>>>>>>>>>>>>>>')
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 
@@ -86,10 +86,9 @@ def upload_image():
     url = upload["url"]
     # flask_login allows us to get the current user from the request
     # new_image = Photo(user=current_user, image=url)
+
     hello = current_user.to_dict()['id']
-    print('<<<<<<<<<<<<<<<<<<< USERiD >>>>>>>>>>',int(hello))
     form.data['user_id'] = int(hello)
-    print(form.data, '<<<<<<<<<< formDATA!!!!!!! >>>>>>>>>>>>>>>')
     if form.validate_on_submit():
         new_photo = Photo(
             user_id = int(hello),

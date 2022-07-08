@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {postPhotos} from '../../store/photo'
-import './Photoform.css';
+import './EditPhotoform.css';
 
-function PhotoForm() {
+function EditPhotoForm() {
     const [name, setName] = useState('');
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(false);
@@ -77,4 +77,4 @@ function PhotoForm() {
     )
 }
 
-export default PhotoForm;
+export default EditPhotoForm;
