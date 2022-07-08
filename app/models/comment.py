@@ -25,7 +25,7 @@ class Comment(db.Model):
     photos = db.relationship('Photo', back_populates='comments')
 
     # many to many relationship
-    comment_users = db.relationship('User', secondary=comments_likes, back_populates='user_comments', cascade='all, delete')
+    comment_users = db.relationship('User', secondary=comments_likes, back_populates='user_comments')
 
     def to_dict(self):
         return {

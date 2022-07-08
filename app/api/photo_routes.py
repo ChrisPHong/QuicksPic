@@ -49,9 +49,7 @@ def get__photos(id):
 # # Users can update their photo
 @photo_routes.route('/<int:photo_id>', methods=['PATCH'])
 def patch_photo(photo_id):
-    print('<<<<<<<<<<<< photo ID >>>>>>>>>>>>', photo_id)
     photo = Photo.query.get(photo_id)
-    print('<<<<<<<<<<<< photo >>>>>>>>>>>>', photo.to_dict())
     form = PhotoForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -66,10 +64,18 @@ def patch_photo(photo_id):
         return photo.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# # Users can delete their photo
-# @photo_routes.route('/<int:id>', methods=['DELETE'])
-# def delete_photo(id):
-#     pass
+# Users can delete their photo
+@photo_routes.route('/<int:photo_id>/delete', methods=['DELETE'])
+def delete_photo(photo_id):
+    print('<<<<<<<<<<<<<<<<<<< PHOTO', type(photo_id))
+    photo = Photo.query.get(photo_id)
+    print('<<<<<<<<<<<<<<<<<<< PHOTO', photo.to_dict())
+    db.session.delete(photo)
+    db.session.commit()
+
+    return photo.to_dict()
+
+
 
 
 @photo_routes.route("/", methods=["POST"])

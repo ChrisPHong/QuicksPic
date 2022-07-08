@@ -2,6 +2,7 @@ const LOAD_PHOTO = 'photo/LOAD'
 const POST_PHOTO = 'photo/CREATE'
 const CLEAR_ALL_PHOTOS = 'photo/CLEAR/LOGOUT'
 const EDIT_PHOTO = 'photo/EDIT'
+const DELETE_PHOTO = 'photo/DELETE'
 
 export const loadPhotos = (photos) => {
     return {
@@ -27,6 +28,14 @@ export const clearAllPhoto = (photos) => {
 export const updatePhoto = (photo) => {
     return {
         type: EDIT_PHOTO,
+        photo
+    }
+}
+
+
+export const delPhoto = (photo) => {
+    return {
+        type: DELETE_PHOTO,
         photo
     }
 }
@@ -70,6 +79,18 @@ export const editPhotos = (payload, id) => async (dispatch) => {
     }
 
 }
+export const deletePhoto = (photoId) => async (dispatch) => {
+    console.log(photoId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
+    const response = await fetch(`/api/photos/${photoId}/delete`, {
+        method: 'DELETE',
+    })
+
+    if (response.ok) {
+        const photo = await response.json()
+        dispatch(delPhoto(photo))
+    }
+
+}
 
 
 export const clearAllPhotos = () => async (dispatch) => {
@@ -104,6 +125,11 @@ const photosReducer = (state = initialState, action) => {
                     [action.photo.id]: action.photo
                 }
             }
+        case DELETE_PHOTO:
+            newState = { ...state }
+            console.log('<<<<<<<<<<<<<<<<<<<<< ACTION.PHOTO.ID', action.photo)
+            delete newState.entries[action.photo.id]
+            return newState
         default:
             return state
     }
