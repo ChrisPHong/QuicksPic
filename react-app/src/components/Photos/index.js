@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import {getPhotos, deletePhoto} from '../../store/photo'
 import EditPhotoForm from '../EditPhotoForm';
+import CommentsPage from '../Comments'
 import './Photos.css';
 
 
@@ -38,9 +39,7 @@ function PhotosPage() {
                 onClick={(e)=>{
                     e.preventDefault()
                     e.stopPropagation()
-                    console.log('<<<<<<<<<<<<<<<<<<<< PHOTO ID >>>>>>>>>>>>>>>>', photo.id)
                     let photoId = photo.id
-                    console.log('<<<<<<<<<<<<<<<<<<<< PHOTO ID >>>>>>>>>>>>>>>>', photoId)
                     dispatch(deletePhoto(photoId))
                 }}
 
@@ -55,6 +54,7 @@ function PhotosPage() {
                     setCaption(e.target.value)
                 }}>{photo.caption}</p>
                 <p>{photo.createdAt}</p>
+                {<CommentsPage photo={photo.id}/>}
                 <h1>END OF PHOTO</h1>
             </div>
 

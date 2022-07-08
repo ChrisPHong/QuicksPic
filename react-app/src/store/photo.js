@@ -128,7 +128,6 @@ const photosReducer = (state = initialState, action) => {
             return newState
         case DELETE_PHOTO:
             newState = { ...state }
-            console.log('<<<<<<<<<<<<<<<<<<<<< ACTION.PHOTO.ID', action.photo)
             delete newState.entries[action.photo.id]
             return newState
         default:
