@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import {getPhotos} from '../../store/photo'
+import EditPhotoForm from '../EditPhotoForm';
 import './Photos.css';
 
 
@@ -25,7 +26,12 @@ function PhotosPage() {
             {allPhotos.map((photo) => {
                 return (
             <div className='photo-container'>
-                <img src={photo.image} />
+                <div>
+                <EditPhotoForm photo={photo}/>
+                </div>
+                <img
+                className='picture-div'
+                src={photo.image} />
                 <p>{photo.caption}</p>
                 <p>{photo.createdAt}</p>
                 <h1>END OF PHOTO</h1>
