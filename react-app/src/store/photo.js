@@ -122,9 +122,10 @@ const photosReducer = (state = initialState, action) => {
             newState = {
                 ...state, entries: {
                     ...state.entries,
-                    [action.photo.id]: action.photo
                 }
             }
+            newState.entries[action.photo.id] = action.photo
+            return newState
         case DELETE_PHOTO:
             newState = { ...state }
             console.log('<<<<<<<<<<<<<<<<<<<<< ACTION.PHOTO.ID', action.photo)

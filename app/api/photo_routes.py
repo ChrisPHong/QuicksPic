@@ -27,16 +27,20 @@ def get__photos(id):
     user = User.query.get(id)
 
     # These are the people that we're following
-    following_list = [follower for follower in user.follower]
+    following_list = [int(follower.get_id()) for follower in user.follower]
+    # following_lists = [follower for follower in user.follower]
+    print('<<<<<<<<<<<<<< izzy"s theory', following_list)
 
     # This gives us the id's of all the followers that we're following
-    followers_only = [int(follower.get_id()) for follower in following_list]
+    # followers_only = [int(follower.get_id()) for follower in following_lists]
+    # print('<<<<<<<<<<<<<< SAME? theory', followers_only)
 
     # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
+    # filter by date and then append to photos list
 
     photos = []
-    for i in range(len(followers_only)):
-        follower_id = followers_only[i]
+    for i in range(len(following_list)):
+        follower_id = following_list[i]
         photo = Photo.query.filter(Photo.user_id == follower_id).all()
         user_photo = Photo.query.filter(Photo.user_id == user.id).all()
         if(len(photo) > 0):
@@ -58,9 +62,9 @@ def patch_photo(photo_id):
         photo.caption = form.data['caption'],
         photo.updatedAt = datetime.now()
 
-        print('<<<<<<<<<<<< photo >>>>>>>>>>>>', photo.to_dict())
         db.session.add(photo)
         db.session.commit()
+        print('<<<<<<<<<<<<<<<<<<<<<<< photo >>>>>>', photo.to_dict())
         return photo.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

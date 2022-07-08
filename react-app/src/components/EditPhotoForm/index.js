@@ -29,6 +29,7 @@ function EditPhotoForm({photo}) {
         formData.append("photo_users", likes)
         formData.append("id", id)
 
+        console.log('FOR IZZZZY', formData)
         if (errors.length > 0) {
             setShow(true)
             return
