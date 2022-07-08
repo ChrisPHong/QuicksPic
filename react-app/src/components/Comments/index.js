@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import './Comments.css';
-import { getComments } from '../../store/comment'
+import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
 
 
@@ -36,6 +36,13 @@ function CommentsPage({ photo }) {
                         {comment.photoId === photo ?
                             <div>
                                 <div className='comment-likes'>{comment.commentLikes} likes</div>
+                                {comment.userId === userId ?
+                                <button
+                                onClick={(e)=>{
+                                    dispatch(deleteComment(comment.id))
+                                }}
+                                >Delete</button>
+                                : null}
                                 <div>
                                     {comment.comments}
                                 </div>

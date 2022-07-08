@@ -80,18 +80,18 @@ export const postComment = (payload) => async (dispatch) => {
 //     }
 
 // }
-// export const deletePhoto = (photoId) => async (dispatch) => {
-//     console.log(photoId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
-//     const response = await fetch(`/api/photos/${photoId}/delete`, {
-//         method: 'DELETE',
-//     })
+export const deleteComment = (commentId) => async (dispatch) => {
+    console.log(commentId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'DELETE',
+    })
 
-//     if (response.ok) {
-//         const photo = await response.json()
-//         dispatch(delPhoto(photo))
-//     }
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(delComment(comment))
+    }
 
-// }
+}
 
 
 // export const clearAllPhotos = () => async (dispatch) => {
@@ -128,10 +128,10 @@ const commentsReducer = (state = initialState, action) => {
         //     }
         //     newState.entries[action.photo.id] = action.photo
         //     return newState
-        // case DELETE_PHOTO:
-        //     newState = { ...state }
-        //     delete newState.entries[action.photo.id]
-        //     return newState
+        case DELETE_COMMENT:
+            newState = { ...state }
+            delete newState.entries[action.comment.id]
+            return newState
         default:
             return state
     }
