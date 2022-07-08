@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {postPhotos} from '../../store/photo'
-import './EditPhotoform.css';
+import {editPhotos} from '../../store/photo'
+import './EditPhotoForm.css';
 
-function EditPhotoForm() {
-    const [name, setName] = useState('');
+function EditPhotoForm({photo}) {
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(false);
-    const [caption, setCaption] = useState('')
-    const [image, setImage] = useState(null)
+    const [caption, setCaption] = useState(photo.caption)
+    const [image, setImage] = useState(photo.image)
+    const [likes, setLikes] = useState(photo.photo_users)
     const [imageLoading, setImageLoading] = useState(false)
 
     const dispatch = useDispatch();
 
     let userId = useSelector((state) => state.session?.user?.id)
-    console.log(userId, "<<<<<<<<<<< USER ID >>>>>>>>>>>>")
+    const id = photo.id
+    // console.log(photo, "<<<<<<<<<<<<<<< PHOTO IMAGE")
+
+
 
 
     const onSubmit = async (e) => {
@@ -23,6 +26,9 @@ function EditPhotoForm() {
         formData.append("image", image);
         formData.append("user_id", userId)
         formData.append("caption", caption)
+        formData.append("photo_users", likes)
+        formData.append("id", id)
+
         if (errors.length > 0) {
             setShow(true)
             return
@@ -31,13 +37,10 @@ function EditPhotoForm() {
             const payload = {
                 userId,
                 caption,
-                image
+                id
             }
-            dispatch(postPhotos(formData))
-            // console.log(payload, "<<<<<<<<<<<<<< form Data >>>>>>>>>>>>")
-            console.log(formData, "<<<<<<<<<<<<<< form Data >>>>>>>>>>>>")
-            setCaption('')
-            setImage(null)
+            dispatch(editPhotos(formData, id))
+
         }
 
     }
@@ -54,7 +57,7 @@ function EditPhotoForm() {
     return (
         <div className='PhotoFormDiv'>
             <form className='photoform' onSubmit={onSubmit}>
-                <h2>Post Your Photos!</h2>
+                <h2>Edit Your Photo</h2>
                 <input
                     name="caption"
                     type='text'
@@ -63,13 +66,6 @@ function EditPhotoForm() {
                     onChange={(e) => setCaption(e.target.value)}
                     placeholder='Caption' />
 
-                <input
-                name="image"
-                type="file"
-                accept="image/*"
-                onChange={updateImage}
-
-                />
                 <button type='submit'>Submit</button>
             </form>
 

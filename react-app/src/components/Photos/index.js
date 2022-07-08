@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import {getPhotos} from '../../store/photo'
+import EditPhotoForm from '../EditPhotoForm';
 import './Photos.css';
 
 
@@ -13,6 +14,7 @@ function PhotosPage() {
     const allPhotos = Object.values(photoState[0])
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState('hidden')
+    const [caption, setCaption] = useState('')
 
 
 
@@ -20,13 +22,28 @@ function PhotosPage() {
         dispatch(getPhotos(userId))
     },[dispatch])
 
+    useEffect(()=>{
+
+    },[caption])
+
     return (
         <div className='entire-news-feed'>
             {allPhotos.map((photo) => {
                 return (
             <div className='photo-container'>
-                <img src={photo.image} />
-                <p>{photo.caption}</p>
+                {console.log('<<<<<<<<<<<<<<< PHOTO USERID >>>>>>>>>', photo.userId)}
+                {photo.userId === userId ?
+                <div>
+                <EditPhotoForm photo={photo}/>
+                </div>
+                : null}
+                <img
+                className='picture-div'
+                src={photo.image} />
+                <p
+                onChange={(e)=> {
+                    setCaption(e.target.value)
+                }}>{photo.caption}</p>
                 <p>{photo.createdAt}</p>
                 <h1>END OF PHOTO</h1>
             </div>
