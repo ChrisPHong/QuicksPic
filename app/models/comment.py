@@ -12,8 +12,8 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'))
     comments = db.Column(db.String(2200), nullable=False)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
@@ -25,7 +25,7 @@ class Comment(db.Model):
     photos = db.relationship('Photo', back_populates='comments')
 
     # many to many relationship
-    comment_users = db.relationship('User', secondary=comments_likes, back_populates='user_comments', cascade='all, delete')
+    comment_users = db.relationship('User', secondary=comments_likes, back_populates='user_comments')
 
     def to_dict(self):
         return {

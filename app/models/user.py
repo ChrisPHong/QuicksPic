@@ -37,11 +37,11 @@ class User(db.Model, UserMixin):
     # One-to-Many relationship with Photos
     photos = db.relationship('Photo', back_populates='users')
 
-    # many-to-many relationship between users and photos for likes
-    user_photos = db.relationship('Photo', secondary=photos_likes, back_populates='photo_users', cascade='all, delete')
-
     # many-to-many relationship between users and comments for likes
-    user_comments = db.relationship('Comment', secondary=comments_likes, back_populates='comment_users', cascade='all, delete')
+    user_comments = db.relationship('Comment', secondary=comments_likes, back_populates='comment_users', cascade='all,delete')
+
+    # many-to-many relationship between users and photos for likes
+    user_photos = db.relationship('Photo', secondary=photos_likes, back_populates='photo_users', cascade='all,delete')
 
     # many-to-many relationship between users and users for people
     follower = db.relationship('User', secondary=followers, primaryjoin=(followers.c.follower_id == id), secondaryjoin = (followers.c.followed_id == id), backref = db.backref('followers', lazy = 'dynamic'), lazy = 'dynamic')

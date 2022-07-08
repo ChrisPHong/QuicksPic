@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
-import {getPhotos} from '../../store/photo'
+import {getPhotos, deletePhoto} from '../../store/photo'
 import EditPhotoForm from '../EditPhotoForm';
 import './Photos.css';
 
@@ -31,10 +31,20 @@ function PhotosPage() {
             {allPhotos.map((photo) => {
                 return (
             <div className='photo-container'>
-                {console.log('<<<<<<<<<<<<<<< PHOTO USERID >>>>>>>>>', photo.userId)}
                 {photo.userId === userId ?
                 <div>
                 <EditPhotoForm photo={photo}/>
+                <button
+                onClick={(e)=>{
+                    e.preventDefault()
+                    e.stopPropagation()
+                    console.log('<<<<<<<<<<<<<<<<<<<< PHOTO ID >>>>>>>>>>>>>>>>', photo.id)
+                    let photoId = photo.id
+                    console.log('<<<<<<<<<<<<<<<<<<<< PHOTO ID >>>>>>>>>>>>>>>>', photoId)
+                    dispatch(deletePhoto(photoId))
+                }}
+
+                >Delete</button>
                 </div>
                 : null}
                 <img

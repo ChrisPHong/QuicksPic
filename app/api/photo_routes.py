@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from itsdangerous import json
-from app.models import User, db, Photo
+from app.models import User, db, Photo, Comment
 from app.forms.photo_form import PhotoForm
 from datetime import datetime
 from app.s3_helpers import (
@@ -27,19 +27,25 @@ def get__photos(id):
     user = User.query.get(id)
 
     # These are the people that we're following
-    following_list = [follower for follower in user.follower]
+    following_list = [int(follower.get_id()) for follower in user.follower]
+    # following_lists = [follower for follower in user.follower]
+    print('<<<<<<<<<<<<<< izzy"s theory', following_list)
 
     # This gives us the id's of all the followers that we're following
-    followers_only = [int(follower.get_id()) for follower in following_list]
+    # followers_only = [int(follower.get_id()) for follower in following_lists]
+    # print('<<<<<<<<<<<<<< SAME? theory', followers_only)
 
     # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
+    # filter by date and then append to photos list
 
     photos = []
-    for i in range(len(followers_only)):
-        follower_id = followers_only[i]
-        photo = Photo.query.filter(Photo.user_id == follower_id or Photo.user_id == user.id).all()
+    for i in range(len(following_list)):
+        follower_id = following_list[i]
+        photo = Photo.query.filter(Photo.user_id == follower_id).all()
+        user_photo = Photo.query.filter(Photo.user_id == user.id).all()
         if(len(photo) > 0):
             photos.extend(photo)
+            photos.extend(user_photo)
 
     return jsonify([photo.to_dict() for photo in photos])
 
@@ -47,9 +53,7 @@ def get__photos(id):
 # # Users can update their photo
 @photo_routes.route('/<int:photo_id>', methods=['PATCH'])
 def patch_photo(photo_id):
-    print('<<<<<<<<<<<< photo ID >>>>>>>>>>>>', photo_id)
     photo = Photo.query.get(photo_id)
-    print('<<<<<<<<<<<< photo >>>>>>>>>>>>', photo.to_dict())
     form = PhotoForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -58,16 +62,24 @@ def patch_photo(photo_id):
         photo.caption = form.data['caption'],
         photo.updatedAt = datetime.now()
 
-        print('<<<<<<<<<<<< photo >>>>>>>>>>>>', photo.to_dict())
         db.session.add(photo)
         db.session.commit()
+        print('<<<<<<<<<<<<<<<<<<<<<<< photo >>>>>>', photo.to_dict())
         return photo.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# # Users can delete their photo
-# @photo_routes.route('/<int:id>', methods=['DELETE'])
-# def delete_photo(id):
-#     pass
+# Users can delete their photo
+@photo_routes.route('/<int:photo_id>/delete', methods=['DELETE'])
+def delete_photo(photo_id):
+    photo = Photo.query.get(photo_id)
+    print('<<<<<<<<<<<<<<<<<<< PHOTO', photo.to_dict())
+
+    db.session.delete(photo)
+    db.session.commit()
+
+    return photo.to_dict()
+
+
 
 
 @photo_routes.route("/", methods=["POST"])

@@ -22,10 +22,10 @@ class Photo(db.Model):
     # Many-to-One relationship with Photos
     users = db.relationship('User', back_populates='photos')
 
-    comments = db.relationship('Comment', back_populates='photos')
+    comments = db.relationship('Comment', back_populates='photos', cascade='all,delete')
 
     # Many-to-Many relationship with Photos
-    photo_users = db.relationship('User', secondary=photos_likes, back_populates='user_photos', cascade='all, delete')
+    photo_users = db.relationship('User', secondary=photos_likes, back_populates='user_photos')
 
     def to_dict(self):
         return {
@@ -35,5 +35,5 @@ class Photo(db.Model):
             'image': self.image,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'photo_users': [photo_user.to_dict() for photo_user in self.photo_users]
+            'photo_users': len(self.photo_users)
         }
