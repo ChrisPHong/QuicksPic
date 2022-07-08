@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import {getPhotos, deletePhoto} from '../../store/photo'
 import EditPhotoForm from '../EditPhotoForm';
 import CommentsPage from '../Comments'
+import CommentFormPage from '../CommentForm';
 import './Photos.css';
 
 
@@ -53,8 +54,10 @@ function PhotosPage() {
                 onChange={(e)=> {
                     setCaption(e.target.value)
                 }}>{photo.caption}</p>
+                <p>{photo.photo_users} like</p>
                 <p>{photo.createdAt}</p>
                 {<CommentsPage photo={photo.id}/>}
+                {<CommentFormPage photoId={photo.id}/>}
                 <h1>END OF PHOTO</h1>
             </div>
 

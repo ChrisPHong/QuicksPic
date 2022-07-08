@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, comment, db, Photo, Comment
+from app.forms.comment_form import CommentForm
 from datetime import datetime
 
 
@@ -20,9 +21,8 @@ def validation_errors_to_error_messages(validation_errors):
 @comment_routes.route('/<int:photo_id>')
 @login_required
 def get__comments(photo_id):
-    print('<<<<<<<<<<<<< photo_id >>>>>>>>>', photo_id)
+
     comments = Comment.query.filter(Comment.photo_id == photo_id).all()
-    print('<<<<<<<<<<<<< comments >>>>>>>>>', [comment.to_dict() for comment in comments])
     return jsonify([comment.to_dict() for comment in comments])
 
 
@@ -46,22 +46,26 @@ def get__comments(photo_id):
 
 
 
-# @comment_routes.route("/", methods=["POST"])
-# @login_required
-# def create_comment():
+@comment_routes.route("/", methods=["POST"])
+@login_required
+def create_comment():
+    print(',<<<<<<<<<<<<<<<<<<<<<<<< HITTING THE BACKEND')
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('USERID >>>>>>>>>>>>>>>>>>>>', form.data['user_id'])
+    print('photoId >>>>>>>>>>>>>>>>>>>>', form.data),
 
-#     form = CommentForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print(',<<<<<<<<<<<<<<<<<<<<<<<< HITTING THE in FORM')
+        new_comment = Comment(
+            user_id = form.data['user_id'],
+            photo_id = form.data['photo_id'],
+            comments = form.data['comments'],
+            created_at = datetime.now(),
+            updated_at = datetime.now()
 
-#     id = current_user.to_dict()['id']
-#     form.data['user_id'] = int(id)
-#     if form.validate_on_submit():
-#         new_comment = Comment(
-#             user_id = int(id),
-
-
-#         )
-#         db.session.add(new_comment)
-#         db.session.commit()
-#         return new_comment.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

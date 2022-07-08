@@ -52,19 +52,20 @@ export const getComments = (photoId) => async (dispatch) => {
 
 }
 
-// export const postPhotos = (formData) => async (dispatch) => {
+export const postComment = (payload) => async (dispatch) => {
+    console.log(payload, "IN THE THUNK <<<<<<<<<<<<<<<< PAYLOAD")
+    const response = await fetch(`/api/comments/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
 
-//     const response = await fetch(`/api/photos/`, {
-//         method: 'POST',
-//         body: formData
-//     })
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(createComment(comment))
+    }
 
-//     if (response.ok) {
-//         const photos = await response.json()
-//         dispatch(createPhotos(photos))
-//     }
-
-// }
+}
 
 // export const editPhotos = (payload, id) => async (dispatch) => {
 
@@ -107,13 +108,15 @@ const commentsReducer = (state = initialState, action) => {
             newState = { ...state, entries: { ...state.entries } }
             action.comments.map(comment => { newState.entries[comment.id] = comment })
             return newState
-        // case POST_PHOTO:
-        //     newState = {
-        //         ...state, entries: {
-        //             ...state.entries,
-        //             [action.photo.id]: action.photo
-        //         }
-        //     }
+        case POST_COMMENT:
+            console.log(action.comment, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ACTION IN THE COMMENTS REDUCER")
+            newState = {
+                ...state, entries: {
+                    ...state.entries,
+                    [action.comment.id]: action.comment
+                }
+            }
+            return newState
         //     return newState
         // case CLEAR_ALL_PHOTOS:
         //     return { entries: {}, isLoading: true }

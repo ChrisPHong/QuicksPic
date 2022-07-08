@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import './Comments.css';
 import { getComments } from '../../store/comment'
+import EditCommentsPage from '../EditCommentForm';
 
 
 
@@ -16,10 +17,6 @@ function CommentsPage({ photo }) {
     const [show, setShow] = useState('hidden')
     const [caption, setCaption] = useState('')
 
-    console.log('<<<<<<<<<<< PHOTO', photo)
-
-
-    console.log(allComments, "<<<<<<<<<<<<<<<<< all comments")
     useEffect(() => {
         dispatch(getComments(photo))
     }, [dispatch])
@@ -33,9 +30,12 @@ function CommentsPage({ photo }) {
             {comments.map(comment => {
                 return (
                     <>
+                    {userId === comment.userId ?
+                    <EditCommentsPage comment={comment}/>
+                    :null}
                         {comment.photoId === photo ?
                             <div>
-
+                                <div className='comment-likes'>{comment.commentLikes} likes</div>
                                 <div>
                                     {comment.comments}
                                 </div>

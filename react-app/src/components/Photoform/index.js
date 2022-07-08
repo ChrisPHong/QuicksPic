@@ -14,7 +14,6 @@ function PhotoForm() {
     const dispatch = useDispatch();
 
     let userId = useSelector((state) => state.session?.user?.id)
-    console.log(userId, "<<<<<<<<<<< USER ID >>>>>>>>>>>>")
 
 
     const onSubmit = async (e) => {
@@ -34,8 +33,6 @@ function PhotoForm() {
                 image
             }
             dispatch(postPhotos(formData))
-            // console.log(payload, "<<<<<<<<<<<<<< form Data >>>>>>>>>>>>")
-            console.log(formData, "<<<<<<<<<<<<<< form Data >>>>>>>>>>>>")
             setCaption('')
             setImage(null)
         }
