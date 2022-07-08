@@ -11,7 +11,7 @@ def seed_photos():
     photo1 = Photo(
         user_id = 1,
         caption='I cant believe that just happened right now...',
-        image='this is a picture',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/DSC_9287.jpg',
         created_at = datetime.now(),
         updated_at = datetime.now(),
         photo_users=first_photo

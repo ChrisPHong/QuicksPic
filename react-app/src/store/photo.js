@@ -58,12 +58,10 @@ export const postPhotos = (formData) => async (dispatch) => {
 }
 
 export const editPhotos = (payload, id) => async (dispatch) => {
-    console.log(payload, " <<<<<<<<<<<<< PAYLOAD >>>>>>>>>")
-    console.log(id, " <<<<<<<<<<<<< id >>>>>>>>>")
+
     const response = await fetch(`/api/photos/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: payload
     })
 
     if (response.ok) {

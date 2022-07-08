@@ -15,7 +15,7 @@ function EditPhotoForm({photo}) {
 
     let userId = useSelector((state) => state.session?.user?.id)
     const id = photo.id
-    console.log(photo, "<<<<<<<<<<<<<<< PHOTO IMAGE")
+    // console.log(photo, "<<<<<<<<<<<<<<< PHOTO IMAGE")
 
 
 
@@ -27,6 +27,7 @@ function EditPhotoForm({photo}) {
         formData.append("user_id", userId)
         formData.append("caption", caption)
         formData.append("photo_users", likes)
+        formData.append("id", id)
 
         if (errors.length > 0) {
             setShow(true)
@@ -35,10 +36,11 @@ function EditPhotoForm({photo}) {
         if (errors.length === 0) {
             const payload = {
                 userId,
-                caption
+                caption,
+                id
             }
-            dispatch(editPhotos(id, payload))
-            // console.log(payload, "<<<<<<<<<<<<<< form Data >>>>>>>>>>>>")
+            dispatch(editPhotos(formData, id))
+
         }
 
     }
