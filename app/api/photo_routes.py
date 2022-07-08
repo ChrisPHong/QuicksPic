@@ -37,9 +37,11 @@ def get__photos(id):
     photos = []
     for i in range(len(followers_only)):
         follower_id = followers_only[i]
-        photo = Photo.query.filter(Photo.user_id == follower_id or Photo.user_id == user.id).all()
+        photo = Photo.query.filter(Photo.user_id == follower_id).all()
+        user_photo = Photo.query.filter(Photo.user_id == user.id).all()
         if(len(photo) > 0):
             photos.extend(photo)
+            photos.extend(user_photo)
 
     return jsonify([photo.to_dict() for photo in photos])
 

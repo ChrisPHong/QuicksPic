@@ -50,7 +50,7 @@ def seed_photos():
     )
     photo6 = Photo(
         user_id = 6,
-        caption='B.E.A.UTIFUL DAY',
+        caption='Comfort',
         image='https://quickspic.s3.us-west-1.amazonaws.com/fashion.jpg',
         created_at = datetime.now(),
         updated_at = datetime.now(),
