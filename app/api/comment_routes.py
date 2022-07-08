@@ -33,15 +33,15 @@ def get__comments(photo_id):
     # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Users can delete their comment
-# @comment_routes.route('/<int:photo_id>/', methods=['DELETE'])
-# def delete_comment(comment_id):
-#     comment = Comment.query.get(comment_id)
-#     print('<<<<<<<<<<<<<<<<<<< PHOTO', comment.to_dict())
+@comment_routes.route('/<int:comment_id>', methods=['DELETE'])
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    print('<<<<<<<<<<<<<<<<<<< PHOTO', comment.to_dict())
 
-#     db.session.delete(comment)
-#     db.session.commit()
+    db.session.delete(comment)
+    db.session.commit()
 
-#     return comment.to_dict()
+    return comment.to_dict()
 
 
 
@@ -49,14 +49,12 @@ def get__comments(photo_id):
 @comment_routes.route("/", methods=["POST"])
 @login_required
 def create_comment():
-    print(',<<<<<<<<<<<<<<<<<<<<<<<< HITTING THE BACKEND')
+
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('USERID >>>>>>>>>>>>>>>>>>>>', form.data['user_id'])
-    print('photoId >>>>>>>>>>>>>>>>>>>>', form.data),
 
     if form.validate_on_submit():
-        print(',<<<<<<<<<<<<<<<<<<<<<<<< HITTING THE in FORM')
+
         new_comment = Comment(
             user_id = form.data['user_id'],
             photo_id = form.data['photo_id'],
