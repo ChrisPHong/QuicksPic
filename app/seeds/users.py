@@ -35,11 +35,19 @@ def seed_users():
 
     )
 
+    danny = User(
+        username='danny',
+        email='danny@aa.io',
+        password='password',
+
+    )
+
     db.session.add(demo)
     db.session.add(em)
     db.session.add(chris)
     db.session.add(brian)
     db.session.add(uki)
+    db.session.add(danny)
 
     demo.to_follow(chris)
     demo.to_follow(em)
@@ -56,7 +64,10 @@ def seed_users():
     brian.to_follow(uki)
     uki.to_follow(brian)
     uki.to_follow(chris)
-
+    danny.to_follow(chris)
+    danny.to_follow(demo)
+    danny.to_follow(brian)
+    danny.to_follow(uki)
 
     db.session.commit()
 
