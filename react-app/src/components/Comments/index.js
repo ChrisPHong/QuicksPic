@@ -25,26 +25,35 @@ function CommentsPage({ photo }) {
 
     }, [caption])
 
+    console.log('<<<<<<<<<<<< PHOTOID', photo)
+
     return (
         <div className='entire-comments-picture'>
             {comments.map(comment => {
                 return (
                     <>
-                    {userId === comment.userId ?
-                    <EditCommentsPage comment={comment}/>
-                    :null}
+
+                        {userId === comment.userId && photo === comment.photoId?
+                        <div>
+                            <EditCommentsPage comment={comment} />
+                        </div>
+                            : null}
                         {comment.photoId === photo ?
                             <div>
-                                <div className='comment-likes'>{comment.commentLikes} likes</div>
-                                {comment.userId === userId ?
-                                <button
-                                onClick={(e)=>{
-                                    dispatch(deleteComment(comment.id))
-                                }}
-                                >Delete</button>
-                                : null}
-                                <div>
-                                    {comment.comments}
+                                <div className='comment-delete'>
+
+                                    {comment.userId === userId ?
+
+                                        <button
+                                        onClick={(e) => {
+                                            dispatch(deleteComment(comment.id))
+                                        }}
+                                        >Delete</button>
+                                        : null}
+                                    <div>
+                                        {comment.comments}
+                                    </div>
+                                        <div className='comment-likes'>{comment.commentLikes} likes</div>
                                 </div>
                                 <div>
                                     {comment.createdAt}

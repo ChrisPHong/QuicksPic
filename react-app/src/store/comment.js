@@ -3,6 +3,7 @@ const POST_COMMENT = 'comment/CREATE'
 const CLEAR_ALL_COMMENTS = 'comment/CLEAR/LOGOUT'
 const EDIT_COMMENT = 'comment/EDIT'
 const DELETE_COMMENT = 'comment/DELETE'
+const UPDATE_COMMENT = 'comment/UPDATE'
 
 export const loadComments = (comments) => {
     return {
@@ -53,7 +54,6 @@ export const getComments = (photoId) => async (dispatch) => {
 }
 
 export const postComment = (payload) => async (dispatch) => {
-    console.log(payload, "IN THE THUNK <<<<<<<<<<<<<<<< PAYLOAD")
     const response = await fetch(`/api/comments/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -67,19 +67,22 @@ export const postComment = (payload) => async (dispatch) => {
 
 }
 
-// export const editPhotos = (payload, id) => async (dispatch) => {
+export const editComment = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${payload.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
 
-//     const response = await fetch(`/api/photos/${id}`, {
-//         method: 'PATCH',
-//         body: payload
-//     })
+    console.log('<<<<<<<<<<<< PAYLOAD ID', payload)
+    console.log('<<<<<<<<<<<< response ', response)
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(updateComment(comment))
+    }
 
-//     if (response.ok) {
-//         const photo = await response.json()
-//         dispatch(updatePhoto(photo))
-//     }
+}
 
-// }
 export const deleteComment = (commentId) => async (dispatch) => {
     console.log(commentId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
     const response = await fetch(`/api/comments/${commentId}`, {
@@ -109,7 +112,6 @@ const commentsReducer = (state = initialState, action) => {
             action.comments.map(comment => { newState.entries[comment.id] = comment })
             return newState
         case POST_COMMENT:
-            console.log(action.comment, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ACTION IN THE COMMENTS REDUCER")
             newState = {
                 ...state, entries: {
                     ...state.entries,
@@ -117,17 +119,17 @@ const commentsReducer = (state = initialState, action) => {
                 }
             }
             return newState
-        //     return newState
+
         // case CLEAR_ALL_PHOTOS:
         //     return { entries: {}, isLoading: true }
-        // case EDIT_PHOTO:
-        //     newState = {
-        //         ...state, entries: {
-        //             ...state.entries,
-        //         }
-        //     }
-        //     newState.entries[action.photo.id] = action.photo
-        //     return newState
+        case EDIT_COMMENT:
+            newState = {
+                ...state, entries: {
+                    ...state.entries,
+                }
+            }
+            newState.entries[action.comment.id] = action.comment
+            return newState
         case DELETE_COMMENT:
             newState = { ...state }
             delete newState.entries[action.comment.id]
