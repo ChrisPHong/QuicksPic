@@ -25,14 +25,18 @@ function CommentsPage({ photo }) {
 
     }, [caption])
 
+    console.log('<<<<<<<<<<<< PHOTOID', photo)
 
     return (
         <div className='entire-comments-picture'>
             {comments.map(comment => {
                 return (
                     <>
-                        {userId === comment.userId ?
+
+                        {userId === comment.userId && photo === comment.photoId?
+                        <div>
                             <EditCommentsPage comment={comment} />
+                        </div>
                             : null}
                         {comment.photoId === photo ?
                             <div>

@@ -58,7 +58,6 @@ function PhotosPage() {
                 <p>{photo.createdAt}</p>
                 {<CommentsPage photo={photo.id}/>}
                 {<CommentFormPage photoId={photo.id}/>}
-                <h1>END OF PHOTO</h1>
             </div>
 
                 )
