@@ -26,17 +26,27 @@ def get__comments(photo_id):
     return jsonify([comment.to_dict() for comment in comments])
 
 
-# # # Users can update their photo
-# @comment_routes.route('/<int:photo_id>', methods=['PATCH'])
-# def patch_comment(photo_id):
-#     pass
-    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+# # Users can update their photo
+@comment_routes.route('/<int:comment_id>', methods=['PATCH'])
+def patch_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        comment.comments = form.data['comments']
+        comment.updated_at = datetime.now()
+
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Users can delete their comment
 @comment_routes.route('/<int:comment_id>', methods=['DELETE'])
 def delete_comment(comment_id):
     comment = Comment.query.get(comment_id)
-    print('<<<<<<<<<<<<<<<<<<< PHOTO', comment.to_dict())
 
     db.session.delete(comment)
     db.session.commit()
