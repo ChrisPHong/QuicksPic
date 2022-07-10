@@ -14,7 +14,7 @@ function CommentsPage({ photo }) {
     const userId = useSelector((state) => state.session.user.id);
     const allComments = Object.values(commentsState)[0]
     const comments = Object.values(allComments)
-    const [show, setShow] = useState('hidden')
+    const [show, setShow] = useState(false)
     const [caption, setCaption] = useState('')
 
     useEffect(() => {
@@ -25,35 +25,49 @@ function CommentsPage({ photo }) {
 
     }, [caption])
 
-
+    const showEditDeleteForm = () => {
+        if (show === false) {
+            return setShow(true)
+        }
+        if (show === true) {
+            return setShow(false)
+        }
+    }
 
     return (
         <div className='entire-comments-picture'>
             {comments.map(comment => {
                 return (
                     <>
-
-                        {userId === comment.userId && photo === comment.photoId?
-                        <div>
-                            <EditCommentsPage comment={comment} />
-                        </div>
+                        {comment.comments}
+                        {userId === comment.userId && photo === comment.photoId ?
+                            <div className='Edit-Delete-Photo-Container'>
+                                <button className='bullet-points-button'>
+                                    <img className='bullet-points-img' src='images/bullet-points.png' alt='edit-delete-options' onClick={showEditDeleteForm} />
+                                </button>
+                            </div>
+                            : null}
+                        {userId === comment.userId && photo === comment.photoId && show ?
+                            <div>
+                                <EditCommentsPage comment={comment} />
+                            </div>
                             : null}
                         {comment.photoId === photo ?
                             <div>
                                 <div className='comment-delete'>
 
-                                    {comment.userId === userId ?
+                                    {comment.userId === userId && show ?
 
                                         <button
-                                        onClick={(e) => {
-                                            dispatch(deleteComment(comment.id))
-                                        }}
+                                            onClick={(e) => {
+                                                dispatch(deleteComment(comment.id))
+                                            }}
                                         >Delete</button>
                                         : null}
-                                    <div>
-                                        {comment.comments}
-                                    </div>
-                                        <div className='comment-likes'>{comment.commentLikes} likes</div>
+                                </div>
+                                <div className='commentEditandDeleteForm'>
+
+                                    <div className='comment-likes'>{comment.commentLikes} likes</div>
                                 </div>
                                 <div>
                                     {comment.createdAt}
