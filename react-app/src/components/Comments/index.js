@@ -25,7 +25,7 @@ function CommentsPage({ photo }) {
 
     }, [caption])
 
-    console.log('<<<<<<<<<<<< PHOTOID', photo)
+
 
     return (
         <div className='entire-comments-picture'>
