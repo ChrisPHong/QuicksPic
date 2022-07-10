@@ -17,17 +17,18 @@
     cursor: pointer;
 }
 
-/* .post-title-edit-deleteform{
-    display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
-    /* align-self: center; */
-    /* justify-content: space-between; */
-/* } */
+.post-title-edit-deleteform{
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
 .Edit-Delete-Photo-Container{
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
-    /* align-self: center; */
-    /* justify-content: space-between; */
+}
+
+.photo-container{
+    border: solid 2px black;
 }
