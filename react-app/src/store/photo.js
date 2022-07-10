@@ -80,7 +80,7 @@ export const editPhotos = (payload, id) => async (dispatch) => {
 
 }
 export const deletePhoto = (photoId) => async (dispatch) => {
-    console.log(photoId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
+
     const response = await fetch(`/api/photos/${photoId}/delete`, {
         method: 'DELETE',
     })
@@ -111,8 +111,9 @@ const photosReducer = (state = initialState, action) => {
         case POST_PHOTO:
             newState = {
                 ...state, entries: {
-                    ...state.entries,
-                    [action.photo.id]: action.photo
+                    [action.photo.id]: action.photo,
+                    ...state.entries
+
                 }
             }
             return newState

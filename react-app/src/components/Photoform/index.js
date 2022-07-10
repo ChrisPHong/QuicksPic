@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {postPhotos} from '../../store/photo'
+import { postPhotos } from '../../store/photo'
 import './Photoform.css';
 
 function PhotoForm() {
@@ -24,25 +24,32 @@ function PhotoForm() {
         formData.append("caption", caption)
         if (errors.length > 0) {
             setShow(true)
+
             return
         }
         if (errors.length === 0) {
-            const payload = {
-                userId,
-                caption,
-                image
-            }
+
             dispatch(postPhotos(formData))
             setCaption('')
             setImage(null)
+            setShow(false)
         }
 
     }
-    const updateImage = (e) =>{
+    const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file)
 
     }
+
+    useEffect(() => {
+        const error = [];
+        if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
+        if (image === null) error.push('You must upload an image in the format of png or jpg')
+        if (!caption.replace(/\s/g, '').length) error.push('Please provide a caption that does not only contain spaces')
+        setErrors(error)
+    }, [caption, image])
+
 
     useEffect(() => {
 
@@ -51,7 +58,26 @@ function PhotoForm() {
     return (
         <div className='PhotoFormDiv'>
             <form className='photoform' onSubmit={onSubmit}>
+
                 <h2>Post Your Photos!</h2>
+                {show ?
+
+                    errors.length > 0 ?
+                        <>
+                            <h4>Please Fix These Errors:</h4>
+                            <ul className='errorsArray'>{errors.map(error => {
+                                return (
+                                    <>
+                                        <li className='PhotoFormErrorItem'
+                                            key={error}>{error}</li>
+                                    </>
+                                )
+                            })}
+                            </ul>
+                        </>
+                        : null
+
+                    : null}
                 <input
                     name="caption"
                     type='text'
@@ -61,10 +87,10 @@ function PhotoForm() {
                     placeholder='Caption' />
 
                 <input
-                name="image"
-                type="file"
-                accept="image/*"
-                onChange={updateImage}
+                    name="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={updateImage}
 
                 />
                 <button type='submit'>Submit</button>

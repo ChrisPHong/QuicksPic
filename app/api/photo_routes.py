@@ -29,7 +29,6 @@ def get__photos(id):
     # These are the people that we're following
     following_list = [int(follower.get_id()) for follower in user.follower]
     # following_lists = [follower for follower in user.follower]
-    print('<<<<<<<<<<<<<< izzy"s theory', following_list)
 
     # This gives us the id's of all the followers that we're following
     # followers_only = [int(follower.get_id()) for follower in following_lists]
@@ -64,7 +63,7 @@ def patch_photo(photo_id):
 
         db.session.add(photo)
         db.session.commit()
-        print('<<<<<<<<<<<<<<<<<<<<<<< photo >>>>>>', photo.to_dict())
+
         return photo.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -72,7 +71,6 @@ def patch_photo(photo_id):
 @photo_routes.route('/<int:photo_id>/delete', methods=['DELETE'])
 def delete_photo(photo_id):
     photo = Photo.query.get(photo_id)
-    print('<<<<<<<<<<<<<<<<<<< PHOTO', photo.to_dict())
 
     db.session.delete(photo)
     db.session.commit()

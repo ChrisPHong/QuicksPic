@@ -10,8 +10,8 @@ flask seed all
 flask seed undo
 
 
-heroku run -a sea-coin flask seed all
-heroku run -a sea-coin flask seed undo
+heroku run -a quickspic flask seed all
+heroku run -a quickspic flask seed undo
 
 
 - Create a database
