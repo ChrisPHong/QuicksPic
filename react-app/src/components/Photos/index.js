@@ -41,47 +41,62 @@ function PhotosPage() {
             {allPhotos.map((photo) => {
                 return (
                     <div className='photo-container'>
-                        <div className='post-title-edit-deleteform'>
-                            {photo.userId === userId ?
-                                <div className='Edit-Delete-Photo-Container'>
-                                    <h2>{currentUsername}</h2>
-                                    <button className='bullet-points-button'>
-                                        <img className='bullet-points-img' src='images/bullet-points.png' alt='edit-delete-options' onClick={showEditDeleteForm} />
-                                    </button>
-                                </div>
-                                : null}
-                        </div>
-                        {show ?
-                            <div>
-                                {
-                                    photo.userId === userId ?
-                                        <div>
-                                            <EditPhotoForm photo={photo} />
-                                            <button
-                                                onClick={(e) => {
-                                                    e.preventDefault()
-                                                    e.stopPropagation()
-                                                    let photoId = photo.id
-                                                    dispatch(deletePhoto(photoId))
-                                                }}
+                        <div className='FullImageContainer'>
 
-                                            >Delete</button>
-                                        </div>
-                                        : null
-                                }
+                            <div className='post-title-edit-deleteform'>
+                                <h2>{photo.username.username}</h2>
+                                {photo.userId === userId ?
+                                    <div className='Edit-Delete-Photo-Container'>
+                                        <button className='bullet-points-button'>
+                                            <img className='bullet-points-img' src='images/bullet-points.png' alt='edit-delete-options' onClick={showEditDeleteForm} />
+                                        </button>
+                                    </div>
+                                    : null}
+                                {show ?
+                                    <div>
+                                        {
+                                            photo.userId === userId ?
+                                                <div>
+                                                    <EditPhotoForm photo={photo} />
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.preventDefault()
+                                                            e.stopPropagation()
+                                                            let photoId = photo.id
+                                                            dispatch(deletePhoto(photoId))
+                                                        }}
+
+                                                    >Delete</button>
+                                                </div>
+                                                : null
+                                        }
+                                    </div>
+                                    : null}
                             </div>
-                            : null}
-                        <img
-                            className='picture-div'
-                            src={photo.image} />
-                        <p
-                            onChange={(e) => {
-                                setCaption(e.target.value)
-                            }}>{photo.caption}</p>
-                        <p>{photo.photo_users} like</p>
+                            <div className='like-and-caption-div'>
+                                <img
+                                    className='picture-div'
+                                    src={photo.image} />
+                                {photo.photo_users !== 1 ?
+                                    <span>{photo.photo_users} likes</span>
+                                    : <span>
+                                        {photo.photo_users} like
+                                    </span>
+                                }
+
+                                <span
+                                    onChange={(e) => {
+                                        setCaption(e.target.value)
+                                    }}>{photo.username.username} {photo.caption}</span>
+                            </div>
+                        </div>
+                        <div className='comments-all-div'>
+                            {<CommentsPage photo={photo.id} />}
+                        </div>
+                        <div className='comments-form-div'>
+                            {<CommentFormPage photoId={photo.id} />}
+                        </div>
                         <p>{photo.createdAt}</p>
-                        {<CommentsPage photo={photo.id} />}
-                        {<CommentFormPage photoId={photo.id} />}
                     </div>
 
                 )

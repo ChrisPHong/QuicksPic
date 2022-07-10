@@ -74,8 +74,6 @@ export const editComment = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    console.log('<<<<<<<<<<<< PAYLOAD ID', payload)
-    console.log('<<<<<<<<<<<< response ', response)
     if (response.ok) {
         const comment = await response.json()
         dispatch(updateComment(comment))
@@ -97,8 +95,8 @@ export const deleteComment = (commentId) => async (dispatch) => {
 }
 
 
-// export const clearAllPhotos = () => async (dispatch) => {
-//     dispatch(clearAllPhoto())
+// export const clearAllcomments = () => async (dispatch) => {
+//     dispatch(clearAllcomment())
 //     return {}
 // }
 
@@ -120,7 +118,7 @@ const commentsReducer = (state = initialState, action) => {
             }
             return newState
 
-        // case CLEAR_ALL_PHOTOS:
+        // case CLEAR_ALL_COMMENTS:
         //     return { entries: {}, isLoading: true }
         case EDIT_COMMENT:
             newState = {

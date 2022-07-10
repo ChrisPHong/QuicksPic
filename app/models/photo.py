@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 
 photos_likes = db.Table(
@@ -33,7 +34,8 @@ class Photo(db.Model):
             'userId': self.user_id,
             'caption': self.caption,
             'image': self.image,
-            'createdAt': self.created_at,
+            'createdAt': self.created_at.strftime("%b %d %Y"),
             'updatedAt': self.updated_at,
-            'photo_users': len(self.photo_users)
+            'photo_users': len(self.photo_users),
+            'username': self.users.to_dict_username()
         }

@@ -33,7 +33,7 @@ class Comment(db.Model):
             'userId': self.user_id,
             'photoId': self.photo_id,
             'comments': self.comments,
-            'createdAt': self.created_at,
+            'createdAt': self.created_at.strftime("%b %d %Y"),
             'updatedAt': self.updated_at,
             'commentLikes': len(self.comment_users)
         }

@@ -17,17 +17,39 @@
     cursor: pointer;
 }
 
-/* .post-title-edit-deleteform{
-    display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
-    /* align-self: center; */
-    /* justify-content: space-between; */
-/* } */
+.post-title-edit-deleteform{
+
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
 .Edit-Delete-Photo-Container{
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
-    /* align-self: center; */
-    /* justify-content: space-between; */
+}
+
+.photo-container{
+    border: solid 1px rgb(83, 83, 83, .4);
+    margin-bottom: 10px;
+    border-radius: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing:border-box
+}
+
+.like-and-caption-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.FullImageContainer{
+    /* background-color: blue; */
+    /* display: flex; */
+    border: black 1px solid;
+    justify-content: space-between;
 }
