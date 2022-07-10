@@ -7,8 +7,6 @@ import { editComment } from '../../store/comment'
 
 function EditCommentsPage({ comment }) {
     const dispatch = useDispatch();
-    const commentsState = useSelector((state) => state.comments);
-    const state = useSelector((state) => state);
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState(false);
     const [comments, setComments] = useState(comment.comments);
@@ -21,7 +19,9 @@ function EditCommentsPage({ comment }) {
     useEffect(() => {
         let error = []
         if (comments.length < 1) error.push("Please put a comment with at least one character")
+        if (!comments.replace(/\s/g, '').length) error.push('Please provide a comment that does not only contain spaces');
         setErrors(error)
+
     }, [comments])
 
 
@@ -52,13 +52,30 @@ function EditCommentsPage({ comment }) {
 
                     <h2>Edit your Comment</h2>
                     <form onSubmit={onSubmit}>
+                        {show ?
+
+                            errors.length > 0 ?
+                                <>
+                                    <h4>Fix Errors Before Posting:</h4>
+                                    <ul className='errorsArray'>{errors.map(error => {
+                                        return (
+                                            <>
+                                                <li className='CommentFormErrorItem'
+                                                    key={error}>{error}</li>
+                                            </>
+                                        )
+                                    })}
+                                    </ul>
+                                </>
+                                : null
+
+                            : null}
                         <input
                             placeholder="Comment..."
                             value={comments}
                             onChange={(e) => { setComments(e.target.value) }} />
                         <button type='submit'>Save Changes</button>
                     </form>
-                    <h2> THIS IS THE END OF THE EDIT COMMENT</h2>
                 </div>
                 : null}
         </div>
