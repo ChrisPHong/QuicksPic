@@ -31,4 +31,17 @@ justify-content: space-between;
 
 .photo-container{
     border: solid 2px black;
+    background-color: aqua;
+    border-radius: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-and-caption-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: red;
 }

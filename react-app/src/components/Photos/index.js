@@ -71,20 +71,28 @@ function PhotosPage() {
                                 </div>
                                 : null}
                         </div>
-                        <img
-                            className='picture-div'
-                            src={photo.image} />
-                        <p
-                            onChange={(e) => {
-                                setCaption(e.target.value)
-                            }}>{photo.caption}</p>
-                        <p>{photo.photo_users} like</p>
-                        <p>{photo.createdAt}</p>
+                        <div className='like-and-caption-div'>
+                            <img
+                                className='picture-div'
+                                src={photo.image} />
+                            {photo.photo_users !== 1 ?
+                                <p>{photo.photo_users} likes</p>
+                                : <p>
+                                    {photo.photo_users} like
+                                </p>
+                            }
+
+                            <p
+                                onChange={(e) => {
+                                    setCaption(e.target.value)
+                                }}>{photo.username.username} {photo.caption}</p>
                         <div className='comments-all-div'>
                             {<CommentsPage photo={photo.id} />}
                         </div>
                         <div className='comments-form-div'>
                             {<CommentFormPage photoId={photo.id} />}
+                        </div>
+                        <p>{photo.createdAt}</p>
                         </div>
                     </div>
 
