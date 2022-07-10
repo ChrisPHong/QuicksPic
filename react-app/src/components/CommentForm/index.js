@@ -8,7 +8,6 @@ import { postComment } from '../../store/comment'
 
 function CommentFormPage({ photoId }) {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state);
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState(false)
     const [comments, setComments] = useState('')
