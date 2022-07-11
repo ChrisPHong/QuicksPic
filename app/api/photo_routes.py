@@ -37,6 +37,7 @@ def get__photos(id):
     # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
     # filter by date and then append to photos list
 
+
     photos = []
     for i in range(len(following_list)):
         follower_id = following_list[i]
@@ -124,3 +125,18 @@ def upload_image():
         db.session.commit()
         return new_photo.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+# This is to create a like
+@photo_routes.route('/<int:photo_id>/likes', methods=['POST'])
+def like_photo(photo_id):
+    photo = Photo.query.get(photo_id)
+    print('<<<<<<<<<<<<<< BEFORE LIKE', photo.photo_users)
+    photo.photo_users.append(current_user)
+    print('<<<<<<<<<<<<<< AFTER ADD', photo.photo_users)
+    db.session.add(photo)
+    db.session.commit()
+
+    print(len(photo.photo_users) + 1, " <<<<<<<<<<<<<<<<<<<<<<<< LIKES")
+    return photo.to_dict()
