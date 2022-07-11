@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import { useDispatch, useSelector } from 'react-redux';
+import LoginForm from './components/LoginForm/LoginForm';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import PhotosPage from './components/Photos';
 import { authenticate } from './store/session';
 import PhotoForm from './components/Photoform';
+import HomePage from './components/homePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async() => {
@@ -42,12 +44,18 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        {!currentUser ?
+        <Route path='/' exact={true}>
+          <HomePage />
+        </Route>
+          :
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <h1>Welcome {currentUser?.username}</h1>
           <PhotosPage />
           <PhotoForm />
 
         </ProtectedRoute>
+        }
       </Switch>
     </BrowserRouter>
   );
