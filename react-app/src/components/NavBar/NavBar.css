@@ -1,0 +1,38 @@
+.navigationbar-Div{
+    display: flex;
+    flex-direction: row;
+background-color: aquamarine;
+justify-content: space-around;
+/* flex: auto; */
+align-items: flex-start;
+text-decoration: none;
+
+}
+/* .active{
+    font-size: 10px;
+    background-color: grey;
+} */
+
+.home{
+    text-decoration: none;
+
+}
+.login{
+    text-decoration: none;
+
+}
+
+
+.sign-up{
+    text-decoration: none;
+}
+
+.users{
+    text-decoration: none;
+
+}
+
+
+.logout{
+
+}

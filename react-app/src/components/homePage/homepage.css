@@ -1,0 +1,27 @@
+.Sign-up-home-page-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(145, 142, 142, 0.74);
+    border-radius: 5px 5px;
+    font-family: sans-serif;
+    width: 400px;
+    padding: 15px 52px;
+
+}
+
+.homePage-signUp{
+
+    text-decoration: none;
+    color: #4daff4;
+    padding: 10px;
+
+
+
+}
+.homepage-all-container{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
