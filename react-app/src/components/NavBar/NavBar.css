@@ -1,11 +1,13 @@
 .navigationbar-Div{
     display: flex;
     flex-direction: row;
-background-color: aquamarine;
+/* background-color: aquamarine; */
+background-color: #4daff4;
 justify-content: space-around;
 /* flex: auto; */
 align-items: flex-start;
 text-decoration: none;
+border: solid 2px black;
 
 }
 /* .active{
@@ -13,10 +15,11 @@ text-decoration: none;
     background-color: grey;
 } */
 
-.home{
+/* .home{
     text-decoration: none;
 
-}
+
+} */
 .login{
     text-decoration: none;
 
@@ -34,5 +37,21 @@ text-decoration: none;
 
 
 .logout{
+border:none;
+background-color: transparent;
+font-family: sans-serif;
+font-size: 20px;
+justify-content: center;
+align-items: center;
+transition-duration: 1.3s;
+}
+.logout:hover{
+cursor: pointer;
+text-decoration: underline;
+
+}
+
+.quickPicLogo-picture{
+    max-width: 50px;
 
 }
