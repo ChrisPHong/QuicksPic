@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { login, logout } from '../../store/session';
 import './LoginForm.css'
+import quickpicTitle from './quickpicTitle.png'
 
 
 const LoginForm = () => {
@@ -40,7 +41,7 @@ const LoginForm = () => {
   return (
     <div className='login-ENTIRE-container-div'>
       <div className='login-container-div'>
-        <img className='logo-quicksPic' src='./images/quickpic-title.png' />
+        <img className='logo-quicksPic' src={quickpicTitle} />
         <form className='Login-Form' onSubmit={onLogin}>
           <div>
             {errors.map((error, ind) => (
