@@ -132,11 +132,16 @@ def upload_image():
 @photo_routes.route('/<int:photo_id>/likes', methods=['POST'])
 def like_photo(photo_id):
     photo = Photo.query.get(photo_id)
-    print('<<<<<<<<<<<<<< BEFORE LIKE', photo.photo_users)
+    # This checks to see if the user already liked the photo
+    if current_user in photo.photo_users:
+        print('WITHIN THE CONDITIONAL')
+        photo.photo_users.remove(current_user)
+        db.session.add(photo)
+        db.session.commit()
+        return photo.to_dict()
     photo.photo_users.append(current_user)
-    print('<<<<<<<<<<<<<< AFTER ADD', photo.photo_users)
+
     db.session.add(photo)
     db.session.commit()
 
-    print(len(photo.photo_users) + 1, " <<<<<<<<<<<<<<<<<<<<<<<< LIKES")
     return photo.to_dict()
