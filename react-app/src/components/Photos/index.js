@@ -5,6 +5,7 @@ import { getPhotos, deletePhoto } from '../../store/photo'
 import EditPhotoForm from '../EditPhotoForm';
 import CommentsPage from '../Comments'
 import CommentFormPage from '../CommentForm';
+import PhotoLikesForm from '../PhotoLikesForm'
 import './Photos.css';
 
 
@@ -18,6 +19,7 @@ function PhotosPage() {
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState(false)
     const [caption, setCaption] = useState('')
+    const [likes, setLikes] = useState(0)
     const history = useHistory()
 
     useEffect(() => {
@@ -26,7 +28,7 @@ function PhotosPage() {
 
     useEffect(() => {
 
-    }, [caption, allPhotos])
+    }, [caption])
 
     const showEditDeleteForm = () => {
         if (show === false) {
@@ -60,7 +62,7 @@ function PhotosPage() {
                                                 <div>
                                                     <EditPhotoForm photo={photo} />
                                                     <button
-                                                        onClick={ (e) => {
+                                                        onClick={(e) => {
                                                             e.preventDefault()
 
                                                             let photoId = photo.id
@@ -80,6 +82,8 @@ function PhotosPage() {
                                 <img
                                     className='picture-div'
                                     src={photo.image} />
+
+                                <PhotoLikesForm photo={photo} />
                                 {photo.photo_users !== 1 ?
                                     <span>{photo.photo_users} likes</span>
                                     : <span>

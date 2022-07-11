@@ -3,6 +3,7 @@ const POST_PHOTO = 'photo/CREATE'
 const CLEAR_ALL_PHOTOS = 'photo/CLEAR/LOGOUT'
 const EDIT_PHOTO = 'photo/EDIT'
 const DELETE_PHOTO = 'photo/DELETE'
+const ADD_LIKE = 'photo/ADD/LIKE'
 
 export const loadPhotos = (photos) => {
     return {
@@ -40,6 +41,12 @@ export const delPhoto = (photo) => {
     }
 }
 
+export const addLikePhoto = (photo) => {
+    return {
+        type: ADD_LIKE,
+        photo
+    }
+}
 
 export const getPhotos = (id) => async (dispatch) => {
     const response = await fetch(`/api/photos/${id}`, {
@@ -88,7 +95,6 @@ export const deletePhoto = (photoId) => async (dispatch) => {
     if (response.ok) {
         const photo = await response.json()
         dispatch(delPhoto(photo))
-        // dispatch(delPhoto(photoId))
     }
     return response
 }
@@ -97,6 +103,21 @@ export const deletePhoto = (photoId) => async (dispatch) => {
 export const clearAllPhotos = () => async (dispatch) => {
     dispatch(clearAllPhoto())
     return {}
+}
+
+export const postLikePhoto = (payload) => async (dispatch) => {
+
+    const response = await fetch(`/api/photos/${payload.photoId}/likes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+    if (response.ok) {
+        const photo = await response.json()
+        dispatch(addLikePhoto(photo))
+    }
+
 }
 
 const initialState = { entries: {}, isLoading: true }
@@ -132,6 +153,15 @@ const photosReducer = (state = initialState, action) => {
             newState = { ...state }
             delete newState.entries[action.photo.id]
             return newState
+        case ADD_LIKE:
+            newState = {
+                ...state, entries: {
+                    ...state.entries,
+                }
+            }
+            newState.entries[action.photo.id] = action.photo
+            return newState
+
         default:
             return state
     }
