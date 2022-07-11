@@ -132,6 +132,7 @@ def upload_image():
 @photo_routes.route('/<int:photo_id>/likes', methods=['POST'])
 def like_photo(photo_id):
     photo = Photo.query.get(photo_id)
+
     # This checks to see if the user already liked the photo
     if current_user in photo.photo_users:
         print('WITHIN THE CONDITIONAL')
@@ -139,6 +140,7 @@ def like_photo(photo_id):
         db.session.add(photo)
         db.session.commit()
         return photo.to_dict()
+    # If it's not in the list, then it'll add it to the list and return that photo
     photo.photo_users.append(current_user)
 
     db.session.add(photo)
