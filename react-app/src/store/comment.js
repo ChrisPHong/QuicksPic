@@ -3,7 +3,6 @@ const POST_COMMENT = 'comment/CREATE'
 const CLEAR_ALL_COMMENTS = 'comment/CLEAR/LOGOUT'
 const EDIT_COMMENT = 'comment/EDIT'
 const DELETE_COMMENT = 'comment/DELETE'
-const UPDATE_COMMENT = 'comment/UPDATE'
 
 export const loadComments = (comments) => {
     return {
@@ -95,10 +94,10 @@ export const deleteComment = (commentId) => async (dispatch) => {
 }
 
 
-// export const clearAllcomments = () => async (dispatch) => {
-//     dispatch(clearAllcomment())
-//     return {}
-// }
+export const clearAllcomments = () => async (dispatch) => {
+    dispatch(clearAllComment())
+    return {}
+}
 
 const initialState = { entries: {}, isLoading: true }
 
@@ -118,8 +117,8 @@ const commentsReducer = (state = initialState, action) => {
             }
             return newState
 
-        // case CLEAR_ALL_COMMENTS:
-        //     return { entries: {}, isLoading: true }
+        case CLEAR_ALL_COMMENTS:
+            return { entries: {}, isLoading: true }
         case EDIT_COMMENT:
             newState = {
                 ...state, entries: {
