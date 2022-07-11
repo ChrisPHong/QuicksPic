@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { logout, signUp } from '../../store/session';
 import './SignUpForm.css'
 import { login } from '../../store/session';
+import quickpicTitle from './quickpicTitle.png'
+
 
 
 const SignUpForm = () => {
@@ -51,7 +53,7 @@ const SignUpForm = () => {
   }
   return (
     <div className='signUP-div-container'>
-      <img className='logo-quicksPic' src='./images/quickpic-title.png'/>
+      <img className='logo-quicksPic' src={quickpicTitle}/>
 
       <form onSubmit={onSignUp}>
         <div>
