@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { logout, signUp } from '../../store/session';
@@ -16,18 +16,29 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [show, setShow] = useState(true)
 
   const onSignUp = async (e) => {
-    console.log('<<<<<<<<<<<<<<<< IN THE SIGNUP >>>>>>>>>>>')
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (errors.length > 0){
+
+      setShow(true)
+      return
+    }
+    if (errors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
+      setShow(false)
       if (data) {
         setErrors(data)
       }
     }
-    console.log('<<<<<<<<<<<<<<<< errors >>>>>>>>>>>', errors)
   };
+  useEffect(()=> {
+    const error = []
+    if (password !== repeatPassword) error.push('Password and Repeat Password do not match')
+    if (!email.includes('@')) error.push('Please use a valid email')
+    setErrors(error)
+  },[password, repeatPassword, email, username])
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -59,7 +70,7 @@ const SignUpForm = () => {
 
       <form className='Signup-Form' onSubmit={onSignUp}>
         <div>
-          {errors.map((error, ind) => (
+          {show && errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>

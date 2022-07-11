@@ -29,11 +29,6 @@ def email_needs_at(form, field):
     if '@' not in email:
         raise ValidationError('Email needs an @ symbol in your Email')
 
-def same_password(form, field):
-    print(field.data, "<<<<<<<<<<<<<<<<<<< BACKEND")
-    repeat_password = field.data
-    # if repeat_password != password
-    pass
 
 
 
@@ -42,4 +37,3 @@ class SignUpForm(FlaskForm):
         'username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists, email_needs_period, email_needs_at])
     password = StringField('password', validators=[DataRequired()])
-    repeat_password = StringField('repeat_password', validators=[DataRequired(), same_password])
