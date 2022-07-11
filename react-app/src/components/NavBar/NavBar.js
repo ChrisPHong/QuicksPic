@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
+import quickpicLogo from './quickpicLogo.png'
+
 const NavBar = () => {
 
   const currentUser = useSelector(state => state.session.user);
@@ -15,8 +17,9 @@ const NavBar = () => {
       {currentUser ?
         <>
           <div className='home'>
+
             <NavLink to='/' exact={true} className='home' activeClassName='active'>
-              Home
+          <img className='quickPicLogo-picture' alt='logo-quicksPic' src={quickpicLogo} />
             </NavLink>
           </div>
 
@@ -39,7 +42,7 @@ const NavBar = () => {
         <>
           <div className='home'>
             <NavLink to='/' exact={true} className='home' activeClassName='active'>
-              Home
+            <img className='quickPicLogo-picture' alt='logo-quicksPic' src={quickpicLogo} />
             </NavLink>
           </div>
           <div className='sign-up'>
@@ -53,13 +56,13 @@ const NavBar = () => {
             <NavLink to='/sign-up' exact={true} className='sign-up' activeClassName='active'>
               Sign Up
             </NavLink>
-        </div >
-          </>
+          </div >
+        </>
 
 
-    }
-  </div >
+      }
+    </div >
   );
 }
 
-      export default NavBar;
+export default NavBar;
