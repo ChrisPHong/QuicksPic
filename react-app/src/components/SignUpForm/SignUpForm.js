@@ -53,7 +53,7 @@ const SignUpForm = () => {
   }
   return (
     <div className='signUP-div-container'>
-      <img className='logo-quicksPic' src={quickpicTitle}/>
+      <img className='logo-quicksPic' src='images/quickpicTitle.png'/>
 
       <form onSubmit={onSignUp}>
         <div>
