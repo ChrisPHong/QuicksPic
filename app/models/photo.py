@@ -21,7 +21,7 @@ class Photo(db.Model):
     updated_at = db.Column(db.DateTime)
 
     # Many-to-One relationship with Photos
-    users = db.relationship('User', back_populates='photos')
+    users = db.relationship('User', back_populates='photos', lazy='joined')
 
     comments = db.relationship('Comment', back_populates='photos', cascade='all,delete')
 

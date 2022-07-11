@@ -18,6 +18,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
+    console.log('<<<<<<<<<<<<<<<< IN THE SIGNUP >>>>>>>>>>>')
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
@@ -25,6 +26,7 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }
+    console.log('<<<<<<<<<<<<<<<< errors >>>>>>>>>>>', errors)
   };
 
   const updateUsername = (e) => {
@@ -55,7 +57,7 @@ const SignUpForm = () => {
     <div className='signUP-div-container'>
       <img className='logo-quicksPic' src={quickpicTitle}/>
 
-      <form onSubmit={onSignUp}>
+      <form className='Signup-Form' onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -104,7 +106,11 @@ const SignUpForm = () => {
         </div>
         <button className='sign-up-button' type='submit'>Sign Up</button>
       </form>
+      <div className='or-div-container'>
+      <span className='lines-around-or'>______________________</span>
       <span className='OR-statement'>OR</span>
+      <span className='lines-around-or'>______________________</span>
+      </div>
       <span className='login-demo-user'>Log in as Demo User</span>
       <button className='demoUserButton' onClick={loginDemoUser}>Demo User</button>
     </div>
