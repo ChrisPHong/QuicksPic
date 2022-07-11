@@ -88,8 +88,9 @@ export const deletePhoto = (photoId) => async (dispatch) => {
     if (response.ok) {
         const photo = await response.json()
         dispatch(delPhoto(photo))
+        // dispatch(delPhoto(photoId))
     }
-
+    return response
 }
 
 

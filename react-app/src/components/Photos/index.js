@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { getPhotos, deletePhoto } from '../../store/photo'
 import EditPhotoForm from '../EditPhotoForm';
 import CommentsPage from '../Comments'
@@ -18,6 +18,7 @@ function PhotosPage() {
     const userId = useSelector((state) => state.session.user.id);
     const [show, setShow] = useState(false)
     const [caption, setCaption] = useState('')
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getPhotos(userId))
@@ -25,7 +26,7 @@ function PhotosPage() {
 
     useEffect(() => {
 
-    }, [caption])
+    }, [caption, allPhotos])
 
     const showEditDeleteForm = () => {
         if (show === false) {
@@ -59,11 +60,13 @@ function PhotosPage() {
                                                 <div>
                                                     <EditPhotoForm photo={photo} />
                                                     <button
-                                                        onClick={(e) => {
+                                                        onClick={ (e) => {
                                                             e.preventDefault()
-                                                            e.stopPropagation()
+
                                                             let photoId = photo.id
                                                             dispatch(deletePhoto(photoId))
+
+
                                                         }}
 
                                                     >Delete</button>

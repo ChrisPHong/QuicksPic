@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { logout, signUp } from '../../store/session';
@@ -16,16 +16,29 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [show, setShow] = useState(true)
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (errors.length > 0){
+
+      setShow(true)
+      return
+    }
+    if (errors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
+      setShow(false)
       if (data) {
         setErrors(data)
       }
     }
   };
+  useEffect(()=> {
+    const error = []
+    if (password !== repeatPassword) error.push('Password and Repeat Password do not match')
+    if (!email.includes('@')) error.push('Please use a valid email')
+    setErrors(error)
+  },[password, repeatPassword, email, username])
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -55,9 +68,9 @@ const SignUpForm = () => {
     <div className='signUP-div-container'>
       <img className='logo-quicksPic' src={quickpicTitle}/>
 
-      <form onSubmit={onSignUp}>
+      <form className='Signup-Form' onSubmit={onSignUp}>
         <div>
-          {errors.map((error, ind) => (
+          {show && errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
@@ -104,7 +117,11 @@ const SignUpForm = () => {
         </div>
         <button className='sign-up-button' type='submit'>Sign Up</button>
       </form>
+      <div className='or-div-container'>
+      <span className='lines-around-or'>______________________</span>
       <span className='OR-statement'>OR</span>
+      <span className='lines-around-or'>______________________</span>
+      </div>
       <span className='login-demo-user'>Log in as Demo User</span>
       <button className='demoUserButton' onClick={loginDemoUser}>Demo User</button>
     </div>
