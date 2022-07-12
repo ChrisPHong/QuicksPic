@@ -135,7 +135,6 @@ def like_photo(photo_id):
 
     # This checks to see if the user already liked the photo
     if current_user in photo.photo_users:
-        print('WITHIN THE CONDITIONAL')
         photo.photo_users.remove(current_user)
         db.session.add(photo)
         db.session.commit()

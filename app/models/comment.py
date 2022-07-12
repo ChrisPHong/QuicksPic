@@ -19,7 +19,7 @@ class Comment(db.Model):
     updated_at = db.Column(db.DateTime)
 
     # one to many relationship
-    users = db.relationship('User', back_populates='comments')
+    users = db.relationship('User', back_populates='comments', lazy='joined')
 
     # one to many relationship
     photos = db.relationship('Photo', back_populates='comments')
@@ -35,5 +35,6 @@ class Comment(db.Model):
             'comments': self.comments,
             'createdAt': self.created_at.strftime("%b %d %Y"),
             'updatedAt': self.updated_at,
-            'commentLikes': len(self.comment_users)
+            'commentLikes': len(self.comment_users),
+            'username': self.users.to_dict_username()
         }
