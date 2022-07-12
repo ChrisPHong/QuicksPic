@@ -50,7 +50,7 @@ function CommentsPage({ photo }) {
                                     </div>
                                     <div className='comment-comment-div'>
                                         {comment.comments}
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             : null}
@@ -71,7 +71,7 @@ function CommentsPage({ photo }) {
                                             } else if (specificEditForm.className === `editform-${comment.id} show`) {
                                                 return specificEditForm.className = `editform-${comment.id} hidden`
 
-                                            }else {
+                                            } else {
                                                 setShow('hidden')
                                                 specificEditForm.className = `editform-${comment.id} ${show}`
                                                 return
@@ -84,6 +84,12 @@ function CommentsPage({ photo }) {
                         {userId === comment.userId && photo === comment.photoId ?
                             <div className={`editform-${comment.id} hidden`}>
                                 <EditCommentsPage comment={comment} />
+                                <button
+                                            onClick={(e) => {
+                                                dispatch(deleteComment(comment.id))
+                                            }}
+                                        >Delete</button>
+
                             </div>
                             : null}
                         {comment.photoId === photo ?
@@ -100,7 +106,7 @@ function CommentsPage({ photo }) {
                                         : null}
                                 </div>
                                 <div className='Likes-Comment-Div'>
-                                        < CommentLikeForm comment={comment} />
+                                    < CommentLikeForm comment={comment} />
                                     <div className='comment-likes'>{comment.commentLikes} likes</div>
                                 </div>
                                 <div>
