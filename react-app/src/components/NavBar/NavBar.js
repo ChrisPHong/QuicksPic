@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import quickpicLogo from './quickpicLogo.png'
+import home from './home.png'
 
 const NavBar = () => {
 
@@ -20,6 +21,13 @@ const NavBar = () => {
 
             <NavLink to='/' exact={true} className='home' activeClassName='active'>
           <img className='quickPicLogo-picture' alt='logo-quicksPic' src={quickpicLogo} />
+            </NavLink>
+          </div>
+
+          <div className='home'>
+
+            <NavLink to='/' exact={true} className='home' activeClassName='active'>
+          <img className='quickPicLogo-picture' alt='logo-quicksPic' src={home} />
             </NavLink>
           </div>
 

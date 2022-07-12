@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { postLikePhoto } from '../../store/photo'
 import './PhotoLikesForm.css';
+import filledHeart from './filledHeart.png'
+import emptyHeart from './emptyHeart.png'
 
 
 
@@ -28,7 +30,7 @@ function PhotoLikesForm({photo}) {
                     }
                     dispatch(postLikePhoto(payload))
                 }}
-            > Heart Button Like Thing</button>
+            > <img className='commentLikeButton'src={filledHeart}/></button>
 
 
 

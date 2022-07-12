@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { likeComment } from '../../store/comment'
 import './CommentLikeForm.css';
+import filledHeart from './filledHeart.png'
 
 
 
@@ -28,7 +29,7 @@ function CommentLikeForm({comment}) {
                     }
                     dispatch(likeComment(payload))
                 }}
-            > Heart Button Like Thing</button>
+            > <img className='commentLikeButton'src={filledHeart}/></button>
 
 
 

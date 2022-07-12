@@ -1,0 +1,13 @@
+.commentLikeButton{
+    width: 20px;
+
+}
+.commentLikeButton:active{
+    width: 22px;
+
+}
+.CommentLikeButton{
+    background-color: transparent;
+    border: none;
+
+}
