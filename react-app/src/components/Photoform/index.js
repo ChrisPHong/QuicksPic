@@ -4,7 +4,6 @@ import { postPhotos } from '../../store/photo'
 import './Photoform.css';
 
 function PhotoForm() {
-    const [name, setName] = useState('');
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(false);
     const [caption, setCaption] = useState('')
