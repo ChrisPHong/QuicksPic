@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: row;
 /* background-color: aquamarine; */
-background-color: #4daff4;
+
 justify-content: space-around;
 /* flex: auto; */
 align-items: flex-start;
 text-decoration: none;
-border: solid 2px black;
+border-bottom: solid 1px rgba(90, 89, 89, 0.671);
 
 }
 /* .active{
@@ -54,4 +54,9 @@ text-decoration: underline;
 .quickPicLogo-picture{
     max-width: 50px;
 
+}
+
+.PhotoFormButton{
+    background-color: transparent;
+    border: none;
 }

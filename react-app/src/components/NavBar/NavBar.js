@@ -1,17 +1,28 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import quickpicLogo from './quickpicLogo.png'
+import createPost from './createPost.png'
 import home from './home.png'
+import PhotoForm from '../Photoform'
 
 const NavBar = () => {
 
   const currentUser = useSelector(state => state.session.user);
+  const [show, setShow] = useState(false)
 
 
+  const showPhotoForm = () => {
+    if (show === false) {
+        return setShow(true)
+    }
+    if (show === true) {
+        return setShow(false)
+    }
+}
 
   return (
     <div className='navigationbar-Div'>
@@ -31,7 +42,15 @@ const NavBar = () => {
             </NavLink>
           </div>
 
-
+        <div>
+        <button onClick={showPhotoForm}
+        className='PhotoFormButton'>
+          <img className='quickPicLogo-picture' alt='logo-quicksPic' src={createPost} />
+        </button>
+        {show ?
+          <PhotoForm />
+        : null}
+        </div>
 
 
           <div className='users'>
