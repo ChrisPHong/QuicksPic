@@ -40,7 +40,7 @@ function CommentsPage({ photo }) {
             {comments.map(comment => {
                 return (
                     <>
-                        {console.log(comment, '<<<<<<<<<<< COMMENT')}
+
                         {comment.photoId === photo ?
                             <div>
                                 <div>
@@ -55,13 +55,32 @@ function CommentsPage({ photo }) {
 
                         {userId === comment.userId && photo === comment.photoId ?
                             <div className='Edit-Delete-Photo-Container'>
-                                <button className='bullet-points-button'>
-                                    <img className='bullet-points-img' src='images/bullet-points.png' alt='edit-delete-options' onClick={showEditDeleteForm} />
+                                <button className={`bullet-points-button editButton ${comment.id}`}>
+                                    <img className={`bullet-points-img ${comment.id}`} src='images/bullet-points.png' alt='edit-delete-options' onClick={(e) => {
+                                        let specificEditForm = document.getElementsByClassName(`editform-${comment.id}`)[0]
+                                        console.log(parseInt(e.currentTarget.className.split(' ')[1]), "WHAT IS THISSSS?")
+                                        if (parseInt(e.currentTarget.className.split(' ')[1]) === comment.id) {
+                                            if (specificEditForm.className === `editform-${comment.id} hidden`) {
+
+                                                return specificEditForm.className = `editform-${comment.id} show`
+
+
+
+                                            } else if (specificEditForm.className === `editform-${comment.id} show`) {
+                                                return specificEditForm.className = `editform-${comment.id} hidden`
+
+                                            }else {
+                                                setShow('hidden')
+                                                specificEditForm.className = `editform-${comment.id} ${show}`
+                                                return
+                                            }
+                                        }
+                                    }} />
                                 </button>
                             </div>
                             : null}
-                        {userId === comment.userId && photo === comment.photoId && show ?
-                            <div>
+                        {userId === comment.userId && photo === comment.photoId ?
+                            <div className={`editform-${comment.id} hidden`}>
                                 <EditCommentsPage comment={comment} />
                             </div>
                             : null}
