@@ -3,6 +3,7 @@ const POST_COMMENT = 'comment/CREATE'
 const CLEAR_ALL_COMMENTS = 'comment/CLEAR/LOGOUT'
 const EDIT_COMMENT = 'comment/EDIT'
 const DELETE_COMMENT = 'comment/DELETE'
+const ADD_LIKE_COMMENT = 'comment/ADD/LIKE'
 
 export const loadComments = (comments) => {
     return {
@@ -14,6 +15,12 @@ export const loadComments = (comments) => {
 export const createComment = (comment) => {
     return {
         type: POST_COMMENT,
+        comment
+    }
+}
+export const addLikeComment = (comment) => {
+    return {
+        type: ADD_LIKE_COMMENT,
         comment
     }
 }
@@ -65,6 +72,19 @@ export const postComment = (payload) => async (dispatch) => {
     }
 
 }
+export const likeComment = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${payload.commentId}/likes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(addLikeComment(comment))
+    }
+
+}
 
 export const editComment = (payload) => async (dispatch) => {
     const response = await fetch(`/api/comments/${payload.id}`, {
@@ -81,7 +101,7 @@ export const editComment = (payload) => async (dispatch) => {
 }
 
 export const deleteComment = (commentId) => async (dispatch) => {
-    console.log(commentId, "WE IN THE THUNK >>>>>>>>>>>>>>>>>>")
+
     const response = await fetch(`/api/comments/${commentId}`, {
         method: 'DELETE',
     })
@@ -131,6 +151,14 @@ const commentsReducer = (state = initialState, action) => {
             newState = { ...state }
             delete newState.entries[action.comment.id]
             return newState
+        case ADD_LIKE_COMMENT:
+                newState = {
+                    ...state, entries: {
+                        ...state.entries,
+                    }
+                }
+                newState.entries[action.comment.id] = action.comment
+                return newState
         default:
             return state
     }

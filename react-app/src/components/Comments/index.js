@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './Comments.css';
 import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
+import CommentLikeForm from '../CommentLikesForm'
 
 
 
@@ -39,7 +40,19 @@ function CommentsPage({ photo }) {
             {comments.map(comment => {
                 return (
                     <>
-                        {comment.comments}
+                        {console.log(comment, '<<<<<<<<<<< COMMENT')}
+                        {comment.photoId === photo ?
+                            <div>
+                                <div>
+                                    <div className='comment-username-div'>{comment.username.username}
+                                    </div>
+                                    <div className='comment-comment-div'>
+                                        {comment.comments}
+                                        </div>
+                                </div>
+                            </div>
+                            : null}
+
                         {userId === comment.userId && photo === comment.photoId ?
                             <div className='Edit-Delete-Photo-Container'>
                                 <button className='bullet-points-button'>
@@ -65,8 +78,8 @@ function CommentsPage({ photo }) {
                                         >Delete</button>
                                         : null}
                                 </div>
-                                <div className='commentEditandDeleteForm'>
-
+                                <div className='Likes-Comment-Div'>
+                                        < CommentLikeForm comment={comment} />
                                     <div className='comment-likes'>{comment.commentLikes} likes</div>
                                 </div>
                                 <div>

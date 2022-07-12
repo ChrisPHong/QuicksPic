@@ -77,3 +77,22 @@ def create_comment():
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@comment_routes.route('/<int:comment_id>/likes', methods=['POST'])
+def like_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+
+    # This checks to see if the user already liked the comment
+    if current_user in comment.comment_users:
+        comment.comment_users.remove(current_user)
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    # If it's not in the list, then it'll add it to the list and return that comment
+    comment.comment_users.append(current_user)
+
+    db.session.add(comment)
+    db.session.commit()
+
+    return comment.to_dict()
