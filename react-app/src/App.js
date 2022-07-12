@@ -20,7 +20,7 @@ function App() {
   const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -41,7 +41,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <ProfileTopPortion />
@@ -49,16 +49,16 @@ function App() {
           <UserProfilePage />
         </ProtectedRoute>
         {!currentUser ?
-        <Route path='/' exact={true}>
-          <HomePage />
-        </Route>
+          <Route path='/' exact={true}>
+            <HomePage />
+          </Route>
           :
-        <ProtectedRoute path='/' exact={true} >
-          <h1>Welcome {currentUser?.username}</h1>
-          <PhotosPage />
-          <PhotoForm />
+          <ProtectedRoute path='/' exact={true} >
+            <h1>Welcome {currentUser?.username}</h1>
+            <PhotosPage />
+            <PhotoForm />
 
-        </ProtectedRoute>
+          </ProtectedRoute>
         }
       </Switch>
     </BrowserRouter>

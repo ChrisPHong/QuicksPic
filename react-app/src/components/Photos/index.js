@@ -6,6 +6,7 @@ import EditPhotoForm from '../EditPhotoForm';
 import CommentsPage from '../Comments'
 import CommentFormPage from '../CommentForm';
 import PhotoLikesForm from '../PhotoLikesForm'
+import bulletPoints from './bulletPoints.png'
 import './Photos.css';
 
 
@@ -51,7 +52,7 @@ function PhotosPage() {
                                 {photo.userId === userId ?
                                     <div className='Edit-Delete-Photo-Container'>
                                         <button className='bullet-points-button'>
-                                            <img className='bullet-points-img' src='images/bullet-points.png' alt='edit-delete-options' onClick={showEditDeleteForm} />
+                                            <img className='bullet-points-img' src={bulletPoints} alt='edit-delete-options' onClick={showEditDeleteForm} />
                                         </button>
                                     </div>
                                     : null}
