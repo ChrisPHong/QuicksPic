@@ -5,6 +5,8 @@ import './Comments.css';
 import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
 import CommentLikeForm from '../CommentLikesForm'
+import bulletPoints from './bulletPoints.png'
+
 
 
 
@@ -56,7 +58,7 @@ function CommentsPage({ photo }) {
                         {userId === comment.userId && photo === comment.photoId ?
                             <div className='Edit-Delete-Photo-Container'>
                                 <button className={`bullet-points-button editButton ${comment.id}`}>
-                                    <img className={`bullet-points-img ${comment.id}`} src='images/bullet-points.png' alt='edit-delete-options' onClick={(e) => {
+                                    <img className={`bullet-points-img ${comment.id}`} src={bulletPoints} alt='edit-delete-options' onClick={(e) => {
                                         let specificEditForm = document.getElementsByClassName(`editform-${comment.id}`)[0]
                                         console.log(parseInt(e.currentTarget.className.split(' ')[1]), "WHAT IS THISSSS?")
                                         if (parseInt(e.currentTarget.className.split(' ')[1]) === comment.id) {

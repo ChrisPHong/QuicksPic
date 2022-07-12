@@ -1,0 +1,12 @@
+.Entire-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.posts-followers-following-div{
+    display: flex;
+    flex-direction: row;
+
+}

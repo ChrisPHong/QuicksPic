@@ -17,7 +17,5 @@ def users():
 def user(id):
     user = User.query.get(id)
     photos = Photo.query.filter(Photo.user_id == user.id).all()
-    print(user, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<user  >>>>>>>>>>>>>>>>>')
 
-    print(photos, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<< userPHOTO >>>>>>>>>>>>>>>>>')
-    return {'user': user.to_dict(), 'photos':[photo.to_dict() for photo in photos]}
+    return {'user': user.to_follower_dict(), 'photos':[photo.to_dict() for photo in photos]}

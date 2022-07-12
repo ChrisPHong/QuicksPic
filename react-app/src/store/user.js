@@ -17,6 +17,7 @@ export const getuserPhotos = (userId) => async (dispatch) => {
     })
     if (response.ok) {
         const userPhotos = await response.json()
+        console.log(userPhotos, "<<<<<<<<<<<<<< REPONSE")
         dispatch(loadUserPhotos(userPhotos))
     }
 
@@ -24,14 +25,17 @@ export const getuserPhotos = (userId) => async (dispatch) => {
 
 
 
-const initialState = { entries: {}, isLoading: true }
+const initialState = { entries: {}, info: {}, isLoading: true }
 
 const userReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_USER_PHOTO:
-            newState = { ...state, entries: {} }
+
+            newState = { ...state, entries: {}, info:{}}
             action.userPhotos.photos.map(photo => { newState.entries[photo.id] = photo })
+            newState.info[action.userPhotos.user.id] = action.userPhotos.user
+            console.log(newState.info, "<<<<<<<<<< HELLO >>>>>>>>>>")
             return newState
 
         default:
