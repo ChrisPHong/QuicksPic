@@ -1,0 +1,27 @@
+.photos-profile-page{
+width: 10em;
+
+background-size: cover;
+background-position: 50% 25%;
+}
+
+.photos-profile-page::after{
+display: block;
+padding-top: 100%;
+content: ''
+}
+
+.Entire-Photo-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    flex-wrap: wrap;
+}
+
+.ProfilePicturePhotos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
