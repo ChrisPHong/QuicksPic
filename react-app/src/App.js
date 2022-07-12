@@ -11,6 +11,8 @@ import PhotosPage from './components/Photos';
 import { authenticate } from './store/session';
 import PhotoForm from './components/Photoform';
 import HomePage from './components/homePage';
+import UserProfilePage from './components/UserProfilePage'
+import ProfileTopPortion from './components/ProfileTopForm'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,7 +44,9 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <ProfileTopPortion />
           <User />
+          <UserProfilePage />
         </ProtectedRoute>
         {!currentUser ?
         <Route path='/' exact={true}>
