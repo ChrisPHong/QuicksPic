@@ -4,24 +4,33 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-
 import './homepage.css'
+import iphone from './iphone.png'
+
+import noTitle from './noTitle.png'
+
 const HomePage = () => {
 
   return (
     <>
-    <div className="homepage-all-container">
+      <div className="homepage-all-container">
+        <div className="IphonePicture">
 
+          <img className='iphonePictureFront' src={noTitle} />
 
-      <LoginForm />
-      <div className="Sign-up-home-page-container">
+        </div>
 
-        <span className="navlink-no-account">
-          Don't have an account? <NavLink className="homePage-signUp"to='/sign-up' exact={true}>Sign Up</NavLink>
-        </span>
+        <div className="loginAndSignUpDiv">
+
+          <LoginForm />
+          <div className="Sign-up-home-page-container">
+
+            <span className="navlink-no-account">
+              Don't have an account? <NavLink className="homePage-signUp" to='/sign-up' exact={true}>Sign Up</NavLink>
+            </span>
+          </div>
+        </div>
       </div>
-      {/* <SignUpForm /> */}
-    </div>
     </>
   );
 };
