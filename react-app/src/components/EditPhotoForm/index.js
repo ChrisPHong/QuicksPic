@@ -17,7 +17,6 @@ function EditPhotoForm({ photo }) {
 
     let userId = useSelector((state) => state.session?.user?.id)
     const id = photo.id
-    console.log(photo, "<<<<<<<<<<<<<<< PHOTO IMAGE")
 
 
 
