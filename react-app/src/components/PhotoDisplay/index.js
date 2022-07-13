@@ -61,7 +61,7 @@ function PhotoDisplay({ photo }) {
                 <div>{photo.username.username} {photo.caption}</div>
                 <div>{photo.createdAt}</div>
             </div>
-            <div>Comments
+            <div>
 
                 <div className='comments-all-div'>
                     {<CommentsPage photoId={photo.id} />}
