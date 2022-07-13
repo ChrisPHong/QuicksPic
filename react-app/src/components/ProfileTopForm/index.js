@@ -19,16 +19,12 @@ function ProfileTopPortion() {
     const photos = Object.values(statePhotos)
     const userName = useSelector((state) => state.session.user.username);
 
-    const array = [2,3,5,6]
-    console.log(array.length, "<<<<<<<<<<<< arary >>>>>>>>>>")
-    console.log(userInformation, "<<<<<<<<<<<< WOOHOOOO >>>>>>>>>>")
-
 
     return (
         <div className='Entire-Container'>
 
             <div className='profilePicture-profilePage'>
-                <img src='' />HELLO
+                <img src='' />
             </div>
             <div className='User-information-Entire-Container'>
                 <div className='username'>{userInformation?.username}</div>
