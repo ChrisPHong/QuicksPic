@@ -23,6 +23,7 @@ function EditPhotoForm({ photo }) {
 
     useEffect(() => {
         const error = [];
+        if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
         if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
         if (!caption.replace(/\s/g, '').length) {
             error.push('Please provide a caption that does not only contain spaces');
@@ -50,6 +51,7 @@ function EditPhotoForm({ photo }) {
             formData.append("id", id)
 
             dispatch(editPhotos(formData, id))
+            showEditForm()
             setShow(false)
 
 

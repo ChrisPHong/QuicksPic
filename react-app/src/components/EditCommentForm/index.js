@@ -29,6 +29,7 @@ function EditCommentsPage({ comment, photoId }) {
 
     useEffect(() => {
         let error = []
+        if (newComments.length > 2200) error.push('Comment length must be less than 2,2000 characters')
         if (newComments.length < 1) error.push("Please put a comment with at least one character")
         if (!newComments.replace(/\s/g, '').length) error.push('Please provide a comment that does not only contain spaces');
         setErrors(error)
@@ -109,7 +110,7 @@ function EditCommentsPage({ comment, photoId }) {
 
                                         errors.length > 0 ?
                                             <>
-                                                <h4>Fix Errors Before Posting:</h4>
+                                                <h4>Fix Your Errors :</h4>
                                                 <ul className='errorsArray'>{errors.map(error => {
                                                     return (
                                                         <>

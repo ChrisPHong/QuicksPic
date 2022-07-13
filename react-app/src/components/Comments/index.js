@@ -16,20 +16,30 @@ function CommentsPage({ photoId }) {
     const commentsState = useSelector((state) => state.comments);
     const allComments = Object.values(commentsState)[0]
     const comments = Object.values(allComments)
-
+    const [display, setDisplay] = useState(false)
 
     useEffect(() => {
         dispatch(getComments(photoId))
     }, [dispatch])
 
-
+    const showComments = () => {
+        if (display === false) {
+            return setDisplay(true)
+        }
+        if (display === true) {
+            return setDisplay(false)
+        }
+    }
 
     return (
         <div className='entire-comments-picture'>
+            <button className='view-all-comments' onClick={showComments}>{display ? "Hide All Comments" : "View All Comments"}</button>
             {comments.map(comment => {
                 return (
                     <>
+                    {display ?
                     < CommentDisplay comment={comment} photoId={photoId}/>
+                    : null}
                     </>
                 )
             })}

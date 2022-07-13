@@ -42,6 +42,7 @@
     min-width: min-content;
     overflow-wrap: break-word;
     /* background-color: blue; */
+    overflow-wrap: anywhere;
 }
 
 .username-input{
@@ -63,10 +64,6 @@
     margin-top: 10px;
     font-size: 10px;
 }
-
-/* .like-container-photo{
-    margin-left: 10px;
-} */
 
 .like-form-and-the-likes{
     display: flex;
