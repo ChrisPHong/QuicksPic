@@ -3,3 +3,9 @@
     justify-content: center;
     align-self: center;
 }
+
+.UserName-Edit-Delete-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

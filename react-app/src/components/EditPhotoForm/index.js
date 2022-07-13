@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPhotos } from '../../store/photo'
+import { editPhotos, deletePhoto } from '../../store/photo'
 import './EditPhotoForm.css';
 import bulletPoints from './bulletPoints.png'
 
@@ -84,6 +84,7 @@ function EditPhotoForm({ photo }) {
                         </button>
                     </div>
                     {display ?
+                    <>
                         <form className='photoform' onSubmit={onSubmit}>
                             <h2>Edit Your Photo</h2>
                             {show ?
@@ -114,6 +115,20 @@ function EditPhotoForm({ photo }) {
 
                             <button type='submit'>Submit</button>
                         </form>
+                        <div className='Delete-Button'>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault()
+
+                                let photoId = photo.id
+                                dispatch(deletePhoto(photoId))
+
+
+                            }}
+
+                        >Delete</button>
+                    </div>
+                    </>
                         : null}
 
                 </div>
