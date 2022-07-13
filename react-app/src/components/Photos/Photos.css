@@ -37,7 +37,10 @@ justify-content: space-around;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-sizing:border-box
+    box-sizing:border-box;
+
+
+
 }
 
 .like-and-caption-div{
@@ -48,8 +51,13 @@ justify-content: space-around;
 }
 
 .FullImageContainer{
-    /* background-color: blue; */
+    background-color: white;
     /* display: flex; */
     border: black 1px solid;
     justify-content: space-between;
+}
+
+.entire-news-feed{
+background-color: rgba(211, 210, 210, 0.219);
+
 }
