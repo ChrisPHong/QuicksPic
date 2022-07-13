@@ -7,6 +7,7 @@ import CommentsPage from '../Comments'
 import CommentFormPage from '../CommentForm';
 import PhotoLikesForm from '../PhotoLikesForm'
 import bulletPoints from './bulletPoints.png'
+import PhotoDisplay from '../PhotoDisplay';
 import './Photos.css';
 
 
@@ -46,8 +47,9 @@ function PhotosPage() {
                 return (
                     <div className='photo-container'>
                         <div className='FullImageContainer'>
-
-                            <div className='post-title-edit-deleteform'>
+                            <PhotoDisplay photo={photo}/>
+                        <p>{photo.createdAt}</p>
+                            {/* <div className='post-title-edit-deleteform'>
                                 <h2>{photo.username.username}</h2>
                                 {photo.userId === userId ?
                                     <div className='Edit-Delete-Photo-Container'>
@@ -102,9 +104,8 @@ function PhotosPage() {
                             {<CommentsPage photo={photo.id} />}
                         </div>
                         <div className='comments-form-div'>
-                            {<CommentFormPage photoId={photo.id} />}
+                            {<CommentFormPage photoId={photo.id} />} */}
                         </div>
-                        <p>{photo.createdAt}</p>
                     </div>
 
                 )
