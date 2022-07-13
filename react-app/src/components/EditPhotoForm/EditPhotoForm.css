@@ -1,0 +1,43 @@
+.Delete-Button{
+    background-color: #46e1f8;
+    border-radius: 5px 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    transition-duration: 1.3s;
+    color: white;
+    font-family: sans-serif;
+    border: 1px solid black;
+}
+.Delete-Button:hover{
+    background-color: #4daff4;
+    border-radius: 5px 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+.Submit-Button{
+    background-color: #dd81f5;
+    border-radius: 5px 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    transition-duration: 1.3s;
+    color: white;
+    font-family: sans-serif;
+    border: 1px solid black;
+}
+
+.Submit-Button:hover{
+    background-color: #a048e4;
+    border-radius: 5px 5px;
+    padding: 5px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+.input-values{
+    font-family: sans-serif;
+    padding: 10px;
+}

@@ -19,32 +19,34 @@ function PhotoDisplay({ photo }) {
 
     return (
         <div className='Photo-Container'>
-            <div>
+            <div className='outer-photo-div-Container'>
                 <div className='UserName-Edit-Delete-Container'>
 
                     <h2>{photo.username.username}</h2>
-                    <div>
-                        <div className='EditPhotoForm'>
-
-                            <EditPhotoForm photo={photo} />
-                        </div>
-
+                    <div className='EditPhotoForm-container'>
+                        <EditPhotoForm photo={photo} />
                     </div>
                 </div>
                 <div className='Image-Div-Container'>
                     {/* <figure className='photos-profile-page' style={{ backgroundImage: `url(${photo.image})` }} /> */}
-                    <img className='photos-profile-page' src={photo.image} />
+                    <img className='photo-newsfeed-container' src={photo.image} />
 
                 </div>
+                <div className='like-form-and-the-likes'>
+
                 <PhotoLikesForm photo={photo} />
                 {photo.photo_users !== 1 ?
-                    <span>{photo.photo_users} likes</span>
-                    : <span>
+                    <span className='like-container-photo'>{photo.photo_users} likes</span>
+                    : <span className='like-container-photo'>
                         {photo.photo_users} like
                     </span>
                 }
-                <div>{photo.username.username} {photo.caption}</div>
-                <div>{photo.createdAt}</div>
+                </div>
+                <div className='username-caption-container'>
+                <div className='username-input'>{photo.username.username}</div>
+                <span className='caption-input'>{photo.caption}</span>
+                </div>
+                <div className='createdAt-input'>{photo.createdAt}</div>
             </div>
             <div>
 

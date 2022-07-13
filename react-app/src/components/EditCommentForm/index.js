@@ -7,27 +7,37 @@ import bulletPoints from './bulletPoints.png'
 
 
 
-function EditCommentsPage({ comment, photoId}) {
+function EditCommentsPage({ comment, photoId }) {
     const dispatch = useDispatch();
+    const allComments = useSelector((state) => state?.comments);
+    const currentComment = allComments.entries[comment.id]
     const userId = useSelector((state) => state?.session?.user?.id);
     const [show, setShow] = useState(false);
-    const [comments, setComments] = useState(comment.comments);
+    const [newComments, setnewComments] = useState(currentComment.comments);
     const [errors, setErrors] = useState([]);
     const [display, setDisplay] = useState(false);
+    const [deleted, setDeleted] = useState(false);
+    const [edited, setEdited] = useState(false);
+    // console.log('<<<<<<<<<<<<< ALL COMMENT', allComments)
 
+    // console.log('current COMMENT >>>>>>>>>>>>>', currentComment)
     useEffect(() => {
-    }, [dispatch])
+        dispatch(getComments(photoId))
+        setnewComments(currentComment.comments)
+
+    }, [dispatch, deleted, edited])
 
     useEffect(() => {
         let error = []
-        if (comments.length < 1) error.push("Please put a comment with at least one character")
-        if (!comments.replace(/\s/g, '').length) error.push('Please provide a comment that does not only contain spaces');
+        if (newComments.length > 2200) error.push('Comment length must be less than 2,2000 characters')
+        if (newComments.length < 1) error.push("Please put a comment with at least one character")
+        if (!newComments.replace(/\s/g, '').length) error.push('Please provide a comment that does not only contain spaces');
         setErrors(error)
 
-    }, [comments])
+    }, [newComments])
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
         if (errors.length > 0) {
             setShow(true)
@@ -39,12 +49,30 @@ function EditCommentsPage({ comment, photoId}) {
                 user_id: comment.userId,
                 photo_id: comment.photoId,
                 id: comment.id,
-                comments,
+                comments: newComments,
 
             }
-            dispatch(editComment(payload))
-            showEditForm()
+            // let editedComment;
+            // try {
+            //     editedComment = await dispatch(editComment(payload))
+            // } catch (error) {
 
+            // }
+            // if (editedComment) {
+            //     console.log(editedComment, '<<<<<<<<<<<<<<<<<<<< EDITED COMMENT')
+            //     editedTrueOrFalse()
+            //     showEditForm()
+            // }
+
+        }
+    }
+
+    const editedTrueOrFalse = () => {
+        if (edited === false) {
+            return setEdited(true)
+        }
+        if (edited === true) {
+            return setEdited(false)
         }
     }
 
@@ -55,6 +83,12 @@ function EditCommentsPage({ comment, photoId}) {
         if (display === true) {
             return setDisplay(false)
         }
+    }
+
+    const deleteFunction = async () => {
+        await dispatch(deleteComment(comment.id))
+        setDeleted(!deleted)
+        showEditForm()
     }
 
     return (
@@ -76,7 +110,7 @@ function EditCommentsPage({ comment, photoId}) {
 
                                         errors.length > 0 ?
                                             <>
-                                                <h4>Fix Errors Before Posting:</h4>
+                                                <h4>Fix Your Errors :</h4>
                                                 <ul className='errorsArray'>{errors.map(error => {
                                                     return (
                                                         <>
@@ -92,20 +126,17 @@ function EditCommentsPage({ comment, photoId}) {
                                         : null}
                                     <input
                                         placeholder="Comment..."
-                                        value={comments}
-                                        onChange={(e) => { setComments(e.target.value) }} />
+                                        value={newComments}
+
+                                        onChange={(e) => { setnewComments(e.target.value) }} />
                                     <button type='submit'>Save Changes</button>
                                 </form>
                                 <div className='deleteButtonCommentEdit'>
-                        <button
-                            onClick={ (e) => {
-                                dispatch(deleteComment(comment.id))
-                                showEditForm()
+                                    <button
+                                        onClick={deleteFunction}
+                                    >Delete</button>
 
-                            }}
-                        >Delete</button>
-
-                    </div>
+                                </div>
                             </div>
                             : null}
                     </div>

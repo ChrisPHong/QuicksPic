@@ -1,0 +1,15 @@
+.view-all-comments{
+    font-family: sans-serif;
+    background-color: transparent;
+    border: none;
+    transition-duration: 1.3s;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.view-all-comments:hover{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+
+}

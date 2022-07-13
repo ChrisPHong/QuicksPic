@@ -23,6 +23,7 @@ function EditPhotoForm({ photo }) {
 
     useEffect(() => {
         const error = [];
+        if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
         if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
         if (!caption.replace(/\s/g, '').length) {
             error.push('Please provide a caption that does not only contain spaces');
@@ -50,6 +51,7 @@ function EditPhotoForm({ photo }) {
             formData.append("id", id)
 
             dispatch(editPhotos(formData, id))
+            showEditForm()
             setShow(false)
 
 
@@ -86,7 +88,7 @@ function EditPhotoForm({ photo }) {
                     {display ?
                     <>
                         <form className='photoform' onSubmit={onSubmit}>
-                            <h2>Edit Your Photo</h2>
+                            <h4>Edit Photo</h4>
                             {show ?
 
                                 errors.length > 0 ?
@@ -108,15 +110,16 @@ function EditPhotoForm({ photo }) {
                             <input
                                 name="caption"
                                 type='text'
+                                className='input-values'
                                 required
                                 value={caption}
                                 onChange={(e) => setCaption(e.target.value)}
                                 placeholder='Caption' />
 
-                            <button type='submit'>Submit</button>
+                            <button className='Submit-Button' type='submit'>Submit</button>
                         </form>
-                        <div className='Delete-Button'>
-                        <button
+                        <div className='Delete-Button-Container'>
+                        <button className='Delete-Button'
                             onClick={(e) => {
                                 e.preventDefault()
 

@@ -43,6 +43,7 @@ function PhotoForm() {
 
     useEffect(() => {
         const error = [];
+        if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
         if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
         if (image === null) error.push('You must upload an image in the format of png or jpg')
         if (!caption.replace(/\s/g, '').length) error.push('Please provide a caption that does not only contain spaces')

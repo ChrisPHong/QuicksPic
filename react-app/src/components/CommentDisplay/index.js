@@ -23,37 +23,43 @@ function CommentDisplay({ photoId, comment }) {
                             <div className='comment-username-div'>
                                 {comment.username.username}
                             </div>
+
                             <div className='comment-comment-div'>
                                 <div className='one-comment-div'>
                                     {comment.comments}
                                 </div>
+                                <div>          </div>
                                 <div className='Likes-Form-Div'>
                                     < CommentLikeForm comment={comment} />
                                 </div>
+                                <div className='commentLikes'>
+
+                                    {comment.commentLikes === 1 ?
+                                        <div className='comment-likes'>{comment.commentLikes} like</div>
+                                        :
+                                        <div className='comment-likes'>{comment.commentLikes} likes</div>
+                                    }
+                                </div>
+                                {userId === comment.userId ?
+                                    <div className='EditCommentPage'>
+                                        <EditCommentsPage comment={comment} photoId={photoId} />
+
+                                    </div>
+                                    : null}
                             </div>
                         </div>
                     </div>
-
-                    {userId === comment.userId ?
-                        <div className='EditCommentPage'>
-                            <EditCommentsPage comment={comment} photoId={photoId} />
-
-                        </div>
-                        : null}
                     <div className='timeframe-commentLikes-Container'>
                         <>
                             <div className='commentDatePosted'>{comment.createdAt}</div>
-                            {comment.commentLikes === 1 ?
-                                <div className='comment-likes'>{comment.commentLikes} like</div>
-                                :
-                                <div className='comment-likes'>{comment.commentLikes} likes</div>
-                            }
+
                         </>
                     </div>
 
 
                 </>
                 : null}
+
         </div>
 
     )

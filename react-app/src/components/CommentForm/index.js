@@ -21,6 +21,7 @@ function CommentFormPage({ photoId }) {
         const error = [];
 
         if (comments.length < 1) error.push('Please put a comment with at least one character')
+        if (comments.length > 2200) error.push('Comment length must be less than 2,2000 characters')
         if (!comments.replace(/\s/g, '').length) error.push('Please provide a comment that does not only contain spaces');
         setErrors(error)
 
