@@ -11,7 +11,6 @@ import EditPhotoForm from '../EditPhotoForm';
 function PhotoDisplay({ photo }) {
     const dispatch = useDispatch();
     // const state = useSelector((state) => state);
-    // console.log("<<<<<<<<<<<<<<< PHOTO", photo)
 
 
     const userId = useSelector((state) => state.session.user.id);
@@ -48,7 +47,8 @@ function PhotoDisplay({ photo }) {
                     </div>
                 </div>
                 <div className='Image-Div-Container'>
-                    <figure className='photos-profile-page' style={{ backgroundImage: `url(${photo.image})` }} />
+                    {/* <figure className='photos-profile-page' style={{ backgroundImage: `url(${photo.image})` }} /> */}
+                    <img className='photos-profile-page' src={photo.image} />
 
                 </div>
                 <PhotoLikesForm photo={photo} />
@@ -64,7 +64,7 @@ function PhotoDisplay({ photo }) {
             <div>Comments
 
                 <div className='comments-all-div'>
-                    {<CommentsPage photo={photo.id} />}
+                    {<CommentsPage photoId={photo.id} />}
                 </div>
                 <div className='comments-form-div'>
                     {<CommentFormPage photoId={photo.id} />}

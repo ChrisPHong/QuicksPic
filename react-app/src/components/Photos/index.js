@@ -48,6 +48,7 @@ function PhotosPage() {
                     <div className='photo-container'>
                         <div className='FullImageContainer'>
                             <PhotoDisplay photo={photo}/>
+                        <p>{photo.createdAt}</p>
                             {/* <div className='post-title-edit-deleteform'>
                                 <h2>{photo.username.username}</h2>
                                 {photo.userId === userId ?
@@ -105,7 +106,6 @@ function PhotosPage() {
                         <div className='comments-form-div'>
                             {<CommentFormPage photoId={photo.id} />} */}
                         </div>
-                        <p>{photo.createdAt}</p>
                     </div>
 
                 )

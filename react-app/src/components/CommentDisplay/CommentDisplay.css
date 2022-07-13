@@ -1,0 +1,26 @@
+.timeframe-commentLikes-Container{
+    display: flex;
+    flex-direction: row;
+    border: 10px;
+}
+
+/* contains just the comment and the like form  */
+.comment-comment-div{
+    display: flex;
+
+}
+
+/* This contains the username, comment and the like form  */
+.Comment-Container-Whole{
+    display: flex;
+
+}
+
+.Likes-Form-Div,.one-comment-div,.comment-username-div{
+    margin: 10px;
+}
+
+
+.commentDatePosted, .comment-likes{
+    margin: 5px
+}

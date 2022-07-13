@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './EditCommentForm.css';
-import { editComment } from '../../store/comment'
+import { editComment, deleteComment, getComments } from '../../store/comment'
+import bulletPoints from './bulletPoints.png'
 
 
 
-function EditCommentsPage({ comment }) {
+
+function EditCommentsPage({ comment, photoId}) {
     const dispatch = useDispatch();
-    const userId = useSelector((state) => state.session.user.id);
+    const userId = useSelector((state) => state?.session?.user?.id);
     const [show, setShow] = useState(false);
     const [comments, setComments] = useState(comment.comments);
     const [errors, setErrors] = useState([]);
-
+    const [display, setDisplay] = useState(false);
 
     useEffect(() => {
     }, [dispatch])
@@ -41,45 +43,76 @@ function EditCommentsPage({ comment }) {
 
             }
             dispatch(editComment(payload))
+            showEditForm()
 
         }
     }
 
+    const showEditForm = () => {
+        if (display === false) {
+            return setDisplay(true)
+        }
+        if (display === true) {
+            return setDisplay(false)
+        }
+    }
+
     return (
-        <div className='editingCommentFormDiv'>
+        <>
             {comment.userId === userId ?
-                <div>
+                <div className='editingCommentFormDiv'>
+                    <div>
+                        <div className='ButtonToDisplay'>
+                            <button className='bullet-points-button'>
+                                <img className='bullet-points-img' src={bulletPoints} alt='edit-delete-options' onClick={showEditForm} />
+                            </button>
+                        </div>
+                        {display ?
+                            <div>
 
-                    <h2>Edit your Comment</h2>
-                    <form onSubmit={onSubmit}>
-                        {show ?
+                                <h2>Edit your Comment</h2>
+                                <form onSubmit={onSubmit}>
+                                    {show ?
 
-                            errors.length > 0 ?
-                                <>
-                                    <h4>Fix Errors Before Posting:</h4>
-                                    <ul className='errorsArray'>{errors.map(error => {
-                                        return (
+                                        errors.length > 0 ?
                                             <>
-                                                <li className='CommentFormErrorItem'
-                                                    key={error}>{error}</li>
+                                                <h4>Fix Errors Before Posting:</h4>
+                                                <ul className='errorsArray'>{errors.map(error => {
+                                                    return (
+                                                        <>
+                                                            <li className='CommentFormErrorItem'
+                                                                key={error}>{error}</li>
+                                                        </>
+                                                    )
+                                                })}
+                                                </ul>
                                             </>
-                                        )
-                                    })}
-                                    </ul>
-                                </>
-                                : null
+                                            : null
 
+                                        : null}
+                                    <input
+                                        placeholder="Comment..."
+                                        value={comments}
+                                        onChange={(e) => { setComments(e.target.value) }} />
+                                    <button type='submit'>Save Changes</button>
+                                </form>
+                                <div className='deleteButtonCommentEdit'>
+                        <button
+                            onClick={ (e) => {
+                                dispatch(deleteComment(comment.id))
+                                showEditForm()
+
+                            }}
+                        >Delete</button>
+
+                    </div>
+                            </div>
                             : null}
-                        <input
-                            placeholder="Comment..."
-                            value={comments}
-                            onChange={(e) => { setComments(e.target.value) }} />
-                        <button type='submit'>Save Changes</button>
-                    </form>
+                    </div>
                 </div>
                 : null}
-        </div>
 
+        </>
     )
 }
 
