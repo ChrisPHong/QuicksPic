@@ -28,21 +28,6 @@ function PhotoDisplay({ photo }) {
 
                             <EditPhotoForm photo={photo} />
                         </div>
-                        {userId === photo.userId ?
-                            <div className='Delete-Button'>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault()
-
-                                        let photoId = photo.id
-                                        dispatch(deletePhoto(photoId))
-
-
-                                    }}
-
-                                >Delete</button>
-                            </div>
-                            : null}
 
                     </div>
                 </div>
@@ -61,7 +46,7 @@ function PhotoDisplay({ photo }) {
                 <div>{photo.username.username} {photo.caption}</div>
                 <div>{photo.createdAt}</div>
             </div>
-            <div>Comments
+            <div>
 
                 <div className='comments-all-div'>
                     {<CommentsPage photoId={photo.id} />}
