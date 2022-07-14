@@ -26,8 +26,11 @@ padding: 5px;
 
 }
 #file-upload-button{
-    /* background-color: blue; */
-    border: solid black 2px
+    background-color: blue;
+    border: solid black 2px;
+    outline: none;
+    /* -webkit-appearance: none; */
+
 }
 
 
