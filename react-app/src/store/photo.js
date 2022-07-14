@@ -159,7 +159,6 @@ const photosReducer = (state = initialState, action) => {
                     ...state.entries,
                 }
             }
-            console.log(action.photo, "<<<<<<<<<<<<<<<<< PHOTO>>>>>>>>>")
             newState.entries[action.photo.id] = action.photo
             return newState
 
