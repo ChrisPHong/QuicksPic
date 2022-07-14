@@ -37,6 +37,6 @@ class Photo(db.Model):
             'image': self.image,
             'createdAt': self.created_at.strftime("%b %d %Y"),
             'updatedAt': self.updated_at,
-            'photo_users': len(self.photo_users),
+            'photo_users': [like.to_dict() for like in self.photo_users],
             'username': self.users.to_dict_username()
         }

@@ -11,11 +11,9 @@ import UserFollowerForm from '../FollowersForm'
 
 function PhotoDisplay({ photo }) {
     const dispatch = useDispatch();
-    // const state = useSelector((state) => state);
-
+    const state = useSelector((state) => state);
 
     const userId = useSelector((state) => state.session.user.id);
-
 
 
     return (
@@ -37,10 +35,11 @@ function PhotoDisplay({ photo }) {
                 <div className='like-form-and-the-likes'>
 
                 <PhotoLikesForm photo={photo} />
+
                 {photo.photo_users !== 1 ?
-                    <span className='like-container-photo'>{photo.photo_users} likes</span>
+                    <span className='like-container-photo'>{photo.photo_users.length} likes</span>
                     : <span className='like-container-photo'>
-                        {photo.photo_users} like
+                        {photo.photo_users.length} like
                     </span>
                 }
                 </div>
