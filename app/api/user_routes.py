@@ -22,21 +22,21 @@ def user(id):
 
 
 @user_routes.route('/<int:follower_id>/follow', methods=['POST'])
-def like_comment(follower_id):
+def user_follow(follower_id):
     user_to_follow = User.query.get(follower_id)
 
     # This checks to see if the user already follows the user
-    if current_user in user_to_follow.follower:
-        user_to_follow.follower.remove(current_user)
-        db.session.add(user_to_follow)
+    if user_to_follow in current_user.follower:
+        current_user.follower.remove(user_to_follow)
+        db.session.add(current_user)
         db.session.commit()
-        print(user_to_follow, "<<<<<<<<<<<<<<<<<<<<<<<< TOOK OUT")
-        return user_to_follow.to_dict()
+
+        return current_user.to_follower_dict()
     # If it's not in the list, then it'll add it to the list and return that follower
-    user_to_follow.follower.append(current_user)
+    current_user.follower.append(user_to_follow)
 
-    db.session.add(user_to_follow)
+    db.session.add(current_user)
     db.session.commit()
-    print(user_to_follow, "<<<<<<<<<<<<<<<<<<<<<<<< FOLLOWED!")
 
-    return user_to_follow.to_dict()
+
+    return current_user.to_follower_dict()
