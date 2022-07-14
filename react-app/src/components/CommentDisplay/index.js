@@ -11,11 +11,11 @@ import CommentLikeForm from '../CommentLikesForm'
 
 
 function CommentDisplay({ photoId, comment }) {
-    const dispatch = useDispatch();
     const userId = useSelector((state) => state.session.user.id);
 
     return (
         <div className='One-Comment-Container'>
+
             {comment.photoId === photoId ?
                 <>
                     <div>

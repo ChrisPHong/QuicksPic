@@ -9,7 +9,7 @@ def seed_comments():
     third_comment = [user for user in users if user.id in [1,2,3]]
 
     comment1 = Comment(
-        user_id = 1,
+        user_id = 2,
         photo_id = 1,
         comments ='Hey! This is great picture!',
         created_at = datetime.now(),
@@ -17,9 +17,9 @@ def seed_comments():
         comment_users=first_comment
     )
     comment2 = Comment(
-        user_id = 2,
+        user_id = 3,
         photo_id = 2,
-        comments ='Wonderful picture! Hope everyone does well',
+        comments ='Wonderful picture!',
         created_at = datetime.now(),
         updated_at = datetime.now(),
         comment_users=second_comment
@@ -27,7 +27,7 @@ def seed_comments():
     comment3 = Comment(
         user_id = 3,
         photo_id = 3,
-        comments ="I don't like this picture",
+        comments ="Beautiful. Yes. I commented on my own picture",
         created_at = datetime.now(),
         updated_at = datetime.now(),
         comment_users=third_comment
