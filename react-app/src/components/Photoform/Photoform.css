@@ -1,5 +1,6 @@
 .PhotoFormDiv-navigation-bar{
     position: absolute;
+    right: 30px;
     border: 1px solid black;
     border-radius: 5px 5px;
     padding: 10px;
