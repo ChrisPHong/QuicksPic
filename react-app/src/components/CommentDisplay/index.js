@@ -5,7 +5,7 @@ import './CommentDisplay.css';
 import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
 import CommentLikeForm from '../CommentLikesForm'
-import bulletPoints from './bulletPoints.png'
+
 
 
 

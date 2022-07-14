@@ -57,7 +57,7 @@ function App() {
           <ProtectedRoute path='/' exact={true} >
             <h1>Welcome {currentUser?.username}</h1>
             <PhotosPage />
-            <PhotoForm />
+
 
           </ProtectedRoute>
         }

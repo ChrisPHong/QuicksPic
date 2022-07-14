@@ -46,11 +46,12 @@ const NavBar = () => {
                 </NavLink>
               </div>
 
-              <div>
+              <div className='show-PhotoForm-div'>
                 <button onClick={showPhotoForm}
                   className='PhotoFormButton'>
                   <img className='photo-Form-logo' alt='logo-quicksPic' src={createPost} />
                 </button>
+                <div className='hide'>Post</div>
                 {show ?
                   <PhotoForm />
                   : null}

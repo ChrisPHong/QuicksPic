@@ -86,7 +86,7 @@
 
 .photo-Form-logo:hover {
     cursor: pointer;
-    width: 28px;
+
 }
 
 
@@ -104,6 +104,7 @@
 .signedIn-user-nav-container{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .home-post-logout-container{
@@ -111,4 +112,16 @@
     justify-content: center;
     align-items: center;
     margin-right: 49px;
+}
+
+
+.hide{
+    display:none;
+}
+
+.show-PhotoForm-div:hover + .hide{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    color: #4daff4;
 }
