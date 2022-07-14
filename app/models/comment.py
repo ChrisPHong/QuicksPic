@@ -35,6 +35,6 @@ class Comment(db.Model):
             'comments': self.comments,
             'createdAt': self.created_at.strftime("%b %d %Y"),
             'updatedAt': self.updated_at,
-            'commentLikes': len(self.comment_users),
+            'commentLikes': [likes.to_dict() for likes in self.comment_users],
             'username': self.users.to_dict_username()
         }
