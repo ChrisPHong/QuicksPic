@@ -12,9 +12,8 @@ function UserFollowerForm({followId}) {
     const followers = useSelector((state) => state.user.followers);
     const userId = useSelector((state) => state.session.user.id);
 
-    console.log(followers, "<<<<<<<<<<<<<<<<<<< IN THE FORM")
     useEffect(() => {
-        
+
     }, [dispatch]);
 
 

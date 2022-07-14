@@ -14,6 +14,7 @@ import HomePage from './components/homePage';
 import UserProfilePage from './components/UserProfilePage'
 import ProfileTopPortion from './components/ProfileTopForm'
 import PageNotFound from './components/PageNotFound';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
