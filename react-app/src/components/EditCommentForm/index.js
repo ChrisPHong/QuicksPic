@@ -52,27 +52,8 @@ function EditCommentsPage({ comment, photoId }) {
                 comments: newComments,
 
             }
-            // let editedComment;
-            // try {
-            //     editedComment = await dispatch(editComment(payload))
-            // } catch (error) {
-
-            // }
-            // if (editedComment) {
-            //     console.log(editedComment, '<<<<<<<<<<<<<<<<<<<< EDITED COMMENT')
-            //     editedTrueOrFalse()
-            //     showEditForm()
-            // }
-
-        }
-    }
-
-    const editedTrueOrFalse = () => {
-        if (edited === false) {
-            return setEdited(true)
-        }
-        if (edited === true) {
-            return setEdited(false)
+            await dispatch(editComment(payload))
+            showEditForm()
         }
     }
 
@@ -102,10 +83,10 @@ function EditCommentsPage({ comment, photoId }) {
                             </button>
                         </div>
                         {display ?
-                            <div>
+                            <div className='edit-your-comment'>
 
-                                <h2>Edit your Comment</h2>
-                                <form onSubmit={onSubmit}>
+                                <h3 className='h3title-EditComment'>Edit Your Comment</h3>
+                                <form className='form-Edit-Container' onSubmit={onSubmit}>
                                     {show ?
 
                                         errors.length > 0 ?
@@ -125,14 +106,17 @@ function EditCommentsPage({ comment, photoId }) {
 
                                         : null}
                                     <input
+                                        className='commentForm-input-value'
                                         placeholder="Comment..."
                                         value={newComments}
 
                                         onChange={(e) => { setnewComments(e.target.value) }} />
-                                    <button type='submit'>Save Changes</button>
-                                </form>
-                                <div className='deleteButtonCommentEdit'>
                                     <button
+                                    className='commentEditForm-Button'
+                                    type='submit'>Save Changes</button>
+                                </form>
+                                <div >
+                                    <button className='deleteButtonCommentEdit'
                                         onClick={deleteFunction}
                                     >Delete</button>
 

@@ -54,12 +54,12 @@ const NavBar = () => {
         </div>
 
 
-          <div className='users'>
+          {/* <div className='users'>
 
             <NavLink to='/users' exact={true} className='users' activeClassName='active'>
               Users
             </NavLink>
-          </div>
+          </div> */}
 
           <div className='logout'>
             <LogoutButton />

@@ -72,10 +72,13 @@ function CommentFormPage({ photoId }) {
 
                     : null}
                 <input
+                    className='commentForm-input-value'
                     value={comments}
                     placeholder="Comment..."
                     onChange={e => { setComments(e.target.value) }} />
-                <button type='submit'>Post</button>
+                <button
+                className='commentForm-Button'
+                type='submit'>Post</button>
             </form>
         </div>
 
