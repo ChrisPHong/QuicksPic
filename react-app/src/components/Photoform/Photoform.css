@@ -1,4 +1,4 @@
-.PhotoFormDiv-navigation-bar{
+.PhotoFormDiv-navigation-bar {
     position: absolute;
     right: 30px;
     border: 1px solid black;
@@ -11,30 +11,40 @@
 }
 
 
-.caption-input-value-form{
-border-radius: 4px 4px;
-padding: 5px;
+.caption-input-value-form {
+    border-radius: 4px 4px;
+    padding: 5px;
 
 }
 
-.file-input-value-form{
+.file-input-value-form {
     border-radius: 5px 5px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 15px;
     padding: 5px;
     /* background-color: black; */
-
-}
-#file-upload-button{
-    background-color: blue;
-    border: solid black 2px;
-    outline: none;
-    /* -webkit-appearance: none; */
+    /* color: white; */
 
 }
 
+::-webkit-file-upload-button {
+    border: solid black 1px;
+    border-radius: 5px 5px;
+    background-color: #4daff4;
+    padding: 5px 10px;
+    transition-duration: 1.3s;
+    color: white;
 
-.post-submit-button-form{
+}
+
+::-webkit-file-upload-button:hover {
+    background-color: #a048e4;
+    cursor: pointer;
+
+}
+
+
+.post-submit-button-form {
     border-radius: 5px 5px;
     background-color: #dd81f5;
     padding: 5px 10px;
@@ -42,7 +52,8 @@ padding: 5px;
     transition-duration: 1.3s;
     border: 1px solid black;
 }
-.post-submit-button-form:hover{
+
+.post-submit-button-form:hover {
     border-radius: 5px 5px;
     background-color: #a048e4;
     padding: 5px 10px;
