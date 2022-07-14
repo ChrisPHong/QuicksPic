@@ -27,7 +27,7 @@ const SignUpForm = () => {
     }
     if (errors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
-      setShow(false)
+      // setShow(false)
       if (data) {
         setErrors(data)
       }
