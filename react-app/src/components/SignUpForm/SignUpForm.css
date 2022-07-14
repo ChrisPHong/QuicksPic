@@ -24,9 +24,9 @@ align-items: center;
 }
 
 .error-display-container{
-    /* background-color: rgba(255, 17, 17, 0.322); */
+
     border-radius: 5px 5px;
     padding: 10px;
     color: red;
-    /* font-weight: bolder; */
+
 }

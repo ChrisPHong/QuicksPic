@@ -23,7 +23,7 @@ function PhotosPage() {
     const [caption, setCaption] = useState('')
     const [likes, setLikes] = useState(0)
     const history = useHistory()
-
+    const reverseOrderPhotos = allPhotos.reverse()
     useEffect(() => {
         dispatch(getPhotos(userId))
     }, [dispatch])
