@@ -9,10 +9,12 @@ import filledHeart from './filledHeart.png'
 function UserFollowerForm({followId}) {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
+    const followers = useSelector((state) => state.user.followers);
     const userId = useSelector((state) => state.session.user.id);
 
-    console.log(followId, "<<<<<<<<<<<<<<<<<<< IN THE FORM")
+    console.log(followers, "<<<<<<<<<<<<<<<<<<< IN THE FORM")
     useEffect(() => {
+        
     }, [dispatch]);
 
 

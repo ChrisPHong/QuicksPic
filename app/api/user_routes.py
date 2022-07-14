@@ -40,3 +40,8 @@ def user_follow(follower_id):
 
 
     return current_user.to_follower_dict()
+
+@user_routes.route('/', methods=['GET'])
+def get_all_followers():
+    # user_follower = User.query()
+   pass
