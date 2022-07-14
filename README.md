@@ -10,14 +10,18 @@ QuicksPic is an instagram clone that allows users to experience a great way to i
 ## SignUp Page
 ![image](https://user-images.githubusercontent.com/98856057/178869057-5e24ee62-31db-47d5-bd14-4571b068d0d7.png)
 
+
 # Features
+There are two MVP's that are the foundation for QuicksPic to Work. They are the Photos and the Comments.
+
+
 ## PhotoFeed
 Want to be in the know and find out what's happening with your followers? Then go check out  the Photo Feed where you'll be able to see the people's posts and your posts as well! 
 ![image](https://user-images.githubusercontent.com/98856057/178869194-4e9a3797-bb94-4a66-8116-981f6e419c03.png)
 
 ## Comments
 Want to share your excitment? Why not leave a comment to let the person know how much you enjoyed their post! Don't forget to like and follow :)
-(![image](https://user-images.githubusercontent.com/98856057/178881392-53bc6f34-e3f7-463c-87d2-b3fa630e6460.png)
+![image](https://user-images.githubusercontent.com/98856057/178881392-53bc6f34-e3f7-463c-87d2-b3fa630e6460.png)
 
 
 ## Technologies Used:
@@ -90,12 +94,3 @@ In order to create the backend, I used Flask in order to create the models, migr
 
 ## FrontEnd Routes
 In order to navigate through QuicksPic, frontEnd Routes were needed to distinguish between which routes were used by certain components. These are the [FrontEnd Routes](https://github.com/ChrisPHong/QuicksPic/wiki/FrontEnd-Routes) that were used for [QuicksPic](https://quickspic.herokuapp.com/).
-
-
-## API Routes
-Here are the [API Routes](https://github.com/ChrisPHong/Squeals/wiki/API-Routes) that were used in order to access the database.
-
-
-## Redux Store Tree Document
-The image displayed below is a diagram of the redux store tree for a specific photo with its comments. Redux was used in order to update the information displayed and send information back to the database in order to update, delete, create and read data. 
-![image](![image](https://user-images.githubusercontent.com/98856057/178872866-6bfc227a-826c-45ba-9f5e-d3b140fa37a6.png))
