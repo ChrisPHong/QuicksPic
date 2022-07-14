@@ -87,15 +87,17 @@ function PhotoForm() {
                     onChange={(e) => setCaption(e.target.value)}
                     placeholder='Caption' />
 
-                <input
-                    className='file-input-value-form'
-                    name="image"
-                    type="file"
-                    accept="image/*"
-                    onChange={updateImage}
 
-                />
-                <button className="post-submit-button-form"type='submit'>Submit</button>
+                    <input
+                        className='file-input-value-form'
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={updateImage}
+
+                    />
+
+                <button className="post-submit-button-form" type='submit'>Submit</button>
             </form>
 
         </div>

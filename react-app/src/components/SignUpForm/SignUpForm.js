@@ -35,10 +35,16 @@ const SignUpForm = () => {
   };
   useEffect(()=> {
     const error = []
+    if (username.length > 40) error.push('Username length must be less than 40 characters')
+    if (password.length > 255) error.push('Password length must be less than 255 characters')
+    if (email.length > 255) error.push('Email length must be less than 255 characters')
+    if (password.length < 1) error.push('You must have at least 1 character in the Password field')
+    if (username.length < 1) error.push('You must have at least 1 character in the Username field')
+    if (!username.replace(/\s/g, '').length) error.push('Please provide a Username that does not only contain spaces')
     if (password !== repeatPassword) error.push('Password and Repeat Password do not match')
-    if (!email.includes('@')) error.push('Please use a valid email')
+    if (!email.includes('@')) error.push('Please use a valid Email')
     setErrors(error)
-  },[password, repeatPassword, email])
+  },[password, repeatPassword, email, username])
 
   const showEditForm = () => {
     if (show === false) {
