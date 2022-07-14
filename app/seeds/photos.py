@@ -26,8 +26,8 @@ def seed_photos():
     )
     photo3 = Photo(
         user_id = 3,
-        caption='B.E.A.UTIFUL DAY',
-        image='https://quickspic.s3.us-west-1.amazonaws.com/ocean.jpg',
+        caption='Welcome to QuicksPic!',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
         created_at = datetime.now(),
         updated_at = datetime.now(),
         photo_users=first_photo
