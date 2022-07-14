@@ -1,4 +1,4 @@
-Welcome to QuicksPic
+# Welcome to QuicksPic
 
 
 Sea is a Robinhood clone that allow users to experience a mock-up of the American financial market through trading a variety of stocks under the S&P 500 Index. Users will also be able to create their own personalized watchlists to surveil stocks of interest.
