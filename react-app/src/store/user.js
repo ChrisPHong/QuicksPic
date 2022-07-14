@@ -1,10 +1,18 @@
 const LOAD_USER_PHOTO = 'user/LOAD'
 const EDIT_USER_PHOTO = 'user/EDIT'
+const FOLLOW_USER = 'user/FOLLOW'
 
 export const loadUserPhotos = (userPhotos) => {
     return {
         type: LOAD_USER_PHOTO,
         userPhotos
+    }
+}
+
+export const followUser = (user) => {
+    return {
+        type: FOLLOW_USER,
+        user
     }
 }
 
@@ -17,12 +25,24 @@ export const getuserPhotos = (userId) => async (dispatch) => {
     })
     if (response.ok) {
         const userPhotos = await response.json()
-        console.log(userPhotos, "<<<<<<<<<<<<<< REPONSE")
+
         dispatch(loadUserPhotos(userPhotos))
     }
 
 }
 
+export const postFollow = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/users/${payload.followId}/follow`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        const followedUser = await response.json()
+        dispatch(followUser(followedUser))
+    }
+
+}
 
 
 const initialState = { entries: {}, info: {}, isLoading: true }
@@ -35,8 +55,16 @@ const userReducer = (state = initialState, action) => {
             newState = { ...state, entries: {}, info:{}}
             action.userPhotos.photos.map(photo => { newState.entries[photo.id] = photo })
             newState.info[action.userPhotos.user.id] = action.userPhotos.user
-            console.log(newState.info, "<<<<<<<<<< HELLO >>>>>>>>>>")
+
             return newState
+        case FOLLOW_USER:
+                newState = {
+                    ...state, entries: {
+                        ...state.entries,
+                    }
+                }
+            console.log(action, "ACTION >>>>>>>>>>>>>>")
+                return newState
 
         default:
             return state

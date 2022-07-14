@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User, Photo
+from flask_login import login_required, current_user
+from app.models import User, Photo, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -19,3 +19,24 @@ def user(id):
     photos = Photo.query.filter(Photo.user_id == user.id).all()
 
     return {'user': user.to_follower_dict(), 'photos':[photo.to_dict() for photo in photos]}
+
+
+@user_routes.route('/<int:follower_id>/follow', methods=['POST'])
+def like_comment(follower_id):
+    user_to_follow = User.query.get(follower_id)
+
+    # This checks to see if the user already follows the user
+    if current_user in user_to_follow.follower:
+        user_to_follow.follower.remove(current_user)
+        db.session.add(user_to_follow)
+        db.session.commit()
+        print(user_to_follow, "<<<<<<<<<<<<<<<<<<<<<<<< TOOK OUT")
+        return user_to_follow.to_dict()
+    # If it's not in the list, then it'll add it to the list and return that follower
+    user_to_follow.follower.append(current_user)
+
+    db.session.add(user_to_follow)
+    db.session.commit()
+    print(user_to_follow, "<<<<<<<<<<<<<<<<<<<<<<<< FOLLOWED!")
+
+    return user_to_follow.to_dict()
