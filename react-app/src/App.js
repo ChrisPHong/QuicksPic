@@ -13,6 +13,7 @@ import PhotoForm from './components/Photoform';
 import HomePage from './components/homePage';
 import UserProfilePage from './components/UserProfilePage'
 import ProfileTopPortion from './components/ProfileTopForm'
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,9 @@ function App() {
 
           </ProtectedRoute>
         }
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

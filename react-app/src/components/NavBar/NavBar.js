@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import quickpicLogo from './quickpicLogo.png'
+import quickpicTitle from './quickpicTitle.png'
 import createPost from './createPost.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
@@ -31,7 +32,7 @@ const NavBar = () => {
           <div className='home'>
 
             <NavLink to='/' exact={true} className='home' activeClassName='active'>
-          <img className='quickPicLogo-picture' alt='logo-quicksPic' src={quickpicLogo} />
+          <img className='quickPicTitle-picture' alt='logo-quicksPic' src={quickpicTitle} />
             </NavLink>
           </div>
 
@@ -45,7 +46,7 @@ const NavBar = () => {
         <div>
         <button onClick={showPhotoForm}
         className='PhotoFormButton'>
-          <img className='quickPicLogo-picture' alt='logo-quicksPic' src={createPost} />
+          <img className='photo-Form-logo' alt='logo-quicksPic' src={createPost} />
         </button>
         {show ?
           <PhotoForm />
