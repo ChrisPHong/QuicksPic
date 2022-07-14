@@ -1,0 +1,39 @@
+.PhotoFormDiv-navigation-bar{
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5px 5px;
+    padding: 10px;
+    background-color: #46e0f8fd;
+    margin-top: 10px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.322);
+    /* box-shadow: 10px 5px 5px red; */
+}
+
+
+.caption-input-value-form{
+border-radius: 4px 4px;
+padding: 5px;
+
+}
+
+.file-input-value-form{
+    border-radius: 3px 3px;
+    font-family: sans-serif;
+    padding: 5px;
+
+}
+
+.post-submit-button-form{
+    border-radius: 5px 5px;
+    background-color: #dd81f5;
+    padding: 5px 10px;
+    color: white;
+    transition-duration: 1.3s;
+    border: 1px solid black;
+}
+.post-submit-button-form:hover{
+    border-radius: 5px 5px;
+    background-color: #a048e4;
+    padding: 5px 10px;
+    cursor: pointer;
+}

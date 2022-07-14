@@ -56,7 +56,7 @@ function PhotoForm() {
     }, [onSubmit])
 
     return (
-        <div className='PhotoFormDiv'>
+        <div className='PhotoFormDiv-navigation-bar'>
             <form className='photoform' onSubmit={onSubmit}>
 
                 <h2>Post Your Photos!</h2>
@@ -79,6 +79,7 @@ function PhotoForm() {
 
                     : null}
                 <input
+                    className='caption-input-value-form'
                     name="caption"
                     type='text'
                     required
@@ -87,13 +88,14 @@ function PhotoForm() {
                     placeholder='Caption' />
 
                 <input
+                    className='file-input-value-form'
                     name="image"
                     type="file"
                     accept="image/*"
                     onChange={updateImage}
 
                 />
-                <button type='submit'>Submit</button>
+                <button className="post-submit-button-form"type='submit'>Submit</button>
             </form>
 
         </div>

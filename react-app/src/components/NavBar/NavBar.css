@@ -60,3 +60,16 @@ text-decoration: underline;
     background-color: transparent;
     border: none;
 }
+
+.quickPicTitle-picture{
+    width: 140px
+}
+
+.photo-Form-logo{
+    width: 25px;
+    transition-duration: 1.3s;
+}
+.photo-Form-logo:hover{
+    cursor: pointer;
+    width:28px;
+}

@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -38,7 +38,17 @@ const SignUpForm = () => {
     if (password !== repeatPassword) error.push('Password and Repeat Password do not match')
     if (!email.includes('@')) error.push('Please use a valid email')
     setErrors(error)
-  },[password, repeatPassword, email, username])
+  },[password, repeatPassword, email])
+
+  const showEditForm = () => {
+    if (show === false) {
+        return setShow(true)
+    }
+    if (show === true) {
+        return setShow(false)
+    }
+}
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
