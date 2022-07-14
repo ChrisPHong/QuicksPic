@@ -31,6 +31,7 @@ function CommentsPage({ photoId }) {
         }
     }
 
+
     return (
         <div className='entire-comments-picture'>
             <button className='view-all-comments' onClick={showComments}>{display ? "Hide All Comments" : "View All Comments"}</button>

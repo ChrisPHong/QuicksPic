@@ -10,7 +10,7 @@ def seed_photos():
 
     photo1 = Photo(
         user_id = 1,
-        caption='I cant believe that just happened right now...',
+        caption='Smile for the Camera',
         image='https://quickspic.s3.us-west-1.amazonaws.com/DSC_9287.jpg',
         created_at = datetime.now(),
         updated_at = datetime.now(),
