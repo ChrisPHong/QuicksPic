@@ -35,9 +35,9 @@ function CommentDisplay({ photoId, comment }) {
                                 <div className='commentLikes'>
 
                                     {comment.commentLikes === 1 ?
-                                        <div className='comment-likes'>{comment.commentLikes} like</div>
+                                        <div className='comment-likes'>{comment.commentLikes.length} like</div>
                                         :
-                                        <div className='comment-likes'>{comment.commentLikes} likes</div>
+                                        <div className='comment-likes'>{comment.commentLikes.length} likes</div>
                                     }
                                 </div>
                                 {userId === comment.userId ?

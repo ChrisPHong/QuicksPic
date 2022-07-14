@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postPhotos } from '../../store/photo'
+import createPost from './createPost.png'
 import './Photoform.css';
+
 
 function PhotoForm() {
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(false);
+    const [showErrors, setShowErrors] = useState(false);
     const [caption, setCaption] = useState('')
     const [image, setImage] = useState(null)
     const [imageLoading, setImageLoading] = useState(false)
@@ -22,7 +25,7 @@ function PhotoForm() {
         formData.append("user_id", userId)
         formData.append("caption", caption)
         if (errors.length > 0) {
-            setShow(true)
+            setShowErrors(true)
 
             return
         }
@@ -31,7 +34,7 @@ function PhotoForm() {
             dispatch(postPhotos(formData))
             setCaption('')
             setImage(null)
-            setShow(false)
+            showPhotoForm()
         }
 
     }
@@ -55,52 +58,71 @@ function PhotoForm() {
 
     }, [onSubmit])
 
+    const showPhotoForm = () => {
+        if (show === false) {
+            return setShow(true)
+        }
+        if (show === true) {
+            return setShow(false)
+        }
+    }
+
     return (
-        <div className='PhotoFormDiv-navigation-bar'>
-            <form className='photoform' onSubmit={onSubmit}>
+        <>
+            <div className='show-PhotoForm-div'>
+                <button onClick={showPhotoForm}
+                    className='PhotoFormButton'>
+                    <img className='photo-Form-logo' alt='logo-quicksPic' src={createPost} />
+                </button>
+            </div>
+            {show ?
+                <div className='PhotoFormDiv-navigation-bar'>
+                    <form className='photoform' onSubmit={onSubmit}>
 
-                <h2>Post Your Photos!</h2>
-                {show ?
+                        <h2>Post Your Photos!</h2>
+                        {showErrors ?
 
-                    errors.length > 0 ?
-                        <>
-                            <h4>Please Fix These Errors:</h4>
-                            <ul className='errorsArray'>{errors.map(error => {
-                                return (
-                                    <>
-                                        <li className='PhotoFormErrorItem'
-                                            key={error}>{error}</li>
-                                    </>
-                                )
-                            })}
-                            </ul>
-                        </>
-                        : null
+                            errors.length > 0 ?
+                                <>
+                                    <h4>Please Fix These Errors:</h4>
+                                    <ul className='errorsArray'>{errors.map(error => {
+                                        return (
+                                            <>
+                                                <li className='PhotoFormErrorItem'
+                                                    key={error}>{error}</li>
+                                            </>
+                                        )
+                                    })}
+                                    </ul>
+                                </>
+                                : null
 
-                    : null}
-                <input
-                    className='caption-input-value-form'
-                    name="caption"
-                    type='text'
-                    required
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                    placeholder='Caption' />
+                            : null}
+                        <input
+                            className='caption-input-value-form'
+                            name="caption"
+                            type='text'
+                            required
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)}
+                            placeholder='Caption' />
 
 
-                    <input
-                        className='file-input-value-form'
-                        name="image"
-                        type="file"
-                        accept="image/*"
-                        onChange={updateImage}
+                        <input
+                            className='file-input-value-form'
+                            name="image"
+                            type="file"
+                            accept="image/png, image/jpg, image/gif, image/jpeg"
+                            onChange={updateImage}
 
-                    />
+                        />
 
-                <button className="post-submit-button-form" type='submit'>Submit</button>
-            </form>
+                        <button className="post-submit-button-form" type='submit'>Submit</button>
+                    </form>
 
-        </div>
+                </div>
+                : null}
+        </>
     )
 }
 
