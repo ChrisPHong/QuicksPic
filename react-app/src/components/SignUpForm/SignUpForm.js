@@ -85,7 +85,7 @@ const SignUpForm = () => {
       <img className='logo-quicksPic' src={quickpicTitle}/>
 
       <form className='Signup-Form' onSubmit={onSignUp}>
-        <div>
+        <div className='error-display-container'>
           {show && errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
