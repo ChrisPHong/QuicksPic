@@ -24,14 +24,6 @@ def seed_photos():
         updated_at = datetime.now(),
         photo_users=second_photo
     )
-    photo3 = Photo(
-        user_id = 3,
-        caption='Welcome to QuicksPic!',
-        image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
-        created_at = datetime.now(),
-        updated_at = datetime.now(),
-        photo_users=first_photo
-    )
     photo4 = Photo(
         user_id = 4,
         caption='Valo?',
@@ -55,6 +47,14 @@ def seed_photos():
         created_at = datetime.now(),
         updated_at = datetime.now(),
         photo_users=third_photo
+    )
+    photo3 = Photo(
+        user_id = 3,
+        caption='Welcome to QuicksPic!',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
+        created_at = datetime.now(),
+        updated_at = datetime.now(),
+        photo_users=first_photo
     )
 
     db.session.add(photo1)

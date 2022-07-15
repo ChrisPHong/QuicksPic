@@ -26,8 +26,8 @@ def seed_comments():
     )
     comment3 = Comment(
         user_id = 3,
-        photo_id = 3,
-        comments ="Interact with website by creating your own posts, commenting on pictures, following other users, and liking their comments and pictures!",
+        photo_id = 6,
+        comments ="Interact with the website by creating your own posts, commenting on pictures, following other users, and liking their comments and pictures!",
         created_at = datetime.now(),
         updated_at = datetime.now(),
         comment_users=third_comment

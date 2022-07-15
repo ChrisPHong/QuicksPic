@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { postFollow, getuserPhotos, getFollowerUsers } from '../../store/user'
 import './FollowersForm.css';
-import filledHeart from './filledHeart.png'
-
-
-
 
 function UserFollowerForm({ followId, photo }) {
     const dispatch = useDispatch();
@@ -21,10 +17,12 @@ function UserFollowerForm({ followId, photo }) {
 
     }, [dispatch]);
 
+
+
     const areYouFollowing = () => {
         for (let i = 0; i < array?.length; i++) {
-            if (array[i].id == photo.id) {
-                console.log('this is true')
+            if (array[i].id == photo.userId) {
+
                 return true
             }
 
