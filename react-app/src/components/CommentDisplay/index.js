@@ -12,7 +12,7 @@ import CommentLikeForm from '../CommentLikesForm'
 
 function CommentDisplay({ photoId, comment }) {
     const userId = useSelector((state) => state.session.user.id);
-    console.log(comment.commentLikes.length, 'HOW LONG ARE YOU?')
+
     return (
         <div className='One-Comment-Container'>
 
