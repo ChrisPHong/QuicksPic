@@ -65,7 +65,10 @@ export const postPhotos = (formData) => async (dispatch) => {
         method: 'POST',
         body: formData
     })
-
+    if(!response.ok){
+        console.log('RESPONSE >>>>>>>>>>>>', response)
+        return "Please provide the correct file type: .png, .jpeg, .jpg, or a .gif"
+    }
     if (response.ok) {
         const photos = await response.json()
         dispatch(createPhotos(photos))

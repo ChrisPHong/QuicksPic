@@ -10,13 +10,12 @@ function PhotoForm() {
     const [show, setShow] = useState(false);
     const [showErrors, setShowErrors] = useState(false);
     const [caption, setCaption] = useState('')
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState('')
     const [imageLoading, setImageLoading] = useState(false)
 
     const dispatch = useDispatch();
 
     let userId = useSelector((state) => state.session?.user?.id)
-
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -26,15 +25,25 @@ function PhotoForm() {
         formData.append("caption", caption)
         if (errors.length > 0) {
             setShowErrors(true)
-
             return
         }
         if (errors.length === 0) {
 
-            dispatch(postPhotos(formData))
+            const data = await dispatch(postPhotos(formData))
+            if (data) {
+                let error = []
+                error.push(data)
+                setErrors(error)
+                setShowErrors(true)
+
+                return
+            }
+
             setCaption('')
             setImage(null)
             showPhotoForm()
+            setShowErrors(false)
+
         }
 
     }
@@ -49,6 +58,7 @@ function PhotoForm() {
         if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
         if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
         if (image === null) error.push('You must upload an image in the format of png or jpg')
+       
         if (!caption.replace(/\s/g, '').length) error.push('Please provide a caption that does not only contain spaces')
         setErrors(error)
     }, [caption, image])
