@@ -9,8 +9,10 @@ function SearchBar() {
     const dispatch = useDispatch();
     const history = useHistory();
     const state = useSelector(state => state); // object
+    const searchUsernames = useSelector(state => state.search.entries);
+    const userNames = Object.values(searchUsernames) // object
 
-    // console.log(state, '<<<<<<<<<<<<<<<< STATE >>>>>>>>>>>>')
+    console.log(userNames, '<<<<<<<<<<<<<<<< STATE >>>>>>>>>>>>')
 
 
 

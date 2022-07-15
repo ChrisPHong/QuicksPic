@@ -8,8 +8,8 @@ export const getUserNames = (usernames) =>{
 
 
 
-export const getAllUserNames = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${payload}`, {
+export const getAllUserNames = () => async (dispatch) => {
+    const response = await fetch(`/api/search/`, {
         method: 'GET',
     })
     if (response.ok) {
@@ -26,8 +26,10 @@ const searchReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_ALL_USERNAME:
-            newState = { ...state, entries: action.search}
+            newState = { ...state, entries: {...state.entries}}
+            action.usernames.map(username => {newState.entries[username.id] = username})
             return newState
+
 
         default:
             return state

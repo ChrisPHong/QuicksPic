@@ -26,6 +26,10 @@ def get__photos(id):
     # get the current user and check to see which people they are following, from that list we get all the photos and have them displayed on the news feed
     user = User.query.get(id)
 
+    # This is to show all the photos of users, whether you're follow or not
+    all_photos = Photo.query.all()
+
+
     # These are the people that we're following
     following_list = [int(follower.get_id()) for follower in user.follower]
     # following_lists = [follower for follower in user.follower]
@@ -46,8 +50,8 @@ def get__photos(id):
         if(len(photo) > 0):
             photos.extend(photo)
             photos.extend(user_photo)
-   
-    return jsonify([photo.to_dict() for photo in photos])
+
+    return jsonify([photo.to_dict() for photo in all_photos])
 
 
 # # Users can update their photo

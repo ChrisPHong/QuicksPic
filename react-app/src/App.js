@@ -56,7 +56,7 @@ function App() {
           </Route>
           :
           <ProtectedRoute path='/' exact={true} >
-            <h1>Welcome {currentUser?.username}</h1>
+            <h1 className='welcomeTag'>Welcome {currentUser?.username}</h1>
             <PhotosPage />
 
 
