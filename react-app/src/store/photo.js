@@ -65,7 +65,10 @@ export const postPhotos = (formData) => async (dispatch) => {
         method: 'POST',
         body: formData
     })
-
+    if(!response.ok){
+        console.log('UKI WANTS ME TO PRINT', response)
+        return "file type not permitted"
+    }
     if (response.ok) {
         const photos = await response.json()
         dispatch(createPhotos(photos))
