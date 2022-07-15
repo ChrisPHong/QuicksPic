@@ -30,10 +30,11 @@ function PhotoForm() {
         if (errors.length === 0) {
 
             const data = await dispatch(postPhotos(formData))
-
-            console.log(data, "<<<<<<<<<<<<<<<<<D ATA")
-            if (data === 'file type not permitted') {
-                setErrors(data)
+            if (data) {
+                let error = []
+                error.push(data)
+                setErrors(error)
+                setShowErrors(true)
 
                 return
             }
@@ -41,6 +42,8 @@ function PhotoForm() {
             setCaption('')
             setImage(null)
             showPhotoForm()
+            setShowErrors(false)
+
         }
 
     }
@@ -55,7 +58,7 @@ function PhotoForm() {
         if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
         if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
         if (image === null) error.push('You must upload an image in the format of png or jpg')
-        // if (image.includes('svg')) error.push('You cannot upload a SVG File. Please use a png, jpg, or a jpeg file')
+       
         if (!caption.replace(/\s/g, '').length) error.push('Please provide a caption that does not only contain spaces')
         setErrors(error)
     }, [caption, image])
