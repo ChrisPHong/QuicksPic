@@ -30,15 +30,38 @@ function CommentsPage({ photoId }) {
             return setDisplay(false)
         }
     }
+    // console.log(photoId, "<<<<<<<<<<<< PHOTO ID")
+
+    const photoHaveComments = () => {
+        for(let i = 0; i < comments.length; i++){
+            if(comments[i].photoId == photoId){
+                return true
+            }
+        }
+        return false
+    }
 
 
     return (
         <div className='entire-comments-picture'>
-            {/* <button className='view-all-comments' onClick={showComments}>{display ? "Hide All Comments" : "View All Comments"}</button> */}
+            {photoHaveComments() ?
+            <>
+            </>
+            // <div>
+            // { <button className='view-all-comments' onClick={showComments}>{display ? "Hide All Comments" : "View All Comments"}</button>}
+            // </div>
+            :
+            <div className='First-Comment'>
+                <h4>
+                    Be the First to Comment!
+                    </h4>
+                </div>}
             {comments.map(comment => {
                 return (
                     <>
+                    {/* {display ? */}
                     < CommentDisplay comment={comment} photoId={photoId}/>
+                    {/* : null} */}
 
                     </>
                 )
