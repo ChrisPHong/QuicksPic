@@ -17,11 +17,11 @@ There are two MVP's that are the foundation for QuicksPic to Work. They are the 
 
 ## PhotoFeed
 Want to be in the know and find out what's happening with your followers? Then go check out  the Photo Feed where you'll be able to see the people's posts and your posts as well! 
-![image](https://user-images.githubusercontent.com/98856057/178869194-4e9a3797-bb94-4a66-8116-981f6e419c03.png)
+![image](https://user-images.githubusercontent.com/98856057/179322225-dd17e391-ac21-4d81-a161-282ec31e8dc9.png)
 
 ## Comments
 Want to share your excitment? Why not leave a comment to let the person know how much you enjoyed their post! Don't forget to like and follow :)
-![image](https://user-images.githubusercontent.com/98856057/178881392-53bc6f34-e3f7-463c-87d2-b3fa630e6460.png)
+![image](https://user-images.githubusercontent.com/98856057/179322246-611a4ae2-b699-4117-9371-c9e4ff5ab145.png)
 
 
 ## Technologies Used:
