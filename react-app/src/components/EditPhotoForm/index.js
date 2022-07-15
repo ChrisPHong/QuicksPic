@@ -28,7 +28,6 @@ function EditPhotoForm({ photo }) {
         if (!caption.replace(/\s/g, '').length) {
             error.push('Please provide a caption that does not only contain spaces');
         }
-        // if (caption.trim() === ' ') error.push('Provide more than spaces in the caption field')
         if (image === null) error.push('You must upload an image in the format of png or jpg')
 
         setErrors(error)
