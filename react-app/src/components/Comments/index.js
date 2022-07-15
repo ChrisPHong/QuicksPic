@@ -30,7 +30,7 @@ function CommentsPage({ photoId }) {
             return setDisplay(false)
         }
     }
-    // console.log(photoId, "<<<<<<<<<<<< PHOTO ID")
+
 
     const photoHaveComments = () => {
         for(let i = 0; i < comments.length; i++){

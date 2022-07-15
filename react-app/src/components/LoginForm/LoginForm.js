@@ -43,7 +43,7 @@ const LoginForm = () => {
       <div className='login-container-div'>
         <img className='logo-quicksPic' src={quickpicTitle} />
         <form className='Login-Form' onSubmit={onLogin}>
-          <div>
+          <div className='errorHandler-messages'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}

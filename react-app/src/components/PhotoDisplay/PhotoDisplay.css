@@ -81,3 +81,16 @@
     align-items: center;
 
 }
+
+.usernamePhoto-header{
+    font-family: sans-serif;
+    /* border-bottom: 1px solid #46e1f8; */
+    transition-duration: 1.4s;
+
+}
+
+.usernamePhoto-header:hover{
+    font-family: sans-serif;
+    /* border-bottom: 1px solid #4daff4; */
+
+}
