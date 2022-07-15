@@ -46,7 +46,7 @@ def get__photos(id):
         if(len(photo) > 0):
             photos.extend(photo)
             photos.extend(user_photo)
-    print('<<<<<<<<<<<<<< PHOTO >>>>>>>>>>>>', [photo.to_dict() for photo in photos])
+   
     return jsonify([photo.to_dict() for photo in photos])
 
 
