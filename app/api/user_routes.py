@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
+from itsdangerous import json
 from app.models import User, Photo, db
 
 user_routes = Blueprint('users', __name__)
@@ -41,7 +42,6 @@ def user_follow(follower_id):
 
     return current_user.to_follower_dict()
 
-@user_routes.route('/', methods=['GET'])
+@user_routes.route('/followers', methods=['GET'])
 def get_all_followers():
-    # user_follower = User.query()
-   pass
+    return jsonify(current_user.to_follower_dict())

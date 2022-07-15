@@ -74,3 +74,10 @@
     border-bottom: 1px rgba(80, 79, 79, 0.342) solid;
 
 }
+
+.UserName-FollowButton-Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}

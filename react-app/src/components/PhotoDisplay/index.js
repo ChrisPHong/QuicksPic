@@ -20,9 +20,11 @@ function PhotoDisplay({ photo }) {
         <div className='Photo-Container'>
             <div className='outer-photo-div-Container'>
                 <div className='UserName-Edit-Delete-Container'>
+                    <div className='UserName-FollowButton-Container'>
 
                     <h2>{photo.username.username}</h2>
-                    <UserFollowerForm followId={photo.userId}/>
+                    <UserFollowerForm followId={photo.userId} photo={photo}/>
+                    </div>
                     <div className='EditPhotoForm-container'>
                         <EditPhotoForm photo={photo} />
                     </div>

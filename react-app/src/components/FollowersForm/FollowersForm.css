@@ -1,0 +1,23 @@
+.FollowerButton{
+    border-radius: 5px 5px;
+    border: 1px solid black;
+    background-color: #46e1f8;
+    padding: 5px 15px;
+    color: white;
+    margin-left: 10px;
+    transition-duration: 1.3s;
+}
+.FollowerButton:hover{
+    border-radius: 5px 5px;
+    border: 1px solid black;
+    background-color: #4daff4;
+    padding: 5px 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.FollowerPostDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

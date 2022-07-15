@@ -59,10 +59,10 @@ def seed_photos():
 
     db.session.add(photo1)
     db.session.add(photo2)
-    db.session.add(photo3)
     db.session.add(photo4)
     db.session.add(photo5)
     db.session.add(photo6)
+    db.session.add(photo3)
     db.session.commit()
 
 def undo_photos():

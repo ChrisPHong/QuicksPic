@@ -10,7 +10,7 @@ function SearchBar() {
     const history = useHistory();
     const state = useSelector(state => state); // object
 
-    console.log(state, '<<<<<<<<<<<<<<<< STATE >>>>>>>>>>>>')
+    // console.log(state, '<<<<<<<<<<<<<<<< STATE >>>>>>>>>>>>')
 
 
 
