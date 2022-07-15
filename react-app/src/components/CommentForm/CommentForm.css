@@ -3,10 +3,11 @@
     margin-right: 10px;
     margin-top: 5px;
     margin-left: 5px;
+    padding-right: 145px;
 }
 
 .commentForm-Button{
-    padding: 5px 15px;
+    padding: 6px 15px;
     background-color: #dd81f5;
     transition-duration: 1.3s;
     border-radius: 5px 5px;
