@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
-import quickpicLogo from './quickpicLogo.png'
+
 import quickpicTitle from './quickpicTitle.png'
-import createPost from './createPost.png'
+import linked from './linked.png'
+import github from './github.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
 import SearchBar from '../SearchBar'
@@ -40,8 +41,20 @@ const NavBar = () => {
             </div>
             {/* <div className='SearchBarDiv'>
             <SearchBar />
-            </div> */}
+          </div> */}
             <div className='home-post-logout-container'>
+              <div className='gitHubLink'>
+                <a href='https://github.com/ChrisPHong/QuicksPic'>
+                  <img className='githubLogoPicture' src={github} />
+
+                </a>
+              </div>
+              <div className='LinkedInLink'>
+                <a href='https://www.linkedin.com/in/christopherpyohong/'>
+                  <img className='linkedInPicture' src={linked} />
+                </a>
+
+              </div>
               <div className='home'>
 
                 <NavLink to='/' exact={true} className='home' activeClassName='active'>
@@ -78,7 +91,18 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div className='login-signup-container'>
+              <div className='gitHubLinkNoUser'>
+                <a href='https://github.com/ChrisPHong/QuicksPic'>
+                  <img className='githubLogoPicture' src={github} />
 
+                </a>
+              </div>
+              <div className='LinkedInLinkNoUser'>
+                <a href='https://www.linkedin.com/in/christopherpyohong/'>
+                  <img className='linkedInPicture' src={linked} />
+                </a>
+
+              </div>
               <div className='login'>
                 <NavLink to='/login' exact={true} className='login-navlink' activeClassName='active'>
                   Login

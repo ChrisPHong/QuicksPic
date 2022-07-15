@@ -101,13 +101,13 @@
 
 }
 
-.signedIn-user-nav-container{
+.signedIn-user-nav-container {
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
 }
 
-.home-post-logout-container{
+.home-post-logout-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,13 +115,33 @@
 }
 
 
-.hide{
-    display:none;
+.hide {
+    display: none;
 }
 
-.show-PhotoForm-div:hover + .hide{
+.show-PhotoForm-div:hover+.hide {
     display: block;
     justify-content: center;
     align-items: center;
     color: #4daff4;
+}
+
+
+.linkedInPicture {
+    width: 30px;
+    margin: 0px 2px;
+}
+
+.githubLogoPicture {
+    margin: 0px 2px;
+    width: 30px;
+}
+
+.gitHubLinkNoUser, .LinkedInLinkNoUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 5px;
+
+
 }
