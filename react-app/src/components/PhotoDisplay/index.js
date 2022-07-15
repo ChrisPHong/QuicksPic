@@ -38,7 +38,7 @@ function PhotoDisplay({ photo }) {
 
                 <PhotoLikesForm photo={photo} />
 
-                {photo.photo_users !== 1 ?
+                {photo.photo_users.length !== 1 ?
                     <span className='like-container-photo'>{photo.photo_users.length} likes</span>
                     : <span className='like-container-photo'>
                         {photo.photo_users.length} like
