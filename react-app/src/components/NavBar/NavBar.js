@@ -9,6 +9,7 @@ import quickpicTitle from './quickpicTitle.png'
 import createPost from './createPost.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
+import SearchBar from '../SearchBar'
 
 const NavBar = () => {
 
@@ -31,13 +32,15 @@ const NavBar = () => {
         <>
           <div className='signedIn-user-nav-container'>
 
-              <div className='home'>
+            <div className='home'>
 
-                <NavLink to='/' exact={true} className='home' activeClassName='active'>
-                  <img className='quickPicTitle-picture' alt='logo-quicksPic' src={quickpicTitle} />
-                </NavLink>
-              </div>
-
+              <NavLink to='/' exact={true} className='home' activeClassName='active'>
+                <img className='quickPicTitle-picture' alt='logo-quicksPic' src={quickpicTitle} />
+              </NavLink>
+            </div>
+            {/* <div className='SearchBarDiv'>
+            <SearchBar />
+            </div> */}
             <div className='home-post-logout-container'>
               <div className='home'>
 
@@ -47,16 +50,16 @@ const NavBar = () => {
               </div>
 
               <div className='show-PhotoForm-div'>
-                  <PhotoForm />
+                <PhotoForm />
               </div>
 
 
               {/* <div className='users'>
 
-<NavLink to='/users' exact={true} className='users' activeClassName='active'>
-Users
-</NavLink>
-</div> */}
+                <NavLink to='/users' exact={true} className='users' activeClassName='active'>
+                  Users
+                </NavLink>
+              </div> */}
 
               <div className='logout'>
                 <LogoutButton />

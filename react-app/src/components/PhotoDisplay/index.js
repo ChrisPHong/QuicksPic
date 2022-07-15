@@ -7,6 +7,7 @@ import './PhotoDisplay.css';
 import CommentFormPage from '../CommentForm';
 import CommentsPage from '../Comments';
 import EditPhotoForm from '../EditPhotoForm';
+import UserFollowerForm from '../FollowersForm'
 
 function PhotoDisplay({ photo }) {
     const dispatch = useDispatch();
@@ -19,8 +20,11 @@ function PhotoDisplay({ photo }) {
         <div className='Photo-Container'>
             <div className='outer-photo-div-Container'>
                 <div className='UserName-Edit-Delete-Container'>
+                    <div className='UserName-FollowButton-Container'>
 
                     <h2>{photo.username.username}</h2>
+                    <UserFollowerForm followId={photo.userId} photo={photo}/>
+                    </div>
                     <div className='EditPhotoForm-container'>
                         <EditPhotoForm photo={photo} />
                     </div>
