@@ -14,6 +14,7 @@ export const getAllUserNames = () => async (dispatch) => {
     })
     if (response.ok) {
         const usernames = await response.json()
+
         dispatch(getUserNames(usernames))
     }
 
@@ -26,7 +27,7 @@ const searchReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_ALL_USERNAME:
-            newState = { ...state, entries: {...state.entries}}
+            newState = { ...state}
             action.usernames.map(username => {newState.entries[username.id] = username})
             return newState
 

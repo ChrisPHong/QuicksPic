@@ -14,11 +14,12 @@
 
 .search-results {
     width: 487px;
-    max-height: 250px;
-    overflow-y: scroll;
+    max-height: 200px;
     overflow-x: hidden;
     position: absolute;
     z-index: 1;
+
+    background-color: white;
 }
 
 .searchbar-box ul {
@@ -29,17 +30,27 @@
     width: 487px;
 }
 
-/* .search-items-dropdown {
+.search-items-dropdown {
     padding: 5px;
     background-color: white;
     cursor: pointer;
 }
 
 .search-items-dropdown p {
-
-    color:#064788;
-} */
+    color:#4daff4;
+}
 
 .search-items-dropdown:hover {
     background-color: whitesmoke;
+}
+
+
+.img-testing{
+    width:10px;
+    margin-right: 10px;
+}
+
+.search-result-container{
+    display: flex;
+    align-items: center;
 }
