@@ -51,7 +51,7 @@ def get__photos(id):
             photos.extend(photo)
             photos.extend(user_photo)
 
-    return jsonify([photo.to_dict() for photo in all_photos])
+    return jsonify([photo.to_dict() for photo in photos])
 
 
 # # Users can update their photo

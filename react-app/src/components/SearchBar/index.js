@@ -12,7 +12,7 @@ function SearchBar() {
     const searchUsernames = useSelector(state => state.search.entries);
     const userNames = Object.values(searchUsernames) // object
 
-    console.log(userNames, '<<<<<<<<<<<<<<<< STATE >>>>>>>>>>>>')
+
 
 
 

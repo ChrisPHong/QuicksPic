@@ -62,7 +62,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            "followers": [following.to_dict() for following in self.follower]
+            "followers": [following.to_dict() for following in self.follower],
+            "following_you":[followers.to_dict() for followers in self.followers]
         }
 
     def to_follow(self, user):

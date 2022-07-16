@@ -19,30 +19,35 @@ function ProfileTopPortion() {
     const photos = Object.values(statePhotos)
     const userName = useSelector((state) => state.session.user.username);
 
-
+    console.log(userInformation, "<<<<<<<<<<<<<<<<<<< Photos ")
     return (
         <div className='Entire-Container'>
 
-            <div className='profilePicture-profilePage'>
-                <img src='' />
-            </div>
-            <div className='User-information-Entire-Container'>
-                <div className='username'>{userInformation?.username}</div>
-                <div className='posts-followers-following-div'>
-                    <div>
-                        <div className='posts'>posts</div>
-                    </div>
-                    <div className='followers'>
-                        <div>{userInformation?.followers.length}</div>
-                    </div>
-                    <div className='following-div'>
-                        <div>following</div>
-                    </div>
+            <div className='Entire-Container-profile-top'>
+
+                <div className='profilePicture-profilePage'>
+                    <img src='' />
+                    Profile PIcture
                 </div>
-                <div className='bio-name-description'>This is all the bio, name, and description
-                <div>Name</div>
-                <div>bio</div>
-                <div>desciption</div>
+                <div className='User-information-Entire-Container'>
+                    <div className='username-container'>{userInformation?.username}</div>
+                    <div className='posts-followers-following-div'>
+                        <div>
+                            <div className='posts'>{photos.length} posts</div>
+                        </div>
+                        <div className='followers'>
+                            <div>{userInformation?.following_you.length} followers</div>
+                        </div>
+                        <div className='following-div'>
+                            <div>{userInformation?.followers.length} following</div>
+
+                        </div>
+                    </div>
+                    <div className='bio-name-description'>This is all the bio, name, and description
+
+                        <div>bio</div>
+                        <div>desciption</div>
+                    </div>
                 </div>
             </div>
         </div>
