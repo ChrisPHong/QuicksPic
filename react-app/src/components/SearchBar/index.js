@@ -15,12 +15,21 @@ function SearchBar() {
     const ids = userNames.map(id => id['id'])
     const usernames = userNames.map(username => username['username'])
 
+    const profilepicture = userNames.map(pic => {
+
+        return pic['profilePic']})
+
+    // console.log(profilepicture, "PROFILE PIC!")
+
+
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    const names = ids.map((id, username) => {
-        return `${id}: ${usernames[username]}`
+    const names = ids.map((id, index) => {
+        return `${id}* ${usernames[index]}* ${profilepicture[index]}`
     })
+
+
 
 
 
@@ -64,8 +73,9 @@ function SearchBar() {
                             }}
                         >
                             <div className='search-result-container'>
-                                <img className='img-testing' src={emptyHeart} />
-                                <p>{item.split(':')[1]}</p>
+                                {console.log(item.split('*'), '<<<<<<<<<<< SPLIT')}
+                                <img className='img-testing' src={item.split('*')[2]} />
+                                <p className='user-name-p-tag'>{item.split('*')[1]}</p>
                             </div>
                         </div>
                     ))}

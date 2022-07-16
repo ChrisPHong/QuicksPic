@@ -9,5 +9,5 @@ search_routes = Blueprint('search', __name__)
 @login_required
 def search_route():
     users = User.query.all()
-
+    print('<<<<<<<<<<<<<<<<<<<<<<<<<<< THIS IS IT', [user.to_dict_username() for user in users])
     return jsonify([user.to_dict_username() for user in users])

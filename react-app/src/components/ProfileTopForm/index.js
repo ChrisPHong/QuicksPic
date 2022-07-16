@@ -19,7 +19,7 @@ function ProfileTopPortion() {
     const photos = Object.values(statePhotos)
     const userName = useSelector((state) => state.session.user.username);
 
-    console.log(userInformation, "<<<<<<<<<<<<<<<<<<< Photos ")
+
     return (
         <div className='Entire-Container'>
 
