@@ -59,20 +59,20 @@ function SearchBar() {
             />
             <div className='search-results'>
                 <ul>
-                    {searchResults?.length > 0 && searchResults?.map(item => (
+                    {searchResults?.length > 0 && searchResults?.map(userInfo => (
 
                         <div className='search-items-dropdown'
-                            key={item}
+                            key={userInfo}
                             onMouseDown={() => {
                                 setSearch('')
                                 setSearchResults([])
 
-                                history.push(`/users/${item.split(':')[0]}`)
+                                history.push(`/users/${userInfo.split('*')[0]}`)
                             }}
-                        >
+                        > {console.log('<<<<<<< TESTING', `/users/${userInfo.split('*')[0]}`)}
                             <div className='search-result-container'>
-                            <figure className='img-testing' style={{backgroundImage: `url(${item.split('*')[2]})`}} />
-                                <p className='user-name-p-tag'>{item.split('*')[1]}</p>
+                            <figure className='img-testing' style={{backgroundImage: `url(${userInfo.split('*')[2]})`}} />
+                                <p className='user-name-p-tag'>{userInfo.split('*')[1]}</p>
                             </div>
                         </div>
                     ))}

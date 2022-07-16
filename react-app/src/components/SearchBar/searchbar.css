@@ -61,13 +61,12 @@
     width: 20px;
     height:20px;
     border-radius: 50% 50%;
-
     background-size: cover;
     background-position: 50% 25%;
     }
 
 .img-testing::after{
-    display: block;
+    display: flex;
     padding-top: 100%;
     content: ''
     }
