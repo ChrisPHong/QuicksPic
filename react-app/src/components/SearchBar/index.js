@@ -29,7 +29,9 @@ function SearchBar() {
     }, [dispatch])
 
     useEffect(() => {
-        const result = names.filter(name => name.toLowerCase().includes(search.toLowerCase()));
+        const result = names.filter(name => {
+
+          return name.toLowerCase().includes(search.toLowerCase())});
         setSearchResults(result)
 
         if (!result || search === '') {
