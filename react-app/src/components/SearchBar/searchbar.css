@@ -50,13 +50,27 @@
 }
 
 
-.img-testing{
+/* .img-testing{
     width:20px;
     height: 20px;
     margin-right: 10px;
     border-radius: 50% 50%;
     border: 1px rgb(0, 0, 0, .4) solid;
-}
+} */
+.img-testing{
+    width: 20px;
+    height:20px;
+    border-radius: 50% 50%;
+
+    background-size: cover;
+    background-position: 50% 25%;
+    }
+
+.img-testing::after{
+    display: block;
+    padding-top: 100%;
+    content: ''
+    }
 
 .search-result-container{
     display: flex;

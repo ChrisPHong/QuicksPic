@@ -22,7 +22,7 @@ def seed_users():
         username='chris',
         email='chris@aa.io',
         password='password',
-        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
 
     )
     brian = User(

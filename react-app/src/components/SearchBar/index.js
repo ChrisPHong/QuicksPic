@@ -19,8 +19,6 @@ function SearchBar() {
 
         return pic['profilePic']})
 
-    // console.log(profilepicture, "PROFILE PIC!")
-
 
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -73,8 +71,7 @@ function SearchBar() {
                             }}
                         >
                             <div className='search-result-container'>
-                                {console.log(item.split('*'), '<<<<<<<<<<< SPLIT')}
-                                <img className='img-testing' src={item.split('*')[2]} />
+                            <figure className='img-testing' style={{backgroundImage: `url(${item.split('*')[2]})`}} />
                                 <p className='user-name-p-tag'>{item.split('*')[1]}</p>
                             </div>
                         </div>
