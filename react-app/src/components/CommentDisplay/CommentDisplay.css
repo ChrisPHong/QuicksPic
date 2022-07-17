@@ -46,6 +46,10 @@
 .comment-likes {
     margin: 5px
 }
+.comment-likes{
+    font-family: sans-serif;
+    font-size: 14px;
+}
 
 .commentDatePosted{
     display: flex;
