@@ -7,7 +7,7 @@ import bulletPoints from './bulletPoints.png'
 function EditPhotoForm({ photo }) {
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
-    const [caption, setCaption] = useState(photo.caption)
+    const [caption, setCaption] = useState('')
     const [image, setImage] = useState(photo.image)
     const [likes, setLikes] = useState(photo.photo_users)
     const [imageLoading, setImageLoading] = useState(false)
@@ -17,7 +17,6 @@ function EditPhotoForm({ photo }) {
 
     let userId = useSelector((state) => state.session?.user?.id)
     const id = photo.id
-
 
 
 
