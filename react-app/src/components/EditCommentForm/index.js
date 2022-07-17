@@ -13,17 +13,15 @@ function EditCommentsPage({ comment, photoId }) {
     const currentComment = allComments.entries[comment.id]
     const userId = useSelector((state) => state?.session?.user?.id);
     const [show, setShow] = useState(false);
-    const [newComments, setnewComments] = useState(currentComment.comments);
+    const [newComments, setnewComments] = useState('');
     const [errors, setErrors] = useState([]);
     const [display, setDisplay] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const [edited, setEdited] = useState(false);
-    // console.log('<<<<<<<<<<<<< ALL COMMENT', allComments)
 
-    // console.log('current COMMENT >>>>>>>>>>>>>', currentComment)
     useEffect(() => {
         dispatch(getComments(photoId))
-        setnewComments(currentComment.comments)
+        // setnewComments(currentComment.comments)
 
     }, [dispatch, deleted, edited])
 
