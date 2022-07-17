@@ -50,6 +50,7 @@ function EditPhotoForm({ photo }) {
 
             dispatch(editPhotos(formData, id))
             showEditForm()
+            setCaption('')
             setShow(false)
 
 
