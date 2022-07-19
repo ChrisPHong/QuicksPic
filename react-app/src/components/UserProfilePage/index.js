@@ -17,7 +17,8 @@ function UserProfilePage() {
     const photos = Object.values(statePhotos)
     const userInformation = useSelector((state) => state.session);
     const userId = useSelector((state) => state.session.user.id);
-    const id = useParams().userId
+    const id = useParams()?.userId
+
 
     useEffect(() => {
         dispatch(getuserPhotos(parseInt(id)))

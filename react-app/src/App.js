@@ -47,7 +47,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <ProfileTopPortion />
-          <User />
           <UserProfilePage />
         </ProtectedRoute>
         {!currentUser ?

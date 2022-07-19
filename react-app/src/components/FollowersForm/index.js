@@ -34,7 +34,7 @@ function UserFollowerForm({ followId, photo }) {
     return (
         <div className='FollowerPostDiv'>
             {userId !== photo.userId ?
-                <button className='FollowerButton'
+                <button className={ areYouFollowing() ? 'UnFollowerButton': 'FollowerButton'}
                     onClick={(e) => {
                         e.preventDefault()
                         const payload = {

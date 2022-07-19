@@ -14,32 +14,16 @@ import './Photos.css';
 
 function PhotosPage() {
     const dispatch = useDispatch();
-    // const state = useSelector((state) => state);
     const photoState = useSelector((state) => Object.values(state.photos));
     const allPhotos = Object.values(photoState[0])
-    const currentUsername = useSelector((state) => state.session.user.username);
     const userId = useSelector((state) => state.session.user.id);
-    const [show, setShow] = useState(false)
-    const [caption, setCaption] = useState('')
-    const [likes, setLikes] = useState(0)
-    const history = useHistory()
-    const reverseOrderPhotos = allPhotos.reverse()
+
+    allPhotos.reverse()
     useEffect(() => {
         dispatch(getPhotos(userId))
     }, [dispatch])
 
-    useEffect(() => {
 
-    }, [caption])
-
-    const showEditDeleteForm = () => {
-        if (show === false) {
-            return setShow(true)
-        }
-        if (show === true) {
-            return setShow(false)
-        }
-    }
 
     return (
         <div className='entire-news-feed'>

@@ -39,9 +39,9 @@ const NavBar = () => {
                 <img className='quickPicTitle-picture' alt='logo-quicksPic' src={quickpicTitle} />
               </NavLink>
             </div>
-            {/* <div className='SearchBarDiv'>
+            <div className='SearchBarDiv'>
             <SearchBar />
-          </div> */}
+          </div>
             <div className='home-post-logout-container'>
               <div className='gitHubLink'>
                 <a href='https://github.com/ChrisPHong/QuicksPic'>
@@ -67,12 +67,12 @@ const NavBar = () => {
               </div>
 
 
-              {/* <div className='users'>
+              <div className='users'>
 
                 <NavLink to='/users' exact={true} className='users' activeClassName='active'>
                   Users
                 </NavLink>
-              </div> */}
+              </div>
 
               <div className='logout'>
                 <LogoutButton />

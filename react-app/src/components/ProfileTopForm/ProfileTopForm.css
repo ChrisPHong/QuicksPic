@@ -1,12 +1,30 @@
 .Entire-Container{
     display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.Entire-Container-profile-top{
+    display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 5px 5px;
+    max-width: 400px;
+    padding: 10px;
+    margin-top: 20px;
 }
 
 
 .posts-followers-following-div{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 
+}
+
+.username-container{
+    margin-top: 20px;
+    font-family: sans-serif;
+    font-weight: bolder;
 }

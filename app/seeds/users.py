@@ -8,11 +8,13 @@ def seed_users():
         username='Demo',
         email='demo@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
     )
     em = User(
         username='em',
         email='em@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/anya.gif'
 
     )
 
@@ -20,18 +22,21 @@ def seed_users():
         username='chris',
         email='chris@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
 
     )
     brian = User(
         username='brian',
         email='brian@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
 
     )
     uki = User(
         username='uki',
         email='uki@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
 
     )
 
@@ -39,6 +44,7 @@ def seed_users():
         username='danny',
         email='danny@aa.io',
         password='password',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
 
     )
 
