@@ -66,10 +66,9 @@ function SearchBar() {
                             onMouseDown={() => {
                                 setSearch('')
                                 setSearchResults([])
-
-                                history.push(`/users/${userInfo.split('*')[0]}`)
+                                history.push(`/users/${parseInt(userInfo.split('*')[0])}`)
                             }}
-                        > {console.log('<<<<<<< TESTING', `/users/${userInfo.split('*')[0]}`)}
+                        >
                             <div className='search-result-container'>
                             <figure className='img-testing' style={{backgroundImage: `url(${userInfo.split('*')[2]})`}} />
                                 <p className='user-name-p-tag'>{userInfo.split('*')[1]}</p>

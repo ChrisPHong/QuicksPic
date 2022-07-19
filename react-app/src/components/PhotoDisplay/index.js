@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useHistory } from 'react-router-dom';
-import { deletePhoto } from '../../store/photo';
 import PhotoLikesForm from '../PhotoLikesForm';
 import './PhotoDisplay.css';
 import CommentFormPage from '../CommentForm';

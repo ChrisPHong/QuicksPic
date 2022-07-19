@@ -54,6 +54,7 @@ export const getPhotos = (id) => async (dispatch) => {
     })
     if (response.ok) {
         const photos = await response.json()
+        console.log(photos, '<<<<<<<<<<<<<<<<<< PHOTOS >>>>>>>>>>>>>')
         dispatch(loadPhotos(photos))
     }
 
@@ -131,13 +132,14 @@ const photosReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_PHOTO:
             newState = { ...state, entries: { ...state.entries } }
-            action.photos.map(photo => { newState.entries[photo.id] = photo })
+            action.photos.map(photo => {
+                newState.entries[photo.id] = photo })
             return newState
         case POST_PHOTO:
             newState = {
-                ...state, entries: {
+                ...state, entries: {...state.entries,
                     [action.photo.id]: action.photo,
-                    ...state.entries
+
 
                 }
             }

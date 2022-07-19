@@ -7,11 +7,12 @@ import bulletPoints from './bulletPoints.png'
 function EditPhotoForm({ photo }) {
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
-    const [caption, setCaption] = useState('')
+    const [caption, setCaption] = useState(photo.caption)
     const [image, setImage] = useState(photo.image)
     const [likes, setLikes] = useState(photo.photo_users)
     const [imageLoading, setImageLoading] = useState(false)
     const [display, setDisplay] = useState(false)
+    const [deleted, setDeleted] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -50,7 +51,6 @@ function EditPhotoForm({ photo }) {
 
             dispatch(editPhotos(formData, id))
             showEditForm()
-            setCaption('')
             setShow(false)
 
 
@@ -59,9 +59,15 @@ function EditPhotoForm({ photo }) {
     }
 
 
-    useEffect(() => {
+    const deleteFunction = async (photoId) => {
+        await dispatch(deletePhoto(photoId))
+        await setDeleted(!deleted)
+        await showEditForm()
+    }
 
-    }, [onSubmit])
+    useEffect(() => {
+        setCaption(photo.caption)
+    }, [deleted])
 
 
     const showEditForm = () => {
@@ -119,11 +125,10 @@ function EditPhotoForm({ photo }) {
                         </form>
                         <div className='Delete-Button-Container'>
                         <button className='Delete-Button'
-                            onClick={(e) => {
+                            onClick={async (e) => {
                                 e.preventDefault()
-
                                 let photoId = photo.id
-                                dispatch(deletePhoto(photoId))
+                                await deleteFunction(photoId)
 
 
                             }}

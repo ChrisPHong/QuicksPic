@@ -13,7 +13,7 @@ function EditCommentsPage({ comment, photoId }) {
     const currentComment = allComments.entries[comment.id]
     const userId = useSelector((state) => state?.session?.user?.id);
     const [show, setShow] = useState(false);
-    const [newComments, setnewComments] = useState('');
+    const [newComments, setnewComments] = useState(comment.comments);
     const [errors, setErrors] = useState([]);
     const [display, setDisplay] = useState(false);
     const [deleted, setDeleted] = useState(false);
@@ -21,7 +21,7 @@ function EditCommentsPage({ comment, photoId }) {
 
     useEffect(() => {
         dispatch(getComments(photoId))
-        // setnewComments(currentComment.comments)
+        setnewComments(currentComment.comments)
 
     }, [dispatch, deleted, edited])
 
@@ -52,7 +52,7 @@ function EditCommentsPage({ comment, photoId }) {
             }
             await dispatch(editComment(payload))
             showEditForm()
-            setnewComments('')
+
         }
     }
 
@@ -67,8 +67,9 @@ function EditCommentsPage({ comment, photoId }) {
 
     const deleteFunction = async () => {
         await dispatch(deleteComment(comment.id))
-        setDeleted(!deleted)
-        showEditForm()
+        await setDeleted(!deleted)
+        await setEdited(!edited)
+        await showEditForm()
     }
 
     return (
