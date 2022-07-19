@@ -54,7 +54,6 @@ export const getPhotos = (id) => async (dispatch) => {
     })
     if (response.ok) {
         const photos = await response.json()
-        console.log(photos, '<<<<<<<<<<<<<<<<<< PHOTOS >>>>>>>>>>>>>')
         dispatch(loadPhotos(photos))
     }
 

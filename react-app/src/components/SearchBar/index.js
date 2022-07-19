@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link, useHistory } from 'react-router-dom';
 import emptyHeart from './emptyHeart.png'
-
+import { getuserPhotos } from '../../store/user'
 import { getAllUserNames } from '../../store/search';
 import './searchbar.css';
 
@@ -33,6 +33,7 @@ function SearchBar() {
 
     useEffect(() => {
         dispatch(getAllUserNames())
+
     }, [dispatch])
 
     useEffect(() => {
@@ -63,10 +64,11 @@ function SearchBar() {
 
                         <div className='search-items-dropdown'
                             key={userInfo}
-                            onMouseDown={() => {
+                            onMouseDown={async () => {
                                 setSearch('')
                                 setSearchResults([])
-                                history.push(`/users/${parseInt(userInfo.split('*')[0])}`)
+                                await dispatch(getuserPhotos(parseInt(userInfo.split('*')[0])))
+                                await history.push(`/users/${parseInt(userInfo.split('*')[0])}`)
                             }}
                         >
                             <div className='search-result-container'>
