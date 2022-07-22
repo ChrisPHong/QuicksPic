@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -67,12 +66,6 @@ const NavBar = () => {
               </div>
 
 
-              <div className='users'>
-
-                <NavLink to='/users' exact={true} className='users' activeClassName='active'>
-                  Users
-                </NavLink>
-              </div>
 
               <div className='logout'>
                 <LogoutButton />
