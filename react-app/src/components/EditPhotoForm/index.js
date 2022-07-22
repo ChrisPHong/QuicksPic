@@ -15,7 +15,7 @@ function EditPhotoForm({ photo }) {
     const [deleted, setDeleted] = useState(false)
 
     const dispatch = useDispatch();
-
+    
     let userId = useSelector((state) => state.session?.user?.id)
     const id = photo.id
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { postFollow, getuserPhotos, getFollowerUsers } from '../../store/user'
+import {getPhotos} from '../../store/photo'
 import './FollowersForm.css';
 
 function UserFollowerForm({ followId, photo }) {
@@ -34,14 +35,15 @@ function UserFollowerForm({ followId, photo }) {
     return (
         <div className='FollowerPostDiv'>
             {userId !== photo.userId ?
-                <button className={ areYouFollowing() ? 'UnFollowerButton': 'FollowerButton'}
-                    onClick={(e) => {
+                <button className={areYouFollowing() ? 'UnFollowerButton' : 'FollowerButton'}
+                    onClick={async (e) => {
                         e.preventDefault()
                         const payload = {
                             userId,
                             followId
                         }
-                        dispatch(postFollow(payload))
+                        await dispatch(postFollow(payload))
+                        await dispatch(getPhotos(userId))
                     }}
                 >
                     {areYouFollowing() ? 'Unfollow' : 'Follow'}

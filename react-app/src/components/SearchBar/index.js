@@ -38,8 +38,9 @@ function SearchBar() {
 
     useEffect(() => {
         const result = names.filter(name => {
-
-          return name.toLowerCase().includes(search.toLowerCase())});
+            console.log(name, "<<<<<<<<<<<<<<<<<<< NAME")
+            console.log(name.split('*')[1], "<<<<<<<<<<<<<<<<<<< NAME")
+          return name.split('*')[1].toLowerCase().includes(search.toLowerCase())});
         setSearchResults(result)
 
         if (!result || search === '') {
@@ -71,6 +72,7 @@ function SearchBar() {
                                 await history.push(`/users/${parseInt(userInfo.split('*')[0])}`)
                             }}
                         >
+
                             <div className='search-result-container'>
                             <figure className='img-testing' style={{backgroundImage: `url(${userInfo.split('*')[2]})`}} />
                                 <p className='user-name-p-tag'>{userInfo.split('*')[1]}</p>
