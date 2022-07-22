@@ -38,8 +38,6 @@ function SearchBar() {
 
     useEffect(() => {
         const result = names.filter(name => {
-            console.log(name, "<<<<<<<<<<<<<<<<<<< NAME")
-            console.log(name.split('*')[1], "<<<<<<<<<<<<<<<<<<< NAME")
           return name.split('*')[1].toLowerCase().includes(search.toLowerCase())});
         setSearchResults(result)
 
