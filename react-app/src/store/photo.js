@@ -138,7 +138,6 @@ export const getFollowersPictures = (id) => async (dispatch) => {
     })
     if (response.ok) {
         const photos = await response.json()
-        console.log('<<<<<<<<<<<<<<<<< PHOTOS IN THUNK', photos)
         dispatch(deleteFollowerPhotos(photos))
     }
 

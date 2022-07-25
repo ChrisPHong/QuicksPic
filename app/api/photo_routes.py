@@ -40,7 +40,9 @@ def get__photos(id):
 
     # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
     # filter by date and then append to photos list
-
+    if len(following_list) == 0:
+        user_photos = Photo.query.filter(Photo.user_id == user.id).all()
+        return jsonify([user_photo.to_dict() for user_photo in user_photos])
 
     photos = []
     for i in range(len(following_list)):
@@ -86,8 +88,9 @@ def delete_photo(photo_id):
 @photo_routes.route('/<int:user_id>/unfollow', methods=['GET'])
 def unfollowed_delete_photos(user_id):
 
+    # Retrieving all the followed user's photos in the newsfeed
+    # in order to send it back and delete it from the state.
     photos = Photo.query.filter(Photo.user_id == user_id)
-    print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<', [photo.to_dict() for photo in photos])
 
     return jsonify([photo.to_dict() for photo in photos])
 
