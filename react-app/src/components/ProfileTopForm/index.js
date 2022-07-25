@@ -27,8 +27,8 @@ function ProfileTopPortion() {
             <div className='Entire-Container-profile-top'>
 
                 <div className='profilePicture-profilePage'>
-                    <img src='' />
-                    Profile PIcture
+                <figure className='Photos-Picture-Top' style={{backgroundImage: `url(${userInformation?.profile})`}} />
+                    {/* <img className='Profile-Picture-Top' src={`${userInformation?.profile}`} /> */}
                 </div>
                 <div className='User-information-Entire-Container'>
                     <div className='username-container'>{userInformation?.username}</div>

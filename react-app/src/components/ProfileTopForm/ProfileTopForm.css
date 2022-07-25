@@ -1,10 +1,11 @@
-.Entire-Container{
+.Entire-Container {
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
-.Entire-Container-profile-top{
+
+.Entire-Container-profile-top {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,15 +17,35 @@
 }
 
 
-.posts-followers-following-div{
+.posts-followers-following-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
 }
 
-.username-container{
+.username-container {
     margin-top: 20px;
     font-family: sans-serif;
     font-weight: bolder;
+}
+
+/*
+.Profile-Picture-Top{
+    width: 190px;
+    height: 190px;
+    border-radius:50% 50% 50% 50%;
+} */
+
+.Photos-Picture-Top {
+    width: 8em;
+    background-size: cover;
+    background-position: 50% 25%;
+    border-radius: 50%;
+}
+
+.Photos-Picture-Top::after {
+    display: block;
+    padding-top: 100%;
+    content: ''
 }
