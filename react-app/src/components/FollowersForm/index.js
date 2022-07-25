@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { postFollow, getuserPhotos, getFollowerUsers } from '../../store/user'
-import {getPhotos} from '../../store/photo'
+import {getPhotos, getFollowersPictures} from '../../store/photo'
 import './FollowersForm.css';
 
 function UserFollowerForm({ followId, photo }) {
@@ -43,6 +43,7 @@ function UserFollowerForm({ followId, photo }) {
                             followId
                         }
                         await dispatch(postFollow(payload))
+                        await dispatch(getFollowersPictures(followId))
                         await dispatch(getPhotos(userId))
                     }}
                 >
