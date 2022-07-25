@@ -83,6 +83,13 @@ def delete_photo(photo_id):
 
     return photo.to_dict()
 
+@photo_routes.route('/<int:user_id>/unfollow', methods=['GET'])
+def unfollowed_delete_photos(user_id):
+    photos = Photo.query.filter(Photo.get(user_id))
+    print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<', [photo.to_dict() for photo in photos])
+
+    return [photo.to_dict() for photo in photos]
+
 
 
 
