@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, comment, db, Photo, Comment
+from app.models import db, Comment
 from app.forms.comment_form import CommentForm
 from datetime import datetime
 
@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-# Users can get all the photos of the users they are following
+# Users can get all the comments of the users they are following
 @comment_routes.route('/<int:photo_id>')
 @login_required
 def get__comments(photo_id):
@@ -26,7 +26,7 @@ def get__comments(photo_id):
     return jsonify([comment.to_dict() for comment in comments])
 
 
-# # Users can update their photo
+# # Users can update their comment
 @comment_routes.route('/<int:comment_id>', methods=['PATCH'])
 def patch_comment(comment_id):
     comment = Comment.query.get(comment_id)
