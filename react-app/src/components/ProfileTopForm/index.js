@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getuserPhotos } from '../../store/user'
 import { useParams } from 'react-router-dom';
+import FollowProfile from '../FollowerProfileForm'
 
 import './ProfileTopForm.css';
 
@@ -10,11 +11,12 @@ import './ProfileTopForm.css';
 function ProfileTopPortion() {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
-    const userInfo = useSelector((state) => state?.user?.info);
-    const userInformation = Object.values(userInfo)[0];
+    const userInfo = useSelector((state) => state?.user?.profile);
+    const userInfos = Object.values(userInfo);
+    const userInformation = userInfos[userInfos.length -1];
     const statePhotos = useSelector((state) => state.user.entries);
     const photos = Object.values(statePhotos)
-    const userName = useSelector((state) => state.session.user.username);
+    const userId = useSelector((state) => state.session.user.userId);
     const id = useParams()?.userId
 
     useEffect(() => {
@@ -31,6 +33,7 @@ function ProfileTopPortion() {
                     {/* <img className='Profile-Picture-Top' src={`${userInformation?.profile}`} /> */}
                 </div>
                 <div className='User-information-Entire-Container'>
+                    <FollowProfile />
                     <div className='username-container'>{userInformation?.username}</div>
                     <div className='posts-followers-following-div'>
                         <div>

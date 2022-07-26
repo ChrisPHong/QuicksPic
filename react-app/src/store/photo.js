@@ -149,7 +149,7 @@ const photosReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_PHOTO:
-            newState = { ...state, entries: { ...state.entries } }
+            newState = { ...state, entries: { } }
             action.photos.map(photo => {
                 newState.entries[photo.id] = photo })
             return newState
