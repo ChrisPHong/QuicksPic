@@ -8,7 +8,7 @@ function UserFollowerForm({ followId, photo }) {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
     const userId = useSelector((state) => state?.session?.user?.id);
-    const followers = useSelector((state) => state?.user.info);
+    const followers = useSelector((state) => state?.user?.info);
     const result = Object.values(followers)[0]
     const array = result?.followers
 
