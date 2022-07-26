@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPhotos } from '../../store/photo'
+import { postPhotos, getPhotos } from '../../store/photo'
 import createPost from './createPost.png'
 import './Photoform.css';
 
@@ -43,6 +43,7 @@ function PhotoForm() {
             setImage(null)
             showPhotoForm()
             setShowErrors(false)
+           await dispatch(getPhotos(userId))
 
 
         }

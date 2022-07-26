@@ -23,32 +23,23 @@ def validation_errors_to_error_messages(validation_errors):
 @photo_routes.route('/<int:id>')
 @login_required
 def get__photos(id):
-    # get the current user and check to see which people they are following, from that list we get all the photos and have them displayed on the news feed
-    user = User.query.get(id)
-
-    # This is to show all the photos of users, whether you're follow or not
-    all_photos = Photo.query.all()
-
-
+    # get the current user and check to see which people they are following,
+    # from that list we get all the photos and have them displayed on the news feed
     # These are the people that we're following
-    following_list = [int(follower.get_id()) for follower in user.follower]
-    # following_lists = [follower for follower in user.follower]
+    following_list = [int(follower.get_id()) for follower in current_user.follower]
 
-    # This gives us the id's of all the followers that we're following
-    # followers_only = [int(follower.get_id()) for follower in following_lists]
-    # print('<<<<<<<<<<<<<< SAME? theory', followers_only)
-
-    # Run a for loop with the photo query inside that checks if that user you're following owns that photo. Put that into another variable in order to return it to the front end.
-    # filter by date and then append to photos list
+    # Run a for loop with the photo query inside that checks if that user you're
+    # following owns that photo. Put that into another variable in order to
+    # return it to the front end. filter by date and then append to photos list
     if len(following_list) == 0:
-        user_photos = Photo.query.filter(Photo.user_id == user.id).all()
+        user_photos = Photo.query.filter(Photo.user_id == current_user.id).all()
         return jsonify([user_photo.to_dict() for user_photo in user_photos])
 
     photos = []
     for i in range(len(following_list)):
         follower_id = following_list[i]
         photo = Photo.query.filter(Photo.user_id == follower_id).all()
-        user_photo = Photo.query.filter(Photo.user_id == user.id).all()
+        user_photo = Photo.query.filter(Photo.user_id == current_user.id).all()
         if(len(photo) > 0):
             photos.extend(photo)
             photos.extend(user_photo)

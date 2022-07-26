@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { postFollow, getuserPhotos, getFollowerUsers, postProfileFollow } from '../../store/user'
-import {getPhotos, getFollowersPictures} from '../../store/photo'
+import { getuserPhotos, getFollowerUsers, postProfileFollow } from '../../store/user'
+import { getPhotos } from '../../store/photo'
 import '../FollowersForm';
 import { useParams } from 'react-router-dom';
 
 function FollowProfile() {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state);
     const userId = useSelector((state) => state?.session?.user?.id);
     const followers = useSelector((state) => state?.user.profile);
     const result = Object.values(followers)[0]
     const array = result?.following_you
     const followId = useParams()?.userId
 
-    // console.log(followers, '<<<<<<<<<<<<<<<<< FOLLOWERS')
-    // console.log(result, '<<<<<<<<<<<<<<<<< result')
-    // console.log(array, '<<<<<<<<<<<<<<<<< array')
 
     useEffect(() => {
         dispatch(getFollowerUsers())
@@ -32,7 +28,6 @@ function FollowProfile() {
 
                 return true
             }
-
         }
         return false
 

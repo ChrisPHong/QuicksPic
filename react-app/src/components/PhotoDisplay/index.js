@@ -8,11 +8,6 @@ import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
 
 function PhotoDisplay({ photo }) {
-    const dispatch = useDispatch();
-    const state = useSelector((state) => state);
-
-    const userId = useSelector((state) => state.session.user.id);
-
 
     return (
         <div className='Photo-Container'>
