@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from itsdangerous import json
-from app.models import User, db, Photo, Comment
+from app.models import db, Photo
 from app.forms.photo_form import PhotoForm
 from datetime import datetime
 from app.s3_helpers import (
