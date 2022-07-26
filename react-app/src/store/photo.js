@@ -4,6 +4,7 @@ const CLEAR_ALL_PHOTOS = 'photo/CLEAR/LOGOUT'
 const EDIT_PHOTO = 'photo/EDIT'
 const DELETE_PHOTO = 'photo/DELETE'
 const ADD_LIKE = 'photo/ADD/LIKE'
+const UNFOLLOW_PICTURES = 'photo/FOLLOWER/DELETE'
 
 export const loadPhotos = (photos) => {
     return {
@@ -45,6 +46,13 @@ export const addLikePhoto = (photo) => {
     return {
         type: ADD_LIKE,
         photo
+    }
+}
+
+export const deleteFollowerPhotos = (photos) => {
+    return {
+        type: UNFOLLOW_PICTURES,
+        photos
     }
 }
 
@@ -123,6 +131,17 @@ export const postLikePhoto = (payload) => async (dispatch) => {
 
 }
 
+
+export const getFollowersPictures = (id) => async (dispatch) => {
+    const response = await fetch(`/api/photos/${id}/unfollow`, {
+        method: 'GET',
+    })
+    if (response.ok) {
+        const photos = await response.json()
+        dispatch(deleteFollowerPhotos(photos))
+    }
+
+}
 const initialState = { entries: {}, isLoading: true }
 
 
@@ -130,7 +149,7 @@ const photosReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_PHOTO:
-            newState = { ...state, entries: { ...state.entries } }
+            newState = { ...state, entries: { } }
             action.photos.map(photo => {
                 newState.entries[photo.id] = photo })
             return newState
@@ -164,6 +183,11 @@ const photosReducer = (state = initialState, action) => {
                 }
             }
             newState.entries[action.photo.id] = action.photo
+            return newState
+        case UNFOLLOW_PICTURES:
+            newState = {...state}
+            action.photos.map(photo => {
+               delete newState.entries[photo.id] })
             return newState
 
         default:

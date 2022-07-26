@@ -42,6 +42,31 @@ def user_follow(follower_id):
 
     return current_user.to_follower_dict()
 
+
 @user_routes.route('/followers', methods=['GET'])
 def get_all_followers():
+
     return jsonify(current_user.to_follower_dict())
+
+
+# This is for a specific profile and returns the user's data
+# that'll update the profile page when following them on the profile page
+@user_routes.route('/<int:follower_id>/profileFollow', methods=['POST'])
+def user_profile_follower(follower_id):
+    user_to_follow = User.query.get(follower_id)
+
+    # This checks to see if the user already follows the user
+    if user_to_follow in current_user.follower:
+        current_user.follower.remove(user_to_follow)
+        db.session.add(current_user)
+        db.session.commit()
+
+        return user_to_follow.to_follower_dict()
+    # If it's not in the list, then it'll add it to the list and return that follower
+    current_user.follower.append(user_to_follow)
+
+    db.session.add(current_user)
+    db.session.commit()
+
+
+    return user_to_follow.to_follower_dict()

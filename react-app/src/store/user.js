@@ -2,6 +2,7 @@ const LOAD_USER_PHOTO = 'user/LOAD'
 const EDIT_USER_PHOTO = 'user/EDIT'
 const GET_FOLLOW_USER = 'user/FOLLOW'
 const CREATE_FOLLOW_USER = 'user/CREATE/DELETE'
+const PROFILE_PAGE_FOLLOW = 'user/PROFILE/FOLLOW'
 
 export const loadUserPhotos = (userPhotos) => {
     return {
@@ -13,6 +14,13 @@ export const loadUserPhotos = (userPhotos) => {
 export const followUser = (user) => {
     return {
         type: GET_FOLLOW_USER,
+        user
+    }
+}
+
+export const profileFollow = (user) => {
+    return {
+        type: PROFILE_PAGE_FOLLOW,
         user
     }
 }
@@ -65,16 +73,31 @@ export const postFollow = (payload) => async (dispatch) => {
 }
 
 
-const initialState = { entries: {}, info: {}, isLoading: true }
+
+export const postProfileFollow = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/users/${payload.followId}/profileFollow`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        const followedUser = await response.json()
+        dispatch(profileFollow(followedUser))
+    }
+
+}
+
+
+const initialState = { entries: {}, info: {}, profile: {}, isLoading: true }
 
 const userReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_USER_PHOTO:
 
-            newState = { ...state, entries: {}, info: {} }
+            newState = { ...state, entries: {}, profile: {} }
             action.userPhotos.photos.map(photo => { newState.entries[photo.id] = photo })
-            newState.info[action.userPhotos.user.id] = action.userPhotos.user
+            newState.profile[action.userPhotos.user.id] = action.userPhotos.user
 
             return newState
         case GET_FOLLOW_USER:
@@ -91,13 +114,17 @@ const userReducer = (state = initialState, action) => {
                 ...state, entries: {
                     ...state.entries
                 }, info: {
-                    ...state.info,
+                    ...state.info
                 }
             }
-            newState.info[action.user.id] = action.user
+            newState.profile[action.user.id] = action.user
 
             return newState
-
+        case PROFILE_PAGE_FOLLOW:
+            newState = { ...state, profile: {} }
+            console.log(action, "<<<<<<<<<<<<<<<< ACTION >>>>>>>>>>>>>>")
+            newState.profile[action.user.id] = action.user
+            return newState
         default:
             return state
     }
