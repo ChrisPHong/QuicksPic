@@ -3,6 +3,7 @@ const EDIT_USER_PHOTO = 'user/EDIT'
 const GET_FOLLOW_USER = 'user/FOLLOW'
 const CREATE_FOLLOW_USER = 'user/CREATE/DELETE'
 const PROFILE_PAGE_FOLLOW = 'user/PROFILE/FOLLOW'
+const CLEAR_ALL_USER = 'user/CLEAR/LOGOUT'
 
 export const loadUserPhotos = (userPhotos) => {
     return {
@@ -17,6 +18,13 @@ export const followUser = (user) => {
         user
     }
 }
+export const clearUserSession = (user) => {
+    return {
+        type: CLEAR_ALL_USER,
+        user
+    }
+}
+
 
 export const profileFollow = (user) => {
     return {
@@ -88,6 +96,12 @@ export const postProfileFollow = (payload) => async (dispatch) => {
 }
 
 
+export const clearUserSess = () => async (dispatch) => {
+    dispatch(clearUserSession())
+    return {}
+}
+
+
 const initialState = { entries: {}, info: {}, profile: {}, isLoading: true }
 
 const userReducer = (state = initialState, action) => {
@@ -122,9 +136,10 @@ const userReducer = (state = initialState, action) => {
             return newState
         case PROFILE_PAGE_FOLLOW:
             newState = { ...state, profile: {} }
-            console.log(action, "<<<<<<<<<<<<<<<< ACTION >>>>>>>>>>>>>>")
             newState.profile[action.user.id] = action.user
             return newState
+        case CLEAR_ALL_USER:
+            return {entries: {}, isLoading: true}
         default:
             return state
     }
