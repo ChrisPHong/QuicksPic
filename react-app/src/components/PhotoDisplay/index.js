@@ -10,7 +10,7 @@ import UserFollowerForm from '../FollowersForm'
 function PhotoDisplay({ photo }) {
 
     return (
-        <div className='Photo-Container'>
+        <div key={photo.id} className='Photo-Container'>
             <div className='outer-photo-div-Container'>
                 <div className='UserName-Edit-Delete-Container'>
                     <div className='UserName-FollowButton-Container'>
