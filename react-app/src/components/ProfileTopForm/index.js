@@ -20,7 +20,7 @@ function ProfileTopPortion() {
     const id = useParams()?.userId
 
 
-    console.log(userInformation, "<<<<<<<<<<<<<<<<<<<< User info")
+  
     useEffect(() => {
         dispatch(getuserPhotos(parseInt(id)))
 
