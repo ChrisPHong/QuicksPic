@@ -14,7 +14,7 @@ function CommentDisplay({ photoId, comment }) {
     const userId = useSelector((state) => state.session.user.id);
 
     return (
-        <div className='One-Comment-Container'>
+        <div key={comment.id} className='One-Comment-Container'>
 
             {comment.photoId === photoId ?
                 <>
