@@ -6,6 +6,10 @@
     width: 22px;
 
 }
+.commentLikeButton:hover{
+cursor: pointer;
+}
+
 .CommentLikeButton{
     background-color: transparent;
     border: none;

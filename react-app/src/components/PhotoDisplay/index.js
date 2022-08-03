@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import PhotoLikesForm from '../PhotoLikesForm';
 import './PhotoDisplay.css';
 import CommentFormPage from '../CommentForm';
@@ -8,6 +9,7 @@ import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
 
 function PhotoDisplay({ photo }) {
+    const history = useHistory()
 
     return (
         <div key={photo.id} className='Photo-Container'>
@@ -15,8 +17,11 @@ function PhotoDisplay({ photo }) {
                 <div className='UserName-Edit-Delete-Container'>
                     <div className='UserName-FollowButton-Container'>
 
-                    <h2 className='usernamePhoto-header'>{photo.username.username}</h2>
-                    <UserFollowerForm followId={photo.userId} photo={photo}/>
+                        <h2 onClick={() => {
+                            history.push(`users/${photo.userId}`)
+                        }}
+                            className='usernamePhoto-header'>{photo.username.username}</h2>
+                        <UserFollowerForm followId={photo.userId} photo={photo} />
                     </div>
                     <div className='EditPhotoForm-container'>
                         <EditPhotoForm photo={photo} />
@@ -29,18 +34,22 @@ function PhotoDisplay({ photo }) {
                 </div>
                 <div className='like-form-and-the-likes'>
 
-                <PhotoLikesForm photo={photo} />
+                    <PhotoLikesForm photo={photo} />
 
-                {photo.photo_users.length !== 1 ?
-                    <span className='like-container-photo'>{photo.photo_users.length} likes</span>
-                    : <span className='like-container-photo'>
-                        {photo.photo_users.length} like
-                    </span>
-                }
+                    {photo.photo_users.length !== 1 ?
+                        <span className='like-container-photo'>{photo.photo_users.length} likes</span>
+                        : <span className='like-container-photo'>
+                            {photo.photo_users.length} like
+                        </span>
+                    }
                 </div>
                 <div className='username-caption-container'>
-                <div className='username-input'>{photo.username.username}</div>
-                <span className='caption-input'>{photo.caption}</span>
+                    <div
+                    onClick={() => {
+                        history.push(`users/${photo.userId}`)
+                    }}
+                    className='username-input'>{photo.username.username}</div>
+                    <span className='caption-input'>{photo.caption}</span>
                 </div>
                 <div className='createdAt-input'>{photo.createdAt}</div>
             </div>
