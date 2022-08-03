@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './CommentDisplay.css';
 import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
@@ -12,6 +12,7 @@ import CommentLikeForm from '../CommentLikesForm'
 
 function CommentDisplay({ photoId, comment }) {
     const userId = useSelector((state) => state.session.user.id);
+    const history = useHistory()
 
     return (
         <div key={comment.id} className='One-Comment-Container'>
@@ -20,7 +21,11 @@ function CommentDisplay({ photoId, comment }) {
                 <>
                     <div>
                         <div className='Comment-Container-Whole'>
-                            <div className='comment-username-div'>
+                            <div
+                            onClick={()=>{
+                                history.push(`users/${comment.userId}`)
+                            }}
+                            className='comment-username-div'>
                                 {comment.username.username}
                             </div>
 

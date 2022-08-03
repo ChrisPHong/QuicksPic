@@ -52,6 +52,11 @@
     font-family: sans-serif;
 
 }
+.username-input:hover{
+    cursor: pointer;
+    text-decoration: underline;
+
+}
 
 .username-caption-container{
     display: flex;
@@ -92,5 +97,7 @@
 .usernamePhoto-header:hover{
     font-family: sans-serif;
     /* border-bottom: 1px solid #4daff4; */
+    cursor: pointer;
+    text-decoration: underline;
 
 }
