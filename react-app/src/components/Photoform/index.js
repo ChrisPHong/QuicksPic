@@ -7,7 +7,6 @@ import './Photoform.css';
 
 function PhotoForm({setShowModal}) {
     const [errors, setErrors] = useState([]);
-    const [show, setShow] = useState(false);
     const [showErrors, setShowErrors] = useState(false);
     const [caption, setCaption] = useState('')
     const [image, setImage] = useState('')
@@ -41,7 +40,6 @@ function PhotoForm({setShowModal}) {
 
             setCaption('')
             setImage(null)
-            // showPhotoForm()
             setShowModal(false)
             setShowErrors(false)
             await dispatch(getPhotos(userId))
@@ -71,24 +69,8 @@ function PhotoForm({setShowModal}) {
 
     }, [onSubmit])
 
-    // const showPhotoForm = () => {
-    //     if (show === false) {
-    //         return setShow(true)
-    //     }
-    //     if (show === true) {
-    //         return setShow(false)
-    //     }
-    // }
-
     return (
         <>
-            <div className='show-PhotoForm-div'>
-                {/* <button onClick={showPhotoForm}
-                    className='PhotoFormButton'>
-                    <img className='photo-Form-logo' alt='logo-quicksPic' src={createPost} />
-                </button> */}
-            </div>
-
             <div className='PhotoFormDiv-navigation-bar'>
                 <form className='photoform' onSubmit={onSubmit}>
 
