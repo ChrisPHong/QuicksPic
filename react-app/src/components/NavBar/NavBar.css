@@ -82,12 +82,17 @@
 .photo-Form-logo {
     width: 30px;
     transition-duration: 1.3s;
+    border-radius: 5px 5px;
 }
 
 .photo-Form-logo:hover {
     cursor: pointer;
+    border-radius: 5px 5px;
+    /* padding: 10px; */
+    box-shadow: 0px 0px 10px rgb(92, 91, 91, .8);
 
 }
+
 
 
 .entire-navBar-Container {
