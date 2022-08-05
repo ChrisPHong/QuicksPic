@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
+import PhotoFormModal from '../PhotoFormModal'
 
 import quickpicTitle from './quickpicTitle.png'
 import linked from './linked.png'
@@ -62,7 +63,8 @@ const NavBar = () => {
               </div>
 
               <div className='show-PhotoForm-div'>
-                <PhotoForm />
+                <PhotoFormModal />
+                {/* <PhotoForm /> */}
               </div>
 
 
