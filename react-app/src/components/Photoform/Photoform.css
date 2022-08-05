@@ -1,13 +1,15 @@
 .PhotoFormDiv-navigation-bar {
-    position: absolute;
-    right: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     border-radius: 5px 5px;
     padding: 10px;
     background-color: #46e0f8fd;
-    margin-top: 20px;
-    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.322);
-    /* box-shadow: 10px 5px 5px red; */
+    display: flex;
+
+    box-shadow: 10px 5px 5px rgb(0 0 0 / 32%);
+
 }
 
 
