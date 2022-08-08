@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
-import { getPhotos, deletePhoto } from '../../store/photo'
-
 import './LikesDisplay.css';
 
-
-
 function LikesDisplayPage({ likes }) {
-    const dispatch = useDispatch();
-    const photoState = useSelector((state) => Object.values(state.photos));
-    const currentUser = useSelector(state => state?.session?.user);
-    const userId = useSelector((state) => state.session.user.id);
-    console.log(likes, "<<<<<<< THE PEOPLE LIKE PHOTOS")
     const history = useHistory();
 
     return (
@@ -27,8 +17,8 @@ function LikesDisplayPage({ likes }) {
         :<>
                 {likes.map((like, i) => {
                     return (
-                        <>
-                            <div key={i} onClick={()=>{
+                        <div key={i}>
+                            <div  onClick={()=>{
                                 history.push(`/users/${like.id}`)
 
                             }} className='profile-container'>
@@ -40,7 +30,7 @@ function LikesDisplayPage({ likes }) {
                                     {like.username}
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })}
                 </>

@@ -45,8 +45,7 @@ function PhotoDisplay({ photo }) {
                             {photo.photo_users.length}<LikesDisplayModal likes={photo.photo_users}/>
                         </span>
                     }
-                    {/* <LikesDisplayModal likes={photo.photo_users}/> */}
-                    {/* <LikesDisplayPage likes={photo.photo_users}/> */}
+
                 </div>
                 <div className='username-caption-container'>
                     <div
