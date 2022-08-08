@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LikesDisplay from '../LikesDisplay';
-import './LikesDisplayModal.css'
+// import './CommentDisplayModal.css'
+import CommentDisplayLikesPage from '../CommentLikesDisplay'
 
-function LikesDisplayModal({likes}) {
+function CommentDisplayModal({likes}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -15,11 +16,11 @@ function LikesDisplayModal({likes}) {
     }
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LikesDisplay likes={likes} setShowModal={setShowModal}/>
+          <CommentDisplayLikesPage likes={likes} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
   );
 }
 
-export default LikesDisplayModal;
+export default CommentDisplayModal;

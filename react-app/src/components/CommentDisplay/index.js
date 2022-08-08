@@ -5,7 +5,8 @@ import './CommentDisplay.css';
 import { getComments, deleteComment } from '../../store/comment'
 import EditCommentsPage from '../EditCommentForm';
 import CommentLikeForm from '../CommentLikesForm'
-
+import CommentDisplayLikesPage from '../CommentLikesDisplay'
+import CommentDisplayModal from '../CommentLikesModal'
 
 
 
@@ -13,7 +14,6 @@ import CommentLikeForm from '../CommentLikesForm'
 function CommentDisplay({ photoId, comment }) {
     const userId = useSelector((state) => state.session.user.id);
     const history = useHistory()
-
     return (
         <div key={comment.id} className='One-Comment-Container'>
 
@@ -40,10 +40,11 @@ function CommentDisplay({ photoId, comment }) {
                                 <div className='commentLikes'>
 
                                     {comment.commentLikes.length == 1 ?
-                                        <div className='comment-likes'>{comment.commentLikes.length} like</div>
+                                        <div className='comment-likes'>{comment.commentLikes.length} <CommentDisplayModal likes={comment.commentLikes}/></div>
                                         :
-                                        <div className='comment-likes'>{comment.commentLikes.length} likes</div>
+                                        <div className='comment-likes'>{comment.commentLikes.length} <CommentDisplayModal likes={comment.commentLikes}/></div>
                                     }
+
                                 </div>
                                 {userId === comment.userId ?
                                     <div className='EditCommentPage'>
