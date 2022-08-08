@@ -1,0 +1,11 @@
+.LikeModal-Button{
+    background-color: transparent;
+    border: none;
+    font-family: sans-serif;
+    /* justify-content: center;
+    align-items: center; */
+    font-size: 15px;
+}
+.LikeModal-Button:hover{
+    cursor: pointer;
+}

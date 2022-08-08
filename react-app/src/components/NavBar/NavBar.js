@@ -64,7 +64,6 @@ const NavBar = () => {
 
               <div className='show-PhotoForm-div'>
                 <PhotoFormModal />
-                {/* <PhotoForm /> */}
               </div>
 
 
