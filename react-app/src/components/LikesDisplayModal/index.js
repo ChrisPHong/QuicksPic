@@ -6,7 +6,6 @@ import './LikesDisplayModal.css'
 
 function LikesDisplayModal({likes}) {
   const [showModal, setShowModal] = useState(false);
-  console.log(likes, "<<<<<<<<<<<<< IS THIS MORE THAN ONE???")
 
   return (
     <>
