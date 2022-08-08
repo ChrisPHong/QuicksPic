@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state?.session?.user);
   const history = useHistory()
-  console.log(currentUser, "<<<<<<<<<<<<<<<< CURRENT USER")
+  // console.log(currentUser, "<<<<<<<<<<<<<<<< CURRENT USER")
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -54,7 +54,6 @@ function App() {
           </Route>
           :
           <ProtectedRoute path='/' exact={true} >
-            <h1 className='welcomeTag'>Welcome {currentUser?.username}</h1>
             <PhotosPage />
 
 
