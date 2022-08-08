@@ -1,0 +1,53 @@
+.likes-display-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 300px;
+    justify-content: flex-start;
+    border-radius: 5px 5px;
+}
+
+
+.like-follower-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50% 50%;
+    background-size: cover;
+    background-position: 50% 25%;
+}
+
+
+.like-follower-image::after {
+    display: flex;
+
+    content: ''
+}
+
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition-duration: 1.2s;
+
+}
+.profile-container:hover {
+    background-color: #dd81f5;
+    color: white;
+    cursor: pointer;
+}
+
+.likes-h3-title{
+    padding-left: 10px;
+    font-family: sans-serif;
+}
+
+
+.username-title-like{
+    font-family: sans-serif;
+
+}
+
+.adding-padding{
+    padding-bottom: 10px;
+}

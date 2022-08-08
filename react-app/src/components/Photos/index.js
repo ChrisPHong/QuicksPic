@@ -16,7 +16,10 @@ function PhotosPage() {
     const dispatch = useDispatch();
     const photoState = useSelector((state) => Object.values(state.photos));
     const allPhotos = Object.values(photoState[0])
+  const currentUser = useSelector(state => state?.session?.user);
+
     const userId = useSelector((state) => state.session.user.id);
+    const history = useHistory()
 
     allPhotos.reverse()
     useEffect(() => {
@@ -26,18 +29,23 @@ function PhotosPage() {
 
 
     return (
-        <div className='entire-news-feed'>
-            {allPhotos.map((photo) => {
-                return (
-                    <div className='photo-container'>
-                        <div className='FullImageContainer'>
-                            <PhotoDisplay photo={photo} />
+        <>
+        <h1 className='welcomeTag' onClick={()=>{
+              history.push(`users/${userId}`)
+            }} >Welcome {currentUser.username}</h1>
+            <div className='entire-news-feed'>
+                {allPhotos.map((photo) => {
+                    return (
+                        <div className='photo-container'>
+                            <div className='FullImageContainer'>
+                                <PhotoDisplay photo={photo} />
+                            </div>
                         </div>
-                    </div>
-                )
-            })}
-        </div>
+                    )
+                })}
+            </div>
 
+        </>
     )
 }
 

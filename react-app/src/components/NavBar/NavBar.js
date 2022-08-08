@@ -6,7 +6,7 @@ import './NavBar.css'
 import PhotoFormModal from '../PhotoFormModal'
 
 import quickpicTitle from './quickpicTitle.png'
-import linked from './linked.png'
+import linkedIn from './linkedIn.png'
 import github from './github.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
@@ -51,7 +51,7 @@ const NavBar = () => {
               </div>
               <div className='LinkedInLink'>
                 <a href='https://www.linkedin.com/in/christopherpyohong/'>
-                  <img className='linkedInPicture' src={linked} />
+                  <img className='linkedInPicture' src={linkedIn} />
                 </a>
 
               </div>
@@ -64,7 +64,6 @@ const NavBar = () => {
 
               <div className='show-PhotoForm-div'>
                 <PhotoFormModal />
-                {/* <PhotoForm /> */}
               </div>
 
 
@@ -94,7 +93,7 @@ const NavBar = () => {
               </div>
               <div className='LinkedInLinkNoUser'>
                 <a href='https://www.linkedin.com/in/christopherpyohong/'>
-                  <img className='linkedInPicture' src={linked} />
+                  <img className='linkedInPicture' src={linkedIn} />
                 </a>
 
               </div>

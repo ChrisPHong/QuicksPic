@@ -5,7 +5,7 @@ from app.models import db, User
 def seed_users():
 
     demo = User(
-        username='Demo',
+        username='demo',
         email='demo@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',

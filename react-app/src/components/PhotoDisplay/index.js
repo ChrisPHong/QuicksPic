@@ -7,9 +7,12 @@ import CommentFormPage from '../CommentForm';
 import CommentsPage from '../Comments';
 import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
+import LikesDisplayPage from '../LikesDisplay'
+import LikesDisplayModal from '../LikesDisplayModal'
 
 function PhotoDisplay({ photo }) {
     const history = useHistory()
+
 
     return (
         <div key={photo.id} className='Photo-Container'>
@@ -37,11 +40,13 @@ function PhotoDisplay({ photo }) {
                     <PhotoLikesForm photo={photo} />
 
                     {photo.photo_users.length !== 1 ?
-                        <span className='like-container-photo'>{photo.photo_users.length} likes</span>
+                        <span className='like-container-photo'>{photo.photo_users.length}<LikesDisplayModal likes={photo.photo_users}/></span>
                         : <span className='like-container-photo'>
-                            {photo.photo_users.length} like
+                            {photo.photo_users.length}<LikesDisplayModal likes={photo.photo_users}/>
                         </span>
                     }
+                    {/* <LikesDisplayModal likes={photo.photo_users}/> */}
+                    {/* <LikesDisplayPage likes={photo.photo_users}/> */}
                 </div>
                 <div className='username-caption-container'>
                     <div
