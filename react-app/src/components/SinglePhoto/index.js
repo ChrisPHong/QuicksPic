@@ -16,13 +16,10 @@ function SinglePhotoDisplay() {
 
     const dispatch = useDispatch()
     const state = useSelector((state) => state);
-    const photo = useSelector((state) => Object.values(state?.photos?.photo))[0];
-    const history = useHistory()
     const id = parseInt(useParams()?.photoId)
+    const photo = useSelector((state) => state?.photos?.photo)[id];
+    const history = useHistory()
 
-    console.log(state, "state !")
-    console.log(Object.values(photo)[0], "whyyyyyyyyyyyyy you!")
-    console.log(photo?.image, "this is the ID!!!!!!")
 
     useEffect(() => {
         dispatch(getOnePhoto(id))
