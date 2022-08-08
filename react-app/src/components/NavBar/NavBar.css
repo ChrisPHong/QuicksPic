@@ -67,6 +67,13 @@
 
 .quickPicLogo-picture {
     max-width: 30px;
+    transition-duration: 1s;
+    border-radius: 5px 5px;
+
+}
+.quickPicLogo-picture:hover {
+    box-shadow: 0px 0px 10px rgb(221, 129, 245);
+
 
 }
 
@@ -88,8 +95,7 @@
 .photo-Form-logo:hover {
     cursor: pointer;
     border-radius: 5px 5px;
-    /* padding: 10px; */
-    box-shadow: 0px 0px 10px rgb(92, 91, 91, .5);
+    box-shadow: 0px 0px 10px rgb(221, 129, 245);
 
 }
 
@@ -135,11 +141,31 @@
 .linkedInPicture {
     width: 30px;
     margin: 0px 2px;
+    transition-duration: 1s;
+    border-radius: 25%;
+
+
+}
+
+.linkedInPicture:hover {
+    background-color:rgb(221, 129, 245);
+
 }
 
 .githubLogoPicture {
     margin: 0px 2px;
     width: 30px;
+    transition-duration: 1s;
+    border-radius: 25%;
+
+}
+
+.githubLogoPicture:hover {
+    margin: 0px 2px;
+    width: 30px;
+    border-radius: 50%;
+    /* box-shadow: 0px 0px 10px rgb(221, 129, 245); */
+    background-color:rgb(221, 129, 245);
 }
 
 .gitHubLinkNoUser, .LinkedInLinkNoUser{
