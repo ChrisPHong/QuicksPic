@@ -12,6 +12,7 @@ import LikesDisplayModal from '../LikesDisplayModal'
 
 function PhotoDisplay({ photo }) {
     const history = useHistory()
+    const dispatch = useDispatch
 
 
     return (
@@ -30,7 +31,9 @@ function PhotoDisplay({ photo }) {
                         <EditPhotoForm photo={photo} />
                     </div>
                 </div>
-                <div className='Image-Div-Container'>
+                <div className='Image-Div-Container' onClick={()=>{
+                    history.push(`photos/${photo.id}`)
+                }}>
                     {/* <figure className='photos-profile-page' style={{ backgroundImage: `url(${photo.image})` }} /> */}
                     <img className='photo-newsfeed-container' src={photo.image} />
 

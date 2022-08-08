@@ -19,9 +19,9 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # Users can get all the photos of the users they are following
-@photo_routes.route('/<int:id>')
+@photo_routes.route('/')
 @login_required
-def get__photos(id):
+def get__photos():
     # get the current user and check to see which people they are following,
     # from that list we get all the photos and have them displayed on the news feed
     # These are the people that we're following
@@ -45,6 +45,13 @@ def get__photos(id):
 
 
     return jsonify([photo.to_dict() for photo in photos])
+
+@photo_routes.route('/<int:id>')
+@login_required
+def get__photo(id):
+    photo = Photo.query.get(id)
+    print(photo.to_dict(), "<<<<<<<<<<<<<<<<< THIS IS PHOTO")
+    return jsonify(photo.to_dict())
 
 
 # # Users can update their photo

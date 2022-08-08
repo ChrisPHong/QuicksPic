@@ -7,7 +7,7 @@ import bulletPoints from './bulletPoints.png'
 function EditPhotoForm({ photo }) {
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
-    const [caption, setCaption] = useState('')
+    const [caption, setCaption] = useState(photo.caption)
     const [image, setImage] = useState(photo.image)
     const [likes, setLikes] = useState(photo.photo_users)
     const [imageLoading, setImageLoading] = useState(false)
@@ -15,17 +15,17 @@ function EditPhotoForm({ photo }) {
     const [deleted, setDeleted] = useState(false)
 
     const dispatch = useDispatch();
-    
+
     let userId = useSelector((state) => state.session?.user?.id)
-    const id = photo.id
+    const id = photo?.id
 
 
 
     useEffect(() => {
         const error = [];
-        if (caption.length > 2200) error.push('Caption length must be less than 2,2000 characters')
-        if (caption.length < 1) error.push('You must have at least 1 character in the caption field')
-        if (!caption.replace(/\s/g, '').length) {
+        if (caption?.length > 2200) error.push('Caption length must be less than 2,2000 characters')
+        if (caption?.length < 1) error.push('You must have at least 1 character in the caption field')
+        if (!caption?.replace(/\s/g, '').length) {
             error.push('Please provide a caption that does not only contain spaces');
         }
         if (image === null) error.push('You must upload an image in the format of png or jpg')

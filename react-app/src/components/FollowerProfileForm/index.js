@@ -46,7 +46,7 @@ function FollowProfile() {
                         }
                         await dispatch(postProfileFollow(payload))
                         await dispatch(getFollowerUsers())
-                        await dispatch(getPhotos(userId))
+                        await dispatch(getPhotos())
 
                     }}
                 >

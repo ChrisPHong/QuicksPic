@@ -8,7 +8,7 @@ function LikesDisplayModal({likes}) {
 
   return (
     <>
-    {likes.length == 1 ?
+    {likes?.length == 1 ?
       <button className='LikeModal-Button' onClick={() => setShowModal(true)}>like</button>
     :
       <button className='LikeModal-Button' onClick={() => setShowModal(true)}>likes</button>

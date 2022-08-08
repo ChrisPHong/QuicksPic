@@ -44,7 +44,7 @@ function UserFollowerForm({ followId, photo }) {
                         }
                         await dispatch(postFollow(payload))
                         await dispatch(getFollowersPictures(followId))
-                        await dispatch(getPhotos(userId))
+                        await dispatch(getPhotos())
                     }}
                 >
                     {areYouFollowing() ? 'Unfollow' : 'Follow'}

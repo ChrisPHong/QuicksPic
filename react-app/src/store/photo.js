@@ -5,11 +5,18 @@ const EDIT_PHOTO = 'photo/EDIT'
 const DELETE_PHOTO = 'photo/DELETE'
 const ADD_LIKE = 'photo/ADD/LIKE'
 const UNFOLLOW_PICTURES = 'photo/FOLLOWER/DELETE'
+const LOAD_ONE_PHOTO = 'photos/LOAD'
 
 export const loadPhotos = (photos) => {
     return {
         type: LOAD_PHOTO,
         photos
+    }
+}
+export const loadPhoto = (photo) => {
+    return {
+        type: LOAD_ONE_PHOTO,
+        photo
     }
 }
 
@@ -55,14 +62,25 @@ export const deleteFollowerPhotos = (photos) => {
         photos
     }
 }
-
-export const getPhotos = (id) => async (dispatch) => {
-    const response = await fetch(`/api/photos/${id}`, {
+// This grabs all of the photos that the person is following
+export const getPhotos = () => async (dispatch) => {
+    const response = await fetch(`/api/photos/`, {
         method: 'GET',
     })
     if (response.ok) {
         const photos = await response.json()
         dispatch(loadPhotos(photos))
+    }
+
+}
+// This gets only one photo
+export const getOnePhoto = (id) => async (dispatch) => {
+    const response = await fetch(`/api/photos/${id}`, {
+        method: 'GET',
+    })
+    if (response.ok) {
+        const photo = await response.json()
+        dispatch(loadPhoto(photo))
     }
 
 }
@@ -142,12 +160,18 @@ export const getFollowersPictures = (id) => async (dispatch) => {
     }
 
 }
-const initialState = { entries: {}, isLoading: true }
+const initialState = { entries: {}, photo: {}, isLoading: true }
 
 
 const photosReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case LOAD_ONE_PHOTO:
+            newState = {...state, photo:{}}
+            newState.photo[action.photo.id] = action.photo
+            console.log(action, '<<<<<<<<<<<<<<<<<<<action ????? >>>>>>>>>>>>>')
+            console.log(newState, '<<<<<<<<<<<<<<<<<<< NEWSTATE >>>>>>>>>>>>>')
+            return newState
         case LOAD_PHOTO:
             newState = { ...state, entries: { } }
             action.photos.map(photo => {
