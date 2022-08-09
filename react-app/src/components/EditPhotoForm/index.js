@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPhotos, deletePhoto } from '../../store/photo'
 import './EditPhotoForm.css';
-import bulletPoints from './bulletPoints.png'
 
-function EditPhotoForm({ photo }) {
+
+function EditPhotoForm({ photo, setShowModal }) {
+    console.log(photo, ">>>>>>>>>>>>>>> HELLO?")
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
     const [caption, setCaption] = useState(photo.caption)
@@ -49,8 +50,9 @@ function EditPhotoForm({ photo }) {
             formData.append("photo_users", likes)
             formData.append("id", id)
 
-            dispatch(editPhotos(formData, id))
-            showEditForm()
+            await dispatch(editPhotos(formData, id))
+            await setShowModal(false)
+
             setShow(false)
 
 
@@ -61,8 +63,8 @@ function EditPhotoForm({ photo }) {
 
     const deleteFunction = async (photoId) => {
         await dispatch(deletePhoto(photoId))
+        await setShowModal(false)
         await setDeleted(!deleted)
-        await showEditForm()
     }
 
     useEffect(() => {
@@ -86,11 +88,8 @@ function EditPhotoForm({ photo }) {
 
                 <div className='PhotoFormDiv'>
                     <div className='ButtonToDisplay'>
-                        <button className='bullet-points-button'>
-                            <img className='bullet-points-img' src={bulletPoints} alt='edit-delete-options' onClick={showEditForm} />
-                        </button>
                     </div>
-                    {display ?
+
                     <>
                         <form className='photoform' onSubmit={onSubmit}>
                             <h4>Edit Photo</h4>
@@ -124,19 +123,18 @@ function EditPhotoForm({ photo }) {
                             <button className='Submit-Button' type='submit'>Submit</button>
                         </form>
                         <div className='Delete-Button-Container'>
-                        <button className='Delete-Button'
-                            onClick={async (e) => {
-                                e.preventDefault()
-                                let photoId = photo.id
-                                await deleteFunction(photoId)
+                            <button className='Delete-Button'
+                                onClick={async (e) => {
+                                    e.preventDefault()
+                                    let photoId = photo.id
+                                    await deleteFunction(photoId)
 
 
-                            }}
+                                }}
 
-                        >Delete</button>
-                    </div>
+                            >Delete</button>
+                        </div>
                     </>
-                        : null}
 
                 </div>
                 : null}
