@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { postLikePhoto, getPhotos } from '../../store/photo'
+import { postLikePhoto } from '../../store/photo'
 import './PhotoLikesForm.css';
 import filledHeart from './filledHeart.png'
 import emptyHeart from './emptyHeart.png'
@@ -14,13 +14,13 @@ function PhotoLikesForm({photo}) {
     const photoId = photo.id
 
     useEffect(() => {
-    
+
     }, [dispatch]);
 
     const photoLikes = photo.photo_users
 
     const didYouLikeIt = ()=>{
-        for(let i = 0; i < photoLikes.length; i++){
+        for(let i = 0; i < photoLikes?.length; i++){
             if(photoLikes[i].id === userId){
                 return true
             }

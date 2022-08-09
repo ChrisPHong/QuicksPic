@@ -23,7 +23,7 @@ function PhotosPage() {
 
     allPhotos.reverse()
     useEffect(() => {
-        dispatch(getPhotos(userId))
+        dispatch(getPhotos())
     }, [dispatch])
 
 

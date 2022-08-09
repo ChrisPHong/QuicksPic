@@ -12,6 +12,7 @@ import HomePage from './components/homePage';
 import UserProfilePage from './components/UserProfilePage'
 import ProfileTopPortion from './components/ProfileTopForm'
 import PageNotFound from './components/PageNotFound';
+import SinglePhotoDisplay from './components/SinglePhoto'
 
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state?.session?.user);
   const history = useHistory()
-  // console.log(currentUser, "<<<<<<<<<<<<<<<< CURRENT USER")
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -48,6 +48,9 @@ function App() {
           <ProfileTopPortion />
           <UserProfilePage />
         </ProtectedRoute>
+        <ProtectedRoute path='/photos/:photoId' exact={true} >
+          <SinglePhotoDisplay />
+        </ProtectedRoute>
         {!currentUser ?
           <Route path='/' exact={true}>
             <HomePage />
@@ -55,7 +58,6 @@ function App() {
           :
           <ProtectedRoute path='/' exact={true} >
             <PhotosPage />
-
 
           </ProtectedRoute>
         }

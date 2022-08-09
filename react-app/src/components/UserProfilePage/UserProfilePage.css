@@ -4,6 +4,9 @@ width: 10em;
 background-size: cover;
 background-position: 50% 25%;
 }
+.photos-profile-page:hover{
+    cursor: pointer;
+}
 
 .photos-profile-page::after{
 display: block;

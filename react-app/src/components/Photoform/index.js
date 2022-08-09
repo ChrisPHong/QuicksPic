@@ -42,7 +42,7 @@ function PhotoForm({setShowModal}) {
             setImage(null)
             setShowModal(false)
             setShowErrors(false)
-            await dispatch(getPhotos(userId))
+            await dispatch(getPhotos())
 
 
         }
