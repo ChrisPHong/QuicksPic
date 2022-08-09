@@ -9,6 +9,7 @@ import { postComment } from '../../store/comment'
 function CommentFormPage({ photoId }) {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.session.user.id);
+    const username = useSelector((state) => state.session.user.username);
     const [show, setShow] = useState(false)
     const [comments, setComments] = useState('')
     const [errors, setErrors] = useState([])
@@ -71,14 +72,22 @@ function CommentFormPage({ photoId }) {
                         : null
 
                     : null}
+                    {/* <div className='Comment-input-container'> */}
+
                 <input
                     className='commentForm-input-value'
                     value={comments}
-                    placeholder="Comment..."
+                    placeholder={`Add a comment as ${username}...`}
                     onChange={e => { setComments(e.target.value) }} />
                 <button
                 className='commentForm-Button'
                 type='submit'>Post</button>
+                {/* </div> */}
+                    {comments.length > 2200 ?
+                    <p className='number-length-comments' style={{color: 'red'}}>{comments.length} / 2200</p>
+                    :
+                    <p className='number-length-comments'>{comments.length} / 2200</p>
+                    }
             </form>
         </div>
 

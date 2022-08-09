@@ -169,8 +169,6 @@ const photosReducer = (state = initialState, action) => {
         case LOAD_ONE_PHOTO:
             newState = {...state, photo:{}}
             newState.photo[action.photo.id] = action.photo
-            console.log(action, '<<<<<<<<<<<<<<<<<<<action ????? >>>>>>>>>>>>>')
-            console.log(newState, '<<<<<<<<<<<<<<<<<<< NEWSTATE >>>>>>>>>>>>>')
             return newState
         case LOAD_PHOTO:
             newState = { ...state, entries: { } }

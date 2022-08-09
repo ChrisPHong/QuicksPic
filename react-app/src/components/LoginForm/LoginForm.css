@@ -98,9 +98,6 @@ cursor: pointer;
 }
 
 .lines-around-or{
-
-/* background-color: rgba(var(--b38,219,219,219),1); */
-    /* background-color: #dbdbdb; */
     padding-top: 20px;
     margin-bottom: 200px;
     color:rgba(59, 57, 57, 0.658);

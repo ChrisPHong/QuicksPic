@@ -20,7 +20,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (errors.length > 0){
+    if (errors.length > 0) {
 
       setShow(true)
       return
@@ -33,7 +33,7 @@ const SignUpForm = () => {
       }
     }
   };
-  useEffect(()=> {
+  useEffect(() => {
     const error = []
     if (username.length > 40) error.push('Username length must be less than 40 characters')
     if (password.length > 255) error.push('Password length must be less than 255 characters')
@@ -44,16 +44,16 @@ const SignUpForm = () => {
     if (password !== repeatPassword) error.push('Password and Repeat Password do not match')
     if (!email.includes('@')) error.push('Please use a valid Email')
     setErrors(error)
-  },[password, repeatPassword, email, username])
+  }, [password, repeatPassword, email, username])
 
   const showEditForm = () => {
     if (show === false) {
-        return setShow(true)
+      return setShow(true)
     }
     if (show === true) {
-        return setShow(false)
+      return setShow(false)
     }
-}
+  }
 
 
   const updateUsername = (e) => {
@@ -76,70 +76,73 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-  const loginDemoUser = async (e) =>{
+  const loginDemoUser = async (e) => {
 
     await dispatch(login('demo@aa.io', 'password'));
   }
   return (
-    <div className='signUP-div-container'>
-      <img className='logo-quicksPic' src={quickpicTitle}/>
+    <div className='Entire-Div-container'>
 
-      <form className='Signup-Form' onSubmit={onSignUp}>
-        <div className='error-display-container'>
-          {show && errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+      <div className='signUP-div-container'>
+        <img className='logo-quicksPic' src={quickpicTitle} />
+
+        <form className='Signup-Form' onSubmit={onSignUp}>
+          <div className='error-display-container'>
+            {show && errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div>
+            <input
+              className='inputvalues'
+              type='text'
+              name='username'
+              placeholder="Username"
+              onChange={updateUsername}
+              value={username}
+            ></input>
+          </div>
+          <div>
+            <input
+              className='inputvalues'
+              type='text'
+              name='email'
+              placeholder="Email"
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <input
+              className='inputvalues'
+              type='password'
+              name='password'
+              placeholder="Password"
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <input
+              className='inputvalues'
+              type='password'
+              name='repeat_password'
+              placeholder="Repeat Password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
+          <button className='sign-up-button' type='submit'>Sign Up</button>
+        </form>
+        <div className='or-div-container'>
+          <span className='lines-around-or'>______________________</span>
+          <span className='OR-statement'>OR</span>
+          <span className='lines-around-or'>______________________</span>
         </div>
-        <div>
-          <input
-            className='inputvalues'
-            type='text'
-            name='username'
-            placeholder="Username"
-            onChange={updateUsername}
-            value={username}
-          ></input>
-        </div>
-        <div>
-          <input
-            className='inputvalues'
-            type='text'
-            name='email'
-            placeholder="Email"
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <input
-            className='inputvalues'
-            type='password'
-            name='password'
-            placeholder="Password"
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <input
-            className='inputvalues'
-            type='password'
-            name='repeat_password'
-            placeholder="Repeat Password"
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <button className='sign-up-button' type='submit'>Sign Up</button>
-      </form>
-      <div className='or-div-container'>
-      <span className='lines-around-or'>______________________</span>
-      <span className='OR-statement'>OR</span>
-      <span className='lines-around-or'>______________________</span>
+        <span className='login-demo-user'>Log in as Demo User</span>
+        <button className='demoUserButton' onClick={loginDemoUser}>Demo User</button>
       </div>
-      <span className='login-demo-user'>Log in as Demo User</span>
-      <button className='demoUserButton' onClick={loginDemoUser}>Demo User</button>
     </div>
   );
 };

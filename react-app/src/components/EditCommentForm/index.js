@@ -51,7 +51,7 @@ function EditCommentsPage({ comment, photoId }) {
 
             }
             await dispatch(editComment(payload))
-            showEditForm()
+            await showEditForm()
 
         }
     }

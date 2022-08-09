@@ -14,6 +14,7 @@ function PhotoForm({setShowModal}) {
 
     const dispatch = useDispatch();
 
+    let username = useSelector((state) => state.session?.user?.username)
     let userId = useSelector((state) => state.session?.user?.id)
 
     const onSubmit = async (e) => {
@@ -100,7 +101,7 @@ function PhotoForm({setShowModal}) {
                         required
                         value={caption}
                         onChange={(e) => setCaption(e.target.value)}
-                        placeholder='Caption' />
+                        placeholder={`Add a photo as ${username}...`} />
 
 
                     <input
