@@ -23,7 +23,7 @@ function CommentDisplay({ photoId, comment }) {
                         <div className='Comment-Container-Whole'>
                             <div
                             onClick={()=>{
-                                history.push(`users/${comment.userId}`)
+                                history.push(`/users/${comment.userId}`)
                             }}
                             className='comment-username-div'>
                                 {comment.username.username}

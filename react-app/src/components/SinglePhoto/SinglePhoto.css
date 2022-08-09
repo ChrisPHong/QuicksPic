@@ -1,0 +1,17 @@
+.Photo-Container-Solo{
+    border: 1px solid black;
+    display: flex;
+    /* width: 600px; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.comments-all-div-singlephoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+}
