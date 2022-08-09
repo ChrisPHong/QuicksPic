@@ -10,7 +10,7 @@ import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
 import LikesDisplayModal from '../LikesDisplayModal'
 import { getOnePhoto } from '../../store/photo'
-
+import '../PhotoDisplay/PhotoDisplay.css'
 
 
 function SinglePhotoDisplay() {
@@ -29,6 +29,7 @@ function SinglePhotoDisplay() {
     return (
         <>
             {photo &&
+                <div className='Entire-Div-Solo'>
 
                 <div className='Photo-Container-Solo'>
                     <div className='outer-photo-div-Container'>
@@ -38,7 +39,7 @@ function SinglePhotoDisplay() {
                                 <h2 onClick={() => {
                                     history.push(`/users/${photo?.userId}`)
                                 }}
-                                    className='usernamePhoto-header'>{photo?.username?.username}</h2>
+                                className='usernamePhoto-header'>{photo?.username?.username}</h2>
                                 <UserFollowerForm followId={photo?.userId} photo={photo} />
                             </div>
                             <div className='EditPhotoForm-container'>
@@ -85,10 +86,11 @@ function SinglePhotoDisplay() {
                     </div>
 
                 </div>
+            </div>
             }
         </>
 
-    )
+)
 }
 
 
