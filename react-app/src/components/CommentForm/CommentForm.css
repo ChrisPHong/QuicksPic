@@ -19,3 +19,13 @@
   cursor: pointer;
   background-color: #a048e4;
 }
+
+.number-length-comments{
+  font-family: sans-serif;
+  font-size: 10px;
+  padding-left: 5px;
+}
+
+.Comment-input-container{
+  display: flex;
+}
