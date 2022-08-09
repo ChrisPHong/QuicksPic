@@ -83,7 +83,11 @@ function CommentFormPage({ photoId }) {
                 className='commentForm-Button'
                 type='submit'>Post</button>
                 {/* </div> */}
+                    {comments.length > 2200 ?
+                    <p className='number-length-comments' style={{color: 'red'}}>{comments.length} / 2200</p>
+                    :
                     <p className='number-length-comments'>{comments.length} / 2200</p>
+                    }
             </form>
         </div>
 
