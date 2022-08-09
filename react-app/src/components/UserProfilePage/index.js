@@ -18,6 +18,7 @@ function UserProfilePage() {
     const userInformation = useSelector((state) => state.session);
     const userId = useSelector((state) => state.session.user.id);
     const id = useParams()?.userId
+    const history = useHistory()
 
 
     useEffect(() => {
@@ -35,7 +36,9 @@ function UserProfilePage() {
 
                     <div>
                     <div>
-                        <figure className='photos-profile-page' style={{backgroundImage: `url(${photo.image})`}} />
+                        <figure onClick={()=>{
+                            history.push(`/photos/${photo.id}`)
+                        }} className='photos-profile-page' style={{backgroundImage: `url(${photo.image})`}} />
                          {/* <img src={photo.image}/> */}
                     </div>
 

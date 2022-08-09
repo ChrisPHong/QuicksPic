@@ -35,7 +35,7 @@ function SinglePhotoDisplay() {
                             <div className='UserName-FollowButton-Container'>
 
                                 <h2 onClick={() => {
-                                    history.push(`users/${photo?.userId}`)
+                                    history.push(`/users/${photo?.userId}`)
                                 }}
                                     className='usernamePhoto-header'>{photo?.username?.username}</h2>
                                 <UserFollowerForm followId={photo?.userId} photo={photo} />
