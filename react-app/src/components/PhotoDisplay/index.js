@@ -5,9 +5,7 @@ import PhotoLikesForm from '../PhotoLikesForm';
 import './PhotoDisplay.css';
 import CommentFormPage from '../CommentForm';
 import CommentsPage from '../Comments';
-import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
-import LikesDisplayPage from '../LikesDisplay'
 import LikesDisplayModal from '../LikesDisplayModal'
 import EditPhotoFormModal from '../EditPhotoFormModal'
 
