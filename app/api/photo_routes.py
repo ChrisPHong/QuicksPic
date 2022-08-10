@@ -50,7 +50,6 @@ def get__photos():
 @login_required
 def get__photo(id):
     photo = Photo.query.get(id)
-    print(photo.to_dict(), "<<<<<<<<<<<<<<<<< THIS IS PHOTO")
     return jsonify(photo.to_dict())
 
 

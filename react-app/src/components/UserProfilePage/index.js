@@ -29,10 +29,10 @@ function UserProfilePage() {
         <div className='ProfilePicturePhotos'>
            <div className='Entire-Photo-Container'>
 
-            {photos.map(photo => {
+            {photos.map((photo, idx) => {
                 return (
 
-                    <div>
+                    <div key={idx}>
                     <div>
                         <figure onClick={()=>{
                             history.push(`/photos/${photo.id}`)

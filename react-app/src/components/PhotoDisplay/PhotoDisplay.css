@@ -82,7 +82,7 @@
 
 .UserName-FollowButton-Container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
 }
@@ -100,4 +100,28 @@
     cursor: pointer;
     text-decoration: underline;
 
+}
+
+.Profile-Picture{
+    width: 3em;
+    background-size: cover;
+    background-position: 50% 25%;
+    border-radius: 50%;
+    margin:0px;
+    margin-right: 10px;
+}
+
+.Profile-Picture::after {
+    display: block;
+    padding-top: 100%;
+    content: ''
+}
+.Profile-Picture:hover {
+    cursor: pointer;
+}
+
+.profilePicture-username-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

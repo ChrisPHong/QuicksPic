@@ -4,6 +4,7 @@ const GET_FOLLOW_USER = 'user/FOLLOW'
 const CREATE_FOLLOW_USER = 'user/CREATE/DELETE'
 const PROFILE_PAGE_FOLLOW = 'user/PROFILE/FOLLOW'
 const CLEAR_ALL_USER = 'user/CLEAR/LOGOUT'
+const EDIT_USER_PROFILE = 'user/EDIT/PROFILE'
 
 export const loadUserPhotos = (userPhotos) => {
     return {
@@ -15,6 +16,12 @@ export const loadUserPhotos = (userPhotos) => {
 export const followUser = (user) => {
     return {
         type: GET_FOLLOW_USER,
+        user
+    }
+}
+export const editUserProfile = (user) => {
+    return {
+        type: EDIT_USER_PROFILE,
         user
     }
 }
@@ -80,6 +87,21 @@ export const postFollow = (payload) => async (dispatch) => {
 
 }
 
+export const patchUserProfile = (formData, userId) => async (dispatch) => {
+
+    console.log(formData, "<<<<<<<<<<<<< FORM DATA")
+    const response = await fetch(`/api/users/${userId}`, {
+        method: 'PATCH',
+        body: formData
+    })
+
+    if (response.ok) {
+        const profileInfo = await response.json()
+        dispatch(editUserProfile(profileInfo))
+    }
+
+}
+
 
 
 export const postProfileFollow = (payload) => async (dispatch) => {
@@ -123,6 +145,15 @@ const userReducer = (state = initialState, action) => {
             newState.info[action.user.id] = action.user
 
             return newState
+        case EDIT_USER_PROFILE:
+            newState = {
+                ...state, entries: {
+                    ...state.entries
+                }
+            }
+            newState.profile[action.user.id] = action.user
+            return newState
+
         case CREATE_FOLLOW_USER:
             newState = {
                 ...state, entries: {
@@ -139,7 +170,7 @@ const userReducer = (state = initialState, action) => {
             newState.profile[action.user.id] = action.user
             return newState
         case CLEAR_ALL_USER:
-            return {entries: {}, profile:{}, info:{}, isLoading: true}
+            return { entries: {}, profile: {}, info: {}, isLoading: true }
         default:
             return state
     }

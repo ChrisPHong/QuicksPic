@@ -1,8 +1,21 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, Photo, db
+from app.forms.user_form import UserEditForm
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 user_routes = Blueprint('users', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @user_routes.route('/')
@@ -69,3 +82,54 @@ def user_profile_follower(follower_id):
 
 
     return user_to_follow.to_follower_dict()
+
+
+@user_routes.route("/<int:id>", methods=["PATCH"])
+@login_required
+def upload_image(id):
+    user = User.query.get(current_user.id)
+
+    form = UserEditForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if "image" not in request.files:
+        if form.validate_on_submit():
+            user.name = form.data['name']
+            user.website= form.data['website']
+            user.bio= form.data['bio']
+
+            db.session.add(user)
+            db.session.commit()
+            return user.to_follower_dict()
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    # new_image = Photo(user=current_user, image=url)
+
+    id = current_user.to_dict()['id']
+    form.data['user_id'] = int(id)
+    if form.validate_on_submit():
+        user.name = form.data['name']
+        user.website= form.data['website']
+        user.bio= form.data['bio']
+        user.image = url
+
+        db.session.add(user)
+        db.session.commit()
+        return user.to_follower_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
