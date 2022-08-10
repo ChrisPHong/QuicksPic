@@ -1,8 +1,8 @@
 .Delete-Button{
     background-color: #46e1f8;
     border-radius: 5px 5px;
-    padding: 5px 20px;
-    margin: 10px;
+    padding: 5px 22px;
+    margin: 10px 0px;
     transition-duration: 1.3s;
     color: white;
     font-family: sans-serif;
@@ -10,23 +10,22 @@
 }
 .Delete-Button:hover{
     background-color: #4daff4;
-    border-radius: 5px 5px;
-    padding: 5px 20px;
-    margin: 10px;
     cursor: pointer;
 }
 
 .PhotoFormDiv{
     background-color: white;
-    padding: 10px;
+    padding: 10px 30px;
     border-radius: 5px;
+    border: 1px solid rgba(145, 142, 142, 0.74);
+
+
 }
 
 .Submit-Button{
     background-color: #dd81f5;
     border-radius: 5px 5px;
     padding: 5px 20px;
-    margin: 10px;
     transition-duration: 1.3s;
     color: white;
     font-family: sans-serif;
@@ -35,9 +34,6 @@
 
 .Submit-Button:hover{
     background-color: #a048e4;
-    border-radius: 5px 5px;
-    padding: 5px 20px;
-    margin: 10px;
     cursor: pointer;
 }
 

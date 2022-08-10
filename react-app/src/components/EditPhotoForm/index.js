@@ -119,6 +119,11 @@ function EditPhotoForm({ photo, setShowModal }) {
                                 value={caption}
                                 onChange={(e) => setCaption(e.target.value)}
                                 placeholder='Caption' />
+                            {caption.length > 2200 ?
+                                    <p className='number-length-comments' style={{ color: 'red' }}>{caption.length} / 2200</p>
+                                    :
+                                    <p className='number-length-comments'>{caption.length} / 2200</p>
+                                }
 
                             <button className='Submit-Button' type='submit'>Submit</button>
                         </form>
