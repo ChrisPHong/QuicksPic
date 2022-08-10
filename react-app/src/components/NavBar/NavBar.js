@@ -11,7 +11,8 @@ import github from './github.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
 import SearchBar from '../SearchBar'
-import profilepicture from './defaultPicture.png'
+// import profilepicture from './defaultPicture.png'
+import profilepicture from './profilepictureLogo.png'
 
 const NavBar = () => {
 
