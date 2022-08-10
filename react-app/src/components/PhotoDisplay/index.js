@@ -5,10 +5,9 @@ import PhotoLikesForm from '../PhotoLikesForm';
 import './PhotoDisplay.css';
 import CommentFormPage from '../CommentForm';
 import CommentsPage from '../Comments';
-import EditPhotoForm from '../EditPhotoForm';
 import UserFollowerForm from '../FollowersForm'
-import LikesDisplayPage from '../LikesDisplay'
 import LikesDisplayModal from '../LikesDisplayModal'
+import EditPhotoFormModal from '../EditPhotoFormModal'
 
 function PhotoDisplay({ photo }) {
     const history = useHistory()
@@ -28,7 +27,7 @@ function PhotoDisplay({ photo }) {
                         <UserFollowerForm followId={photo.userId} photo={photo} />
                     </div>
                     <div className='EditPhotoForm-container'>
-                        <EditPhotoForm photo={photo} />
+                        <EditPhotoFormModal photo={photo} />
                     </div>
                 </div>
                 <div className='Image-Div-Container'

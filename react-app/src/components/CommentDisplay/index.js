@@ -7,6 +7,7 @@ import EditCommentsPage from '../EditCommentForm';
 import CommentLikeForm from '../CommentLikesForm'
 import CommentDisplayLikesPage from '../CommentLikesDisplay'
 import CommentDisplayModal from '../CommentLikesModal'
+import EditCommentFormModal from '../EditCommentFormModal'
 
 
 
@@ -48,7 +49,7 @@ function CommentDisplay({ photoId, comment }) {
                                 </div>
                                 {userId === comment.userId ?
                                     <div className='EditCommentPage'>
-                                        <EditCommentsPage comment={comment} photoId={photoId} />
+                                        <EditCommentFormModal comment={comment} photoId={photoId} />
 
                                     </div>
                                     : null}

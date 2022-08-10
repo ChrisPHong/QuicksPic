@@ -16,6 +16,11 @@
     cursor: pointer;
 }
 
+.PhotoFormDiv{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
 
 .Submit-Button{
     background-color: #dd81f5;
@@ -40,4 +45,8 @@
 .input-values{
     font-family: sans-serif;
     padding: 10px;
+}
+
+.PhotoFormButton:hover{
+    cursor: pointer;
 }

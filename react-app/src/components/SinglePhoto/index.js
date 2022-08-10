@@ -11,6 +11,7 @@ import UserFollowerForm from '../FollowersForm'
 import LikesDisplayModal from '../LikesDisplayModal'
 import { getOnePhoto } from '../../store/photo'
 import '../PhotoDisplay/PhotoDisplay.css'
+import EditPhotoFormModal from '../EditPhotoFormModal'
 
 
 function SinglePhotoDisplay() {
@@ -43,7 +44,7 @@ function SinglePhotoDisplay() {
                                 <UserFollowerForm followId={photo?.userId} photo={photo} />
                             </div>
                             <div className='EditPhotoForm-container'>
-                                <EditPhotoForm photo={photo} />
+                            <EditPhotoFormModal photo={photo} />
                             </div>
                         </div>
                         <div className='Image-Div-Container'>

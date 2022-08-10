@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './EditCommentForm.css';
 import { editComment, deleteComment, getComments } from '../../store/comment'
-import bulletPoints from './bulletPoints.png'
 
 
 
 
-function EditCommentsPage({ comment, photoId }) {
+function EditCommentsPage({ comment, photoId, setShowModal }) {
     const dispatch = useDispatch();
     const allComments = useSelector((state) => state?.comments);
     const currentComment = allComments.entries[comment.id]
@@ -51,7 +50,7 @@ function EditCommentsPage({ comment, photoId }) {
 
             }
             await dispatch(editComment(payload))
-            await showEditForm()
+            await setShowModal(false)
 
         }
     }
@@ -69,7 +68,7 @@ function EditCommentsPage({ comment, photoId }) {
         await dispatch(deleteComment(comment.id))
         await setDeleted(!deleted)
         await setEdited(!edited)
-        await showEditForm()
+        await setShowModal(false)
     }
 
     return (
@@ -78,11 +77,8 @@ function EditCommentsPage({ comment, photoId }) {
                 <div className='editingCommentFormDiv'>
                     <div>
                         <div className='ButtonToDisplay'>
-                            <button className='bullet-points-button'>
-                                <img className='bullet-points-img' src={bulletPoints} alt='edit-delete-options' onClick={showEditForm} />
-                            </button>
                         </div>
-                        {display ?
+
                             <div className='edit-your-comment'>
 
                                 <h3 className='h3title-EditComment'>Edit Your Comment</h3>
@@ -122,7 +118,7 @@ function EditCommentsPage({ comment, photoId }) {
 
                                 </div>
                             </div>
-                            : null}
+
                     </div>
                 </div>
                 : null}
