@@ -79,45 +79,50 @@ function EditCommentsPage({ comment, photoId, setShowModal }) {
                         <div className='ButtonToDisplay'>
                         </div>
 
-                            <div className='edit-your-comment'>
+                        <div className='edit-your-comment'>
 
-                                <h3 className='h3title-EditComment'>Edit Your Comment</h3>
-                                <form className='form-Edit-Container' onSubmit={onSubmit}>
-                                    {show ?
+                            <h3 className='h3title-EditComment'>Edit Your Comment</h3>
+                            <form className='form-Edit-Container' onSubmit={onSubmit}>
+                                {show ?
 
-                                        errors.length > 0 ?
-                                            <>
-                                                <h4>Fix Your Errors :</h4>
-                                                <ul className='errorsArray'>{errors.map(error => {
-                                                    return (
-                                                        <>
-                                                            <li className='CommentFormErrorItem'
-                                                                key={error}>{error}</li>
-                                                        </>
-                                                    )
-                                                })}
-                                                </ul>
-                                            </>
-                                            : null
+                                    errors.length > 0 ?
+                                        <>
+                                            <h4>Fix Your Errors :</h4>
+                                            <ul className='errorsArray'>{errors.map(error => {
+                                                return (
+                                                    <>
+                                                        <li className='CommentFormErrorItem'
+                                                            key={error}>{error}</li>
+                                                    </>
+                                                )
+                                            })}
+                                            </ul>
+                                        </>
+                                        : null
 
-                                        : null}
-                                    <input
-                                        className='commentForm-input-value'
-                                        placeholder="Comment..."
-                                        value={newComments}
+                                    : null}
+                                <input
+                                    className='commentForm-input-value'
+                                    placeholder="Comment..."
+                                    value={newComments}
 
-                                        onChange={(e) => { setnewComments(e.target.value) }} />
-                                    <button
+                                    onChange={(e) => { setnewComments(e.target.value) }} />
+                                {newComments.length > 2200 ?
+                                    <p className='number-length-comments' style={{ color: 'red' }}>{newComments.length} / 2200</p>
+                                    :
+                                    <p className='number-length-comments'>{newComments.length} / 2200</p>
+                                }
+                                <button
                                     className='commentEditForm-Button'
                                     type='submit'>Save Changes</button>
-                                </form>
-                                <div >
-                                    <button className='deleteButtonCommentEdit'
-                                        onClick={deleteFunction}
-                                    >Delete</button>
+                            </form>
+                            <div >
+                                <button className='deleteButtonCommentEdit'
+                                    onClick={deleteFunction}
+                                >Delete</button>
 
-                                </div>
                             </div>
+                        </div>
 
                     </div>
                 </div>

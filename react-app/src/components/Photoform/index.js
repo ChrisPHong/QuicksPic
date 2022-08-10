@@ -75,7 +75,7 @@ function PhotoForm({setShowModal}) {
             <div className='PhotoFormDiv-navigation-bar'>
                 <form className='photoform' onSubmit={onSubmit}>
 
-                    <h2 className='postYourPhotosh2'>Post Your Photos!</h2>
+                    <h2 className='postYourPhotosh2'>Post Your Photo!</h2>
                     {showErrors ?
 
                         errors.length > 0 ?
@@ -102,6 +102,11 @@ function PhotoForm({setShowModal}) {
                         value={caption}
                         onChange={(e) => setCaption(e.target.value)}
                         placeholder={`Add a photo as ${username}...`} />
+                        {caption.length > 2200 ?
+                                    <p className='number-length-comments' style={{ color: 'red' }}>{caption.length} / 2200</p>
+                                    :
+                                    <p className='number-length-comments'>{caption.length} / 2200</p>
+                                }
 
 
                     <input
