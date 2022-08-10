@@ -11,6 +11,7 @@ import github from './github.png'
 import home from './home.png'
 import PhotoForm from '../Photoform'
 import SearchBar from '../SearchBar'
+import profilepicture from './defaultPicture.png'
 
 const NavBar = () => {
 
@@ -40,8 +41,8 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div className='SearchBarDiv'>
-            <SearchBar />
-          </div>
+              <SearchBar />
+            </div>
             <div className='home-post-logout-container'>
               <div className='gitHubLink'>
                 <a href='https://github.com/ChrisPHong/QuicksPic'>
@@ -61,6 +62,14 @@ const NavBar = () => {
                   <img className='quickPicLogo-picture' alt='logo-quicksPic' src={home} />
                 </NavLink>
               </div>
+                <div className='profile-link'>
+                  <NavLink to={`/users/${currentUser.id}`}>
+
+                    <img className='quickPicLogo-picture' alt='logo-quicksPic' src={profilepicture} />
+
+                  </NavLink>
+
+                </div>
 
               <div className='show-PhotoForm-div'>
                 <PhotoFormModal />

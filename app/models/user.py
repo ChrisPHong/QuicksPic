@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(2000))
+    bio = db.Column(db.String(150))
+    name = db.Column(db.String(30))
+    website = db.Column(db.String(2200))
 
     @property
     def password(self):
@@ -57,7 +60,10 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'profilePic': self.image
+            'profilePic': self.image,
+            'bio': self.bio,
+            'name': self.name,
+            'website': self.website,
         }
     def to_follower_dict(self):
         return {
@@ -66,7 +72,10 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile': self.image,
             "followers": [following.to_dict() for following in self.follower],
-            "following_you":[followers.to_dict() for followers in self.followers]
+            "following_you":[followers.to_dict() for followers in self.followers],
+            'bio': self.bio,
+            'name': self.name,
+            'website': self.website,
         }
 
     def to_follow(self, user):

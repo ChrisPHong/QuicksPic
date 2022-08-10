@@ -21,7 +21,7 @@ content: ''
     align-items: center;
     max-width: 800px;
     flex-wrap: wrap;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-top: 20px;
     border-radius: 5px 5px;
 }
@@ -30,4 +30,5 @@ content: ''
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top: 1px solid rgba(49, 49, 49, 0.795);
 }

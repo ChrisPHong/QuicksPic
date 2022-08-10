@@ -9,13 +9,19 @@ def seed_users():
         email='demo@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        bio='Created by @chris',
+        name ='demo-a/A',
+        website='https://www.linkedin.com/in/christopherpyohong/',
+
     )
     em = User(
         username='em',
         email='em@aa.io',
         password='password',
-        image='https://quickspic.s3.us-west-1.amazonaws.com/anya.gif'
-
+        image='https://quickspic.s3.us-west-1.amazonaws.com/anya.gif',
+        bio='',
+        name ='Em-a/A',
+        website='',
     )
 
     chris = User(
@@ -23,6 +29,9 @@ def seed_users():
         email='chris@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/IMG_5514-RETOUCHED.jpg',
+        bio='',
+        name ='Chris-a/A',
+        website='https://www.linkedin.com/in/christopherpyohong/',
 
     )
     brian = User(
@@ -30,6 +39,9 @@ def seed_users():
         email='brian@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        bio='',
+        name ='Brian-a/A',
+        website='',
 
     )
     uki = User(
@@ -37,6 +49,9 @@ def seed_users():
         email='uki@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        bio='',
+        name ='Uki-a/A',
+        website='',
 
     )
 
@@ -45,6 +60,9 @@ def seed_users():
         email='danny@aa.io',
         password='password',
         image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        bio='',
+        name ='Danny-a/A',
+        website='',
 
     )
 
@@ -57,8 +75,8 @@ def seed_users():
 
     demo.to_follow(chris)
     demo.to_follow(em)
-    # demo.to_follow(uki)
-    # demo.to_follow(brian)
+    demo.to_follow(uki)
+    demo.to_follow(brian)
     em.to_follow(demo)
     em.to_follow(chris)
     chris.to_follow(em)
