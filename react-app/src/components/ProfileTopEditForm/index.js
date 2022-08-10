@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProfileTopEditForm.css';
 import { useParams } from 'react-router-dom'
-import { patchUserProfile,getuserPhotos, getFollowerUsers } from '../../store/user'
+import { patchUserProfile, getuserPhotos, getFollowerUsers } from '../../store/user'
 
 
-function EditProfileForm({userInfo}) {
-    // { setShowModal }
+function EditProfileForm({ userInfo, setShowModal }) {
     console.log(userInfo, "<<<<<<<<<<<<<<< UESR INFO???")
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
@@ -58,7 +57,7 @@ function EditProfileForm({userInfo}) {
             // await dispatch(editPhotos(formData, id))
             await dispatch(patchUserProfile(formData, userId))
             await dispatch(getFollowerUsers())
-            // await setShowModal(false)
+            await setShowModal(false)
 
             setShow(false)
 
@@ -74,13 +73,13 @@ function EditProfileForm({userInfo}) {
         <>
             {profileId == userId ?
 
-                <div className='PhotoFormDiv'>
+                <div className='ProfileEditDiv'>
                     <div className='ButtonToDisplay'>
                     </div>
 
                     <>
-                        <form className='photoform' onSubmit={onSubmit}>
-                            <h4>Edit Profile</h4>
+                        <form className='editProfileForm' onSubmit={onSubmit}>
+                            <h4 className='Edit-Profile-tag'>Edit Profile</h4>
                             {show ?
 
                                 errors.length > 0 ?
@@ -99,32 +98,48 @@ function EditProfileForm({userInfo}) {
                                     : null
 
                                 : null}
-                            <input
-                                name="website"
-                                type='text'
-                                className='input-values'
-                                required
-                                value={website}
-                                onChange={(e) => setWebsite(e.target.value)}
-                                placeholder='Website' />
-                            <input
-                                name="bio"
-                                type='text'
-                                className='input-values'
-                                required
-                                value={bio}
-                                onChange={(e) => setBio(e.target.value)}
-                                placeholder='Bio' />
-                            <input
-                                name="name"
-                                type='text'
-                                className='input-values'
-                                required
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder='Name' />
+                            <div className='input-values-container-profile-edit'>
+                                <div className='label-input-edit-profile-container'>
 
-                            <button className='Submit-Button' type='submit'>Submit</button>
+                                    <label className='label-profile-edit'>Website</label>
+                                    <input
+                                        name="website"
+                                        type='text'
+                                        className='input-values-profile'
+                                        required
+                                        value={website}
+                                        onChange={(e) => setWebsite(e.target.value)}
+                                        placeholder='Website' />
+                                </div>
+                                <div className='label-input-edit-profile-container'>
+                                    <label className='label-profile-edit'>
+                                        Bio
+                                    </label>
+
+                                    <input
+                                        name="bio"
+                                        type='text'
+                                        className='input-values-profile'
+                                        required
+                                        value={bio}
+                                        onChange={(e) => setBio(e.target.value)}
+                                        placeholder='Bio' />
+                                </div>
+                                <div className='label-input-edit-profile-container'>
+
+                                    <label className='label-profile-edit'>Name</label>
+                                    <input
+                                        name="name"
+                                        type='text'
+                                        className='input-values-profile'
+                                        required
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder='Name' />
+                                </div>
+
+                            </div>
+                            <button className='Submit-Button-EditForm' type='submit'>Submit</button>
                         </form>
                     </>
 
