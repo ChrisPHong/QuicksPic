@@ -139,7 +139,7 @@ const userReducer = (state = initialState, action) => {
             newState.profile[action.user.id] = action.user
             return newState
         case CLEAR_ALL_USER:
-            return {entries: {}, isLoading: true}
+            return {entries: {}, profile:{}, info:{}, isLoading: true}
         default:
             return state
     }

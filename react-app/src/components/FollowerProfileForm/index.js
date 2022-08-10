@@ -14,9 +14,9 @@ function FollowProfile() {
     const followId = useParams()?.userId
 
 
-    useEffect(() => {
-        dispatch(getFollowerUsers())
+    useEffect(async () => {
         dispatch(getuserPhotos(followId))
+        dispatch(getFollowerUsers())
 
     }, [dispatch]);
 
