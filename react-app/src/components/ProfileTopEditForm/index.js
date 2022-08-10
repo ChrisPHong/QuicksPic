@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProfileTopEditForm.css';
 import { useParams } from 'react-router-dom'
-import { patchUserProfile, getuserPhotos, getFollowerUsers } from '../../store/user'
+import { patchUserProfile, getFollowerUsers } from '../../store/user'
 
 
 function EditProfileForm({ userInfo, setShowModal }) {
-    console.log(userInfo, "<<<<<<<<<<<<<<< UESR INFO???")
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
     const [bio, setBio] = useState('')
@@ -35,6 +34,11 @@ function EditProfileForm({ userInfo, setShowModal }) {
         setErrors(error)
     }, [website, name, image, bio])
 
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file)
+
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -137,6 +141,19 @@ function EditProfileForm({ userInfo, setShowModal }) {
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder='Name' />
                                 </div>
+
+                            </div>
+
+                            <div className='label-input-edit-profile-container'>
+                                <label className='label-profile-edit'>Image</label>
+                                <input
+                                    className='file-input-value-form'
+                                    name="image"
+                                    type="file"
+                                    accept="image/png, image/jpg, image/gif, image/jpeg"
+                                    onChange={updateImage}
+
+                                />
 
                             </div>
                             <button className='Submit-Button-EditForm' type='submit'>Submit</button>

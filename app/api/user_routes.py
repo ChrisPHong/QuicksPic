@@ -92,27 +92,34 @@ def upload_image(id):
     form = UserEditForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # image = request.files["image"]
-    # if "image" not in request.files:
-    #     form['image'] = user_test.image
+    if "image" not in request.files:
+        if form.validate_on_submit():
+            user.name = form.data['name']
+            user.website= form.data['website']
+            user.bio= form.data['bio']
 
+            db.session.add(user)
+            db.session.commit()
+            return user.to_follower_dict()
 
-    # if not allowed_file(image.filename):
-    #     return {"errors": "file type not permitted"}, 400
+    image = request.files["image"]
 
-    # image.filename = get_unique_filename(image.filename)
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
 
-    # upload = upload_file_to_s3(image)
+    image.filename = get_unique_filename(image.filename)
 
-    # if "url" not in upload:
-    #     # if the dictionary doesn't have a url key
-    #     # it means that there was an error when we tried to upload
-    #     # so we send back that error message
-    #     return upload, 400
+    upload = upload_file_to_s3(image)
 
-    # url = upload["url"]
-    # # flask_login allows us to get the current user from the request
-    # # new_image = Photo(user=current_user, image=url)
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    # new_image = Photo(user=current_user, image=url)
 
     id = current_user.to_dict()['id']
     form.data['user_id'] = int(id)
@@ -120,28 +127,9 @@ def upload_image(id):
         user.name = form.data['name']
         user.website= form.data['website']
         user.bio= form.data['bio']
-
-        # image = url,
+        user.image = url
 
         db.session.add(user)
         db.session.commit()
-        print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< THIS IS THE USER TO FOLLOWER TO DICT', user.to_follower_dict())
         return user.to_follower_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-
-# def patch_photo(photo_id):
-#     photo = Photo.query.get(photo_id)
-#     form = PhotoForm()
-
-#     form['csrf_token'].data = request.cookies['csrf_token']
-
-#     if form.validate_on_submit():
-#         photo.caption = form.data['caption'],
-#         photo.updatedAt = datetime.now()
-
-#         db.session.add(photo)
-#         db.session.commit()
-
-#         return photo.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
