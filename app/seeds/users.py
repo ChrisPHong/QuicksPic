@@ -8,7 +8,7 @@ def seed_users():
         username='demo',
         email='demo@aa.io',
         password='password',
-        image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png',
+        image='https://quickspic.s3.us-west-1.amazonaws.com/DSC_9287.jpg',
         bio='Created by @chris',
         name ='demo-a/A',
         website='https://www.linkedin.com/in/christopherpyohong/',
