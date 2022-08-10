@@ -30,7 +30,7 @@ function EditProfileForm({ userInfo, setShowModal }) {
     useEffect(() => {
         const error = [];
         if (website?.length > 2200) error.push('Website length must be less than 2,2000 characters')
-
+        if (bio?.length > 150) error.push('150 character max limit')
         setErrors(error)
     }, [website, name, image, bio])
 
@@ -89,11 +89,14 @@ function EditProfileForm({ userInfo, setShowModal }) {
                                 errors.length > 0 ?
                                     <>
                                         <h4>Please Fix These Errors:</h4>
-                                        <ul className='errorsArray'>{errors.map(error => {
+                                        <ul className='errorsArray'>{errors.map((error, idx)=> {
                                             return (
                                                 <>
-                                                    <li className='EditPhotoFormErrorItem'
-                                                        key={error}>{error}</li>
+                                                    <div key={idx}>
+
+                                                        <li className='EditPhotoFormErrorItem'
+                                                            key={error}>{error}</li>
+                                                    </div>
                                                 </>
                                             )
                                         })}
