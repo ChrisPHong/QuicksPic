@@ -10,14 +10,50 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     border-radius: 5px 5px;
-    max-width: 550px;
     padding: 10px;
     margin-top: 20px;
 }
 
+.profilePicture-profilePage{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    /* align-items: center; */
+}
+.userInformation-container{
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+margin-top: 20px;
+cursor: default;
 
+}
+.user-name-bold{
+    font-weight: bold;
+}
+
+.website-user{
+    font-weight: bold;
+    color:rgba(83, 206, 223, 0.993);
+    transition-duration: 1s;
+}
+.website-user:hover{
+    font-weight: bold;
+    color:rgba(61, 118, 172, 0.993);
+}
+.user-name-p-tag{
+    margin: 0px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+.user-name-a-tag{
+    margin: 0px;
+    font-family: sans-serif;
+    font-size: 15px;
+
+}
 .posts-followers-following-div {
     display: flex;
     flex-direction: row;

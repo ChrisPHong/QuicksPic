@@ -20,11 +20,11 @@ function ProfileTopPortion() {
     const id = useParams()?.userId
 
 
-  
+
     useEffect(() => {
         dispatch(getuserPhotos(parseInt(id)))
 
-    }, [dispatch])
+    }, [dispatch, id])
     return (
         <div className='Entire-Container'>
 
@@ -32,11 +32,10 @@ function ProfileTopPortion() {
 
                 <div className='profilePicture-profilePage'>
                     <figure className='Photos-Picture-Top' style={{ backgroundImage: `url(${userInformation?.profile})` }} />
-                    {/* <img className='Profile-Picture-Top' src={`${userInformation?.profile}`} /> */}
                 </div>
                 <div className='User-information-Entire-Container'>
                     <div className='followerButtonProfile'>
-                    <FollowProfile />
+                        <FollowProfile />
                     </div>
                     <div className='username-container'>{userInformation?.username}
 
@@ -64,6 +63,12 @@ function ProfileTopPortion() {
                             </div>
 
                         </div>
+                    </div>
+                    <div className='userInformation-container'>
+
+                        <p className='user-name-p-tag user-name-bold'>{userInformation?.name}</p>
+                        <p className='user-name-p-tag'>{userInformation?.bio}</p>
+                        <a className='user-name-a-tag website-user' href={`${userInformation?.website}`}>{userInformation?.website}</a>
                     </div>
                     {/* <div className='bio-name-description'>This is all the bio, name, and description
 

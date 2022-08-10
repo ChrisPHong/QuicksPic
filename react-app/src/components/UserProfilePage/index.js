@@ -15,8 +15,6 @@ function UserProfilePage() {
     const state = useSelector((state) => state);
     const statePhotos = useSelector((state) => state.user.entries);
     const photos = Object.values(statePhotos)
-    const userInformation = useSelector((state) => state.session);
-    const userId = useSelector((state) => state.session.user.id);
     const id = useParams()?.userId
     const history = useHistory()
 
@@ -39,7 +37,6 @@ function UserProfilePage() {
                         <figure onClick={()=>{
                             history.push(`/photos/${photo.id}`)
                         }} className='photos-profile-page' style={{backgroundImage: `url(${photo.image})`}} />
-                         {/* <img src={photo.image}/> */}
                     </div>
 
                 </div>
