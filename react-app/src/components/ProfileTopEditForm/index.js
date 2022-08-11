@@ -30,7 +30,8 @@ function EditProfileForm({ userInfo, setShowModal }) {
     useEffect(() => {
         const error = [];
         if (website?.length > 2200) error.push('Website length must be less than 2,2000 characters')
-        if (bio?.length > 150) error.push('150 character max limit')
+        if (bio?.length > 150) error.push('Bio has a 150 character max limit')
+        if (name?.length > 30) error.push('Name has a 30 character max limit')
         setErrors(error)
     }, [website, name, image, bio])
 
@@ -55,10 +56,7 @@ function EditProfileForm({ userInfo, setShowModal }) {
             formData.append("bio", bio)
             formData.append("website", website)
             formData.append("name", name)
-            // formData.append("userId", userId)
-            console.log(formData, "<<<<<<<<<<<<<<< FORM DATA IN THE COMPO")
 
-            // await dispatch(editPhotos(formData, id))
             await dispatch(patchUserProfile(formData, userId))
             await dispatch(getFollowerUsers())
             await setShowModal(false)
@@ -93,19 +91,22 @@ function EditProfileForm({ userInfo, setShowModal }) {
 
                                     errors.length > 0 ?
                                         <>
-                                            <h4>Please Fix These Errors:</h4>
-                                            <ul className='errorsArray'>{errors.map((error, idx) => {
-                                                return (
-                                                    <>
-                                                        <div key={idx}>
+                                            <h4 className='Error-Tag-'>Please Fix These Errors:</h4>
+                                            <div className='error-div-container'>
 
-                                                            <li className='EditPhotoFormErrorItem'
-                                                                key={error}>{error}</li>
-                                                        </div>
-                                                    </>
-                                                )
-                                            })}
-                                            </ul>
+                                                <ul className='errorsArray'>{errors.map((error, idx) => {
+                                                    return (
+                                                        <>
+                                                            <div key={idx}>
+
+                                                                <p style={{ color: 'red' }} className='EditProfileFormErrorItem'
+                                                                    key={error}>{error}</p>
+                                                            </div>
+                                                        </>
+                                                    )
+                                                })}
+                                                </ul>
+                                            </div>
                                         </>
                                         : null
 
@@ -163,9 +164,9 @@ function EditProfileForm({ userInfo, setShowModal }) {
                                         accept="image/png, image/jpg, image/gif, image/jpeg"
                                         onChange={updateImage}
 
-                                        />
+                                    />
 
-                                        {/* </div> */}
+                                    {/* </div> */}
                                 </div>
                                 <button className='Submit-Button-EditForm' type='submit'>Submit</button>
                             </form>

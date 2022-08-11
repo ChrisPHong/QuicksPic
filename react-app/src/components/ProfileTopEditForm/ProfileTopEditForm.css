@@ -95,3 +95,20 @@
     border-radius: 5px;
     border: 1px solid black;
 }
+
+.EditProfileFormErrorItem{
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+.Error-Tag-{
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.error-div-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
