@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { postLikePhoto } from '../../store/photo'
+import { postLikePhoto, getOnePhoto} from '../../store/photo'
 import './PhotoLikesForm.css';
 import filledHeart from './filledHeart.png'
 import emptyHeart from './emptyHeart.png'
@@ -34,14 +34,15 @@ function PhotoLikesForm({photo}) {
         <div className='PhotoLikesDiv'>
 
             <button className='photoLikeButton'
-                onClick={(e) => {
+                onClick={async (e) => {
                     e.preventDefault()
                     const payload = {
                         userId,
                         photoId
 
                     }
-                    dispatch(postLikePhoto(payload))
+                    await dispatch(postLikePhoto(payload))
+                    await dispatch(getOnePhoto(photoId))
                 }}
             >
                 {didYouLikeIt() ?

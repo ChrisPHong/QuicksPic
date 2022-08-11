@@ -179,8 +179,6 @@ const photosReducer = (state = initialState, action) => {
             newState = {
                 ...state, entries: {...state.entries,
                     [action.photo.id]: action.photo,
-
-
                 }
             }
             return newState
@@ -204,7 +202,9 @@ const photosReducer = (state = initialState, action) => {
                     ...state.entries,
                 }
             }
+
             newState.entries[action.photo.id] = action.photo
+
             return newState
         case UNFOLLOW_PICTURES:
             newState = {...state}
