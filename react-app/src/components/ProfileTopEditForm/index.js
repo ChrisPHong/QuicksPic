@@ -82,85 +82,94 @@ function EditProfileForm({ userInfo, setShowModal }) {
                     </div>
 
                     <>
-                        <form className='editProfileForm' onSubmit={onSubmit}>
-                            <h4 className='Edit-Profile-tag'>Edit Profile</h4>
-                            {show ?
+                        <div className='edit-form-container'>
+                            <div className='Edit-Profile-tag-container'>
 
-                                errors.length > 0 ?
-                                    <>
-                                        <h4>Please Fix These Errors:</h4>
-                                        <ul className='errorsArray'>{errors.map((error, idx)=> {
-                                            return (
-                                                <>
-                                                    <div key={idx}>
 
-                                                        <li className='EditPhotoFormErrorItem'
-                                                            key={error}>{error}</li>
-                                                    </div>
-                                                </>
-                                            )
-                                        })}
-                                        </ul>
-                                    </>
-                                    : null
-
-                                : null}
-                            <div className='input-values-container-profile-edit'>
-                                <div className='label-input-edit-profile-container'>
-
-                                    <label className='label-profile-edit'>Website</label>
-                                    <input
-                                        name="website"
-                                        type='text'
-                                        className='input-values-profile'
-                                        required
-                                        value={website}
-                                        onChange={(e) => setWebsite(e.target.value)}
-                                        placeholder='Website' />
-                                </div>
-                                <div className='label-input-edit-profile-container'>
-                                    <label className='label-profile-edit'>
-                                        Bio
-                                    </label>
-
-                                    <input
-                                        name="bio"
-                                        type='text'
-                                        className='input-values-profile'
-                                        required
-                                        value={bio}
-                                        onChange={(e) => setBio(e.target.value)}
-                                        placeholder='Bio' />
-                                </div>
-                                <div className='label-input-edit-profile-container'>
-
-                                    <label className='label-profile-edit'>Name</label>
-                                    <input
-                                        name="name"
-                                        type='text'
-                                        className='input-values-profile'
-                                        required
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        placeholder='Name' />
-                                </div>
-
+                                <h4 className='Edit-Profile-tag'>Edit Profile</h4>
                             </div>
+                            <form className='editProfileForm' onSubmit={onSubmit}>
+                                {show ?
 
-                            <div className='label-input-edit-profile-container'>
-                                <label className='label-profile-edit'>Image</label>
-                                <input
-                                    className='file-input-value-form'
-                                    name="image"
-                                    type="file"
-                                    accept="image/png, image/jpg, image/gif, image/jpeg"
-                                    onChange={updateImage}
+                                    errors.length > 0 ?
+                                        <>
+                                            <h4>Please Fix These Errors:</h4>
+                                            <ul className='errorsArray'>{errors.map((error, idx) => {
+                                                return (
+                                                    <>
+                                                        <div key={idx}>
 
-                                />
+                                                            <li className='EditPhotoFormErrorItem'
+                                                                key={error}>{error}</li>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })}
+                                            </ul>
+                                        </>
+                                        : null
 
-                            </div>
-                            <button className='Submit-Button-EditForm' type='submit'>Submit</button>
-                        </form>
+                                    : null}
+                                <div className='input-values-container-profile-edit'>
+                                    <div className='label-input-edit-profile-container'>
+
+                                        <label className='label-profile-edit'>Website</label>
+                                        <input
+                                            name="website"
+                                            type='text'
+                                            className='input-values-profile'
+                                            required
+                                            value={website}
+                                            onChange={(e) => setWebsite(e.target.value)}
+                                            placeholder='Website' />
+                                    </div>
+                                    <div className='label-input-edit-profile-container'>
+                                        <label className='label-profile-edit'>
+                                            Bio
+                                        </label>
+
+                                        <input
+                                            name="bio"
+                                            type='text'
+                                            className='input-values-profile'
+                                            required
+                                            value={bio}
+                                            onChange={(e) => setBio(e.target.value)}
+                                            placeholder='Bio' />
+                                    </div>
+                                    <div className='label-input-edit-profile-container'>
+
+                                        <label className='label-profile-edit'>Name</label>
+                                        <input
+                                            name="name"
+                                            type='text'
+                                            className='input-values-profile'
+                                            required
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            placeholder='Name' />
+                                    </div>
+
+                                </div>
+
+                                <div className='label-input-edit-profile-container'>
+                                    {/* <div className='file-input-edit-container'> */}
+
+                                    <label className='file-label-profile-edit'>Image</label>
+                                    <input
+                                        className='input-value-profile'
+                                        name="image"
+                                        type="file"
+                                        accept="image/png, image/jpg, image/gif, image/jpeg"
+                                        onChange={updateImage}
+
+                                        />
+
+                                        {/* </div> */}
+                                </div>
+                                <button className='Submit-Button-EditForm' type='submit'>Submit</button>
+                            </form>
+                        </div>
                     </>
 
                 </div>
