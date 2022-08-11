@@ -22,7 +22,7 @@ function SinglePhotoDisplay() {
     const photo = useSelector((state) => state?.photos?.photo)[id];
     const history = useHistory()
 
-
+    // console.log(photo.photo_users.length, "<<<<<<<<<<<<<<< PHOTO")
     useEffect(() => {
         dispatch(getOnePhoto(id))
     }, [dispatch, id])
@@ -52,9 +52,9 @@ function SinglePhotoDisplay() {
 
                         </div>
                         <div className='like-form-and-the-likes'>
-                            {photo &&
+
                                 <PhotoLikesForm photo={photo} />
-                            }
+
 
                             {photo?.photo_users?.length !== 1 ?
                                 <span className='like-container-photo'>{photo?.photo_users?.length}<LikesDisplayModal likes={photo?.photo_users} /></span>
