@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './homepage.css'
-import iphone from './iphone.png'
+import iphone from './iphoneSplashPage.png'
 
 import noTitle from './noTitle.png'
 
@@ -16,7 +16,7 @@ const HomePage = () => {
       <div className="homepage-all-container">
         <div className="IphonePicture">
 
-          <img className='iphonePictureFront' src={noTitle} />
+          <img className='iphonePictureFront' src={iphone} />
 
         </div>
 
