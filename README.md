@@ -1,7 +1,7 @@
 # Welcome to QuicksPic
 
 
-[QuicksPic](https://quickspic.herokuapp.com/) is an instagram clone that allows users to interact and socialize with others on the interweb. Users will be able to create their own personal profiles and communicate with others via posting, commenting, and liking each other's posts! Here is the [live Link](https://quickspic.herokuapp.com/)
+[QuicksPic](https://quickspic.herokuapp.com/) allows users to interact and socialize with others on the interweb. Users will be able to create their own personal profiles and communicate with others via posting, commenting, and liking each other's posts! Here is the [live Link](https://quickspic.herokuapp.com/)
 
 ## Splash Page
 ![image](https://user-images.githubusercontent.com/98856057/178869008-53531ffd-e86f-4d19-a69a-f041e0015821.png)
