@@ -13,7 +13,7 @@ function PhotoDisplay({ photo }) {
     const history = useHistory()
     const dispatch = useDispatch
 
-    console.log(photo, "<<<<<<<<<<<<<< PHOTO")
+  
 
     return (
         <div key={photo.id} className='Photo-Container'>

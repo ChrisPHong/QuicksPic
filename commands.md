@@ -20,3 +20,11 @@ CREATE USER quickpic_user WITH PASSWORD 'instagramclone' CREATEDB;
 CREATE DATABASE quickpic_dev WITH OWNER quickpic_user;
 
 heroku run -a quickspic flask seed all
+
+
+
+### Websocket
+https://hackmd.io/oTn-ZTjcQRO5Ghbv9tO9ug
+
+#### Documentation
+https://flask-socketio.readthedocs.io/en/latest/

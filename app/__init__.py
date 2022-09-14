@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.photo_routes import photo_routes
 from .api.comment_routes import comment_routes
 from .api.search_routes import search_routes
+from .socket import socketio
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(search_routes, url_prefix='/api/search')
 db.init_app(app)
 Migrate(app, db)
 
+socketio.init_app(app)
 # Application Security
 CORS(app)
 
@@ -77,3 +79,7 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app)
