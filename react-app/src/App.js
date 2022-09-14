@@ -13,6 +13,7 @@ import UserProfilePage from './components/UserProfilePage'
 import ProfileTopPortion from './components/ProfileTopForm'
 import PageNotFound from './components/PageNotFound';
 import SinglePhotoDisplay from './components/SinglePhoto'
+import Chat from './components/Sockets'
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         {!currentUser ?
           <Route path='/' exact={true}>
             <HomePage />
+            <Chat />
           </Route>
           :
           <ProtectedRoute path='/' exact={true} >
