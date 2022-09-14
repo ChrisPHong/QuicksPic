@@ -55,7 +55,6 @@ function App() {
         {!currentUser ?
           <Route path='/' exact={true}>
             <HomePage />
-            <Chat />
           </Route>
           :
           <ProtectedRoute path='/' exact={true} >
