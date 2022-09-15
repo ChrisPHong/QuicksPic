@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .photo import photos_likes
 from .comment import comments_likes
+from .message import users_messages
 
 followers = db.Table(
     'followers',
@@ -49,6 +50,9 @@ class User(db.Model, UserMixin):
 
     # many-to-many relationship between users and users for people
     follower = db.relationship('User', secondary=followers, primaryjoin=(followers.c.follower_id == id), secondaryjoin = (followers.c.followed_id == id), backref = db.backref('followers', lazy = 'dynamic'), lazy = 'dynamic')
+
+    # many-to-many relationship between users and users for messages
+    messager = db.relationship('User', secondary=users_messages, primaryjoin=(users_messages.c.from_user_id == id), secondaryjoin = (users_messages.c.to_user_id == id), backref = db.backref('users_messages', lazy = 'dynamic'), lazy = 'dynamic')
 
     def to_dict(self):
         return {
