@@ -9,11 +9,12 @@ import UsersList from './components/UsersList';
 import PhotosPage from './components/Photos';
 import { authenticate } from './store/session';
 import HomePage from './components/homePage';
-import UserProfilePage from './components/UserProfilePage'
-import ProfileTopPortion from './components/ProfileTopForm'
+import UserProfilePage from './components/UserProfilePage';
+import ProfileTopPortion from './components/ProfileTopForm';
 import PageNotFound from './components/PageNotFound';
 import SinglePhotoDisplay from './components/SinglePhoto'
 import Chat from './components/Sockets'
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -46,8 +47,9 @@ function App() {
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <ProfileTopPortion />
-          <UserProfilePage />
+          <ProfilePage />
+          {/* <ProfileTopPortion />
+          <UserProfilePage /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/photos/:photoId' exact={true} >
           <SinglePhotoDisplay />
