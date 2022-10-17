@@ -7,7 +7,7 @@ function ProfilePage (){
 
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() =>{
-        window.scrollTo(0,0)
+        // window.scrollTo(0,0)
         setIsLoading(true);
         setTimeout(()=>{
             setIsLoading(false)
