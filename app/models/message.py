@@ -17,7 +17,8 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    messager = db.relationship('User', secondary=users_messages, primaryjoin=(users_messages.c.from_user_id == id), secondaryjoin = (users_messages.c.to_user_id == id), backref = db.backref('users_messages', lazy = 'dynamic'), lazy = 'dynamic')
+# put the relationship between messages and user here! The secondary version of it!
+    # messager = db.relationship('User', secondary=users_messages, primaryjoin=(users_messages.c.from_user_id == id), secondaryjoin = (users_messages.c.to_user_id == id), backref = db.backref('users_messages', lazy = 'dynamic'), lazy = 'dynamic')
 
     def to_dict(self):
         return {
