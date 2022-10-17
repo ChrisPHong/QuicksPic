@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProfileTopPortion from '../ProfileTopForm';
 import UserProfilePage from '../UserProfilePage';
+import './ProfilePage.css'
 
 function ProfilePage (){
 
@@ -18,7 +19,7 @@ function ProfilePage (){
         {isLoading ?
 
             <div className='loading-ctn'>
-                <div className='loading'>testing</div>
+                <div className='loading'></div>
 
             </div>
             :
