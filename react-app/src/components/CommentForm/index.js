@@ -43,8 +43,8 @@ function CommentFormPage({ photoId }) {
                 user_id: userId,
                 photo_id: photoId,
                 comments,
-
             }
+            
             dispatch(postComment(payload))
             setComments('')
             setShow(false)

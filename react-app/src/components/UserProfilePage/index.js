@@ -14,7 +14,7 @@ function UserProfilePage() {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
     const statePhotos = useSelector((state) => state.user.entries);
-    const photos = Object.values(statePhotos)
+    const photos = Object.values(statePhotos).reverse();
     const id = useParams()?.userId
     const history = useHistory()
 
