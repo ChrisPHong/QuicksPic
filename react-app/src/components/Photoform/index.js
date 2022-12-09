@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postPhotos, getPhotos } from '../../store/photo'
+import { getuserPhotos } from '../../store/user'
 import createPost from './createPost.png'
 import './Photoform.css';
 
@@ -44,6 +45,7 @@ function PhotoForm({setShowModal}) {
             setShowModal(false)
             setShowErrors(false)
             await dispatch(getPhotos())
+            await dispatch(getuserPhotos(parseInt(userId)))
 
 
         }
