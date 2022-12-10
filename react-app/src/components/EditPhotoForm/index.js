@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPhotos, deletePhoto } from '../../store/photo'
+import { editPhotos, deletePhoto, getOnePhoto } from '../../store/photo'
 import './EditPhotoForm.css';
 
 
@@ -51,6 +51,7 @@ function EditPhotoForm({ photo, setShowModal }) {
             formData.append("id", id)
 
             await dispatch(editPhotos(formData, id))
+            await dispatch(getOnePhoto(id))
             await setShowModal(false)
 
             setShow(false)

@@ -6,12 +6,13 @@ background-position: 50% 25%;
 }
 .photos-profile-page:hover{
     cursor: pointer;
+    background-color: black;
 }
 
 .photos-profile-page::after{
-display: block;
-padding-top: 100%;
-content: ''
+    display: block;
+    padding-top: 100%;
+    content: '';
 }
 
 .Entire-Photo-Container{

@@ -76,6 +76,7 @@
     transition-duration: 1s;
     border-radius: 5px 5px;
     transition-duration: 1.2s;
+    padding: 0px 2px;
 
 }
 .quickPicLogo-picture:hover {
@@ -157,12 +158,6 @@
 
 }
 
-.linkedInPicture:hover {
-    /* background-color:rgb(221, 129, 245); */
-    background-image:linear-gradient(to bottom right, rgb(221, 129, 245),#46e1f8);
-
-
-}
 
 .githubLogoPicture {
     margin: 0px 2px;
@@ -170,12 +165,6 @@
     transition-duration: 1s;
     border-radius: 25%;
 
-}
-
-.githubLogoPicture:hover {
-    border-radius: 50%;
-    /* box-shadow: 0px 0px 10px rgb(221, 129, 245); */
-    background-image:linear-gradient(to bottom right, rgb(221, 129, 245),#46e1f8);
 }
 
 .gitHubLinkNoUser, .LinkedInLinkNoUser{
