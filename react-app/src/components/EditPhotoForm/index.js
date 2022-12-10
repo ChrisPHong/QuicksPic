@@ -5,7 +5,6 @@ import './EditPhotoForm.css';
 
 
 function EditPhotoForm({ photo, setShowModal }) {
-    console.log(photo, ">>>>>>>>>>>>>>> HELLO?")
     const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(true);
     const [caption, setCaption] = useState(photo.caption)
