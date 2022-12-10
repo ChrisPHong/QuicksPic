@@ -11,9 +11,7 @@ import EditPhotoFormModal from '../EditPhotoFormModal'
 
 function PhotoDisplay({ photo }) {
     const history = useHistory()
-    const dispatch = useDispatch
-
-    console.log(photo, "<<<<<<<<<<<<<< PHOTO")
+    const dispatch = useDispatch()
 
     return (
         <div key={photo.id} className='Photo-Container'>
