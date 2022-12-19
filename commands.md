@@ -10,6 +10,7 @@ flask seed all
 flask seed undo
 
 
+heroku run -a quickspic flask db migrate
 heroku run -a quickspic flask seed all
 heroku run -a quickspic flask seed undo
 
