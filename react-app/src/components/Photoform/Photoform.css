@@ -1,70 +1,104 @@
 .PhotoFormDiv-navigation-bar {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 5px 5px;
-    padding: 10px;
-    background-color: white;
-    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px 5px;
+  padding: 10px;
+  background-color: white;
+  display: flex;
 
-    box-shadow: 10px 5px 5px rgb(0 0 0 / 32%);
-
+  box-shadow: 10px 5px 5px rgb(0 0 0 / 32%);
 }
 
-
 .caption-input-value-form {
-    border-radius: 4px 4px;
-    padding: 5px;
-    margin-left: 5px;
-    padding-right: 180px;
-
+  border-radius: 4px 4px;
+  padding: 5px;
+  margin-left: 5px;
+  padding-right: 180px;
 }
 
 .file-input-value-form {
-    border-radius: 5px 5px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 15px;
-    padding: 5px;
-    /* background-color: black; */
-    /* color: white; */
-
+  border-radius: 5px 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  padding: 5px;
+  /* background-color: black; */
+  /* color: white; */
 }
 
 ::-webkit-file-upload-button {
-    border: solid black 1px;
-    border-radius: 5px 5px;
-    background-color: #4daff4;
-    padding: 5px 10px;
-    transition-duration: 1.3s;
-    color: white;
-
+  border: solid black 1px;
+  border-radius: 5px 5px;
+  background-color: #4daff4;
+  padding: 5px 10px;
+  transition-duration: 1.3s;
+  color: white;
 }
 
 ::-webkit-file-upload-button:hover {
-    background-color: #a048e4;
-    cursor: pointer;
-
+  background-color: #a048e4;
+  cursor: pointer;
 }
 
-
 .post-submit-button-form {
-    border-radius: 5px 5px;
-    background-color: #dd81f5;
-    padding: 5px 20px;
-    /* right:50px; */
-    color: white;
-    transition-duration: 1.3s;
-    border: 1px solid black;
+  border-radius: 5px 5px;
+  background-color: #dd81f5;
+  padding: 5px 20px;
+  /* right:50px; */
+  color: white;
+  transition-duration: 1.3s;
+  border: 1px solid black;
 }
 
 .post-submit-button-form:hover {
-    border-radius: 5px 5px;
-    background-color: #a048e4;
-    cursor: pointer;
+  border-radius: 5px 5px;
+  background-color: #a048e4;
+  cursor: pointer;
 }
 
-.postYourPhotosh2{
-    font-family: sans-serif;
-    margin-left: 5px;
+.postYourPhotosh2 {
+  font-family: sans-serif;
+  margin-left: 5px;
+}
+
+.select-image {
+  width: 100px;
+  padding: 5px;
+}
+
+.selected {
+  border: 1px solid red;
+}
+
+.select-btn {
+  border-radius: 5px 5px;
+  border: 1px solid black;
+  background-color: #46e1f8;
+  padding: 5px 15px;
+  color: white;
+  margin-left: 10px;
+  transition-duration: 1.3s;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.images-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  max-height: 300px;
+}
+
+.bottom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
