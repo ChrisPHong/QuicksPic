@@ -68,7 +68,7 @@ def sign_up():
             username=form.data['username'].lower(),
             email=form.data['email'],
             password=form.data['password'],
-            image='https://quickspic.s3.us-west-1.amazonaws.com/defaultPicture.png'
+            image='https://images.unsplash.com/photo-1625864667534-aa5208d45a87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'
 
         )
 
