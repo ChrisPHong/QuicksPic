@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import{useHistory} from 'react-router-dom'
 import { editPhotos, deletePhoto, getOnePhoto } from '../../store/photo'
 import './EditPhotoForm.css';
 
@@ -13,6 +14,7 @@ function EditPhotoForm({ photo, setShowModal }) {
     const [imageLoading, setImageLoading] = useState(false)
     const [display, setDisplay] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
@@ -62,7 +64,7 @@ function EditPhotoForm({ photo, setShowModal }) {
 
 
     const deleteFunction = async (photoId) => {
-        await dispatch(deletePhoto(photoId))
+        await dispatch(deletePhoto(photoId)).then(history.push(`/users/${userId}`))
         await setShowModal(false)
         await setDeleted(!deleted)
     }
@@ -133,6 +135,7 @@ function EditPhotoForm({ photo, setShowModal }) {
                                     e.preventDefault()
                                     let photoId = photo.id
                                     await deleteFunction(photoId)
+
 
 
                                 }}

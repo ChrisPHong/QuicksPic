@@ -100,27 +100,27 @@ def upload_image():
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if "image" not in request.files:
-        return {"errors": "image required"}, 400
+    # if "image" not in request.files:
+    #     return {"errors": "image required"}, 400
 
-    image = request.files["image"]
+    # image = request.files["image"]
 
-    if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+    # if not allowed_file(image.filename):
+    #     return {"errors": "file type not permitted"}, 400
 
-    image.filename = get_unique_filename(image.filename)
+    # image.filename = get_unique_filename(image.filename)
 
-    upload = upload_file_to_s3(image)
+    # upload = upload_file_to_s3(image)
 
-    if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return upload, 400
+    # if "url" not in upload:
+    #     # if the dictionary doesn't have a url key
+    #     # it means that there was an error when we tried to upload
+    #     # so we send back that error message
+    #     return upload, 400
 
-    url = upload["url"]
-    # flask_login allows us to get the current user from the request
-    # new_image = Photo(user=current_user, image=url)
+    # url = upload["url"]
+    # # flask_login allows us to get the current user from the request
+    # # new_image = Photo(user=current_user, image=url)
 
     id = current_user.to_dict()['id']
     form.data['user_id'] = int(id)
@@ -128,7 +128,7 @@ def upload_image():
         new_photo = Photo(
             user_id = int(id),
             caption=form.data['caption'],
-            image = url,
+            image = form.data['image'],
             created_at = datetime.now(),
             updated_at = datetime.now()
 
