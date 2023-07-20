@@ -1,179 +1,169 @@
-const LOAD_USER_PHOTO = 'user/LOAD'
-const EDIT_USER_PHOTO = 'user/EDIT'
-const GET_FOLLOW_USER = 'user/FOLLOW'
-const CREATE_FOLLOW_USER = 'user/CREATE/DELETE'
-const PROFILE_PAGE_FOLLOW = 'user/PROFILE/FOLLOW'
-const CLEAR_ALL_USER = 'user/CLEAR/LOGOUT'
-const EDIT_USER_PROFILE = 'user/EDIT/PROFILE'
+const LOAD_USER_PHOTO = "user/LOAD";
+const EDIT_USER_PHOTO = "user/EDIT";
+const GET_FOLLOW_USER = "user/FOLLOW";
+const CREATE_FOLLOW_USER = "user/CREATE/DELETE";
+const PROFILE_PAGE_FOLLOW = "user/PROFILE/FOLLOW";
+const CLEAR_ALL_USER = "user/CLEAR/LOGOUT";
+const EDIT_USER_PROFILE = "user/EDIT/PROFILE";
 
 export const loadUserPhotos = (userPhotos) => {
-    return {
-        type: LOAD_USER_PHOTO,
-        userPhotos
-    }
-}
+  return {
+    type: LOAD_USER_PHOTO,
+    userPhotos,
+  };
+};
 
 export const followUser = (user) => {
-    return {
-        type: GET_FOLLOW_USER,
-        user
-    }
-}
+  return {
+    type: GET_FOLLOW_USER,
+    user,
+  };
+};
 export const editUserProfile = (user) => {
-    return {
-        type: EDIT_USER_PROFILE,
-        user
-    }
-}
+  return {
+    type: EDIT_USER_PROFILE,
+    user,
+  };
+};
 export const clearUserSession = (user) => {
-    return {
-        type: CLEAR_ALL_USER,
-        user
-    }
-}
-
+  return {
+    type: CLEAR_ALL_USER,
+    user,
+  };
+};
 
 export const profileFollow = (user) => {
-    return {
-        type: PROFILE_PAGE_FOLLOW,
-        user
-    }
-}
+  return {
+    type: PROFILE_PAGE_FOLLOW,
+    user,
+  };
+};
 
 export const createDeleteFollower = (user) => {
-    return {
-        type: CREATE_FOLLOW_USER,
-        user
-    }
-}
-
-
-
+  return {
+    type: CREATE_FOLLOW_USER,
+    user,
+  };
+};
 
 export const getuserPhotos = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/users/${userId}`, {
-        method: 'GET',
-    })
-    if (response.ok) {
-        const userPhotos = await response.json()
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "GET",
+  });
+  if (response.ok) {
+    const userPhotos = await response.json();
 
-        dispatch(loadUserPhotos(userPhotos))
-    }
-
-}
+    dispatch(loadUserPhotos(userPhotos));
+  }
+};
 
 export const getFollowerUsers = () => async (dispatch) => {
-    const response = await fetch(`/api/users/followers`, {
-        method: 'GET',
-    })
-    if (response.ok) {
-        const usersFollowers = await response.json()
+  const response = await fetch(`/api/users/followers`, {
+    method: "GET",
+  });
+  if (response.ok) {
+    const usersFollowers = await response.json();
 
-        dispatch(followUser(usersFollowers))
-    }
-
-}
+    dispatch(followUser(usersFollowers));
+  }
+};
 
 export const postFollow = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/users/${payload.followId}/follow`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    })
-    if (response.ok) {
-        const followedUser = await response.json()
-        dispatch(createDeleteFollower(followedUser))
-    }
-
-}
+  const response = await fetch(`/api/users/${payload.followId}/follow`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const followedUser = await response.json();
+    dispatch(createDeleteFollower(followedUser));
+  }
+};
 
 export const patchUserProfile = (formData, userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "PATCH",
+    body: formData,
+  });
 
-    console.log(formData, "<<<<<<<<<<<<< FORM DATA")
-    const response = await fetch(`/api/users/${userId}`, {
-        method: 'PATCH',
-        body: formData
-    })
-
-    if (response.ok) {
-        const profileInfo = await response.json()
-        dispatch(editUserProfile(profileInfo))
-    }
-
-}
-
-
+  if (response.ok) {
+    const profileInfo = await response.json();
+    dispatch(editUserProfile(profileInfo));
+  }
+};
 
 export const postProfileFollow = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/users/${payload.followId}/profileFollow`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    })
-    if (response.ok) {
-        const followedUser = await response.json()
-        dispatch(profileFollow(followedUser))
-    }
-
-}
-
+  const response = await fetch(`/api/users/${payload.followId}/profileFollow`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const followedUser = await response.json();
+    dispatch(profileFollow(followedUser));
+  }
+};
 
 export const clearUserSess = () => async (dispatch) => {
-    dispatch(clearUserSession())
-    return {}
-}
+  dispatch(clearUserSession());
+  return {};
+};
 
-
-const initialState = { entries: {}, info: {}, profile: {}, isLoading: true }
+const initialState = { entries: {}, info: {}, profile: {}, isLoading: true };
 
 const userReducer = (state = initialState, action) => {
-    let newState;
-    switch (action.type) {
-        case LOAD_USER_PHOTO:
+  let newState;
+  switch (action.type) {
+    case LOAD_USER_PHOTO:
+      newState = { ...state, entries: {}, profile: {} };
+      action.userPhotos.photos.map((photo) => {
+        newState.entries[photo.id] = photo;
+      });
+      newState.profile[action.userPhotos.user.id] = action.userPhotos.user;
 
-            newState = { ...state, entries: {}, profile: {} }
-            action.userPhotos.photos.map(photo => { newState.entries[photo.id] = photo })
-            newState.profile[action.userPhotos.user.id] = action.userPhotos.user
+      return newState;
+    case GET_FOLLOW_USER:
+      newState = {
+        ...state,
+        entries: {
+          ...state.entries,
+        },
+      };
+      newState.info[action.user.id] = action.user;
 
-            return newState
-        case GET_FOLLOW_USER:
-            newState = {
-                ...state, entries: {
-                    ...state.entries
-                }
-            }
-            newState.info[action.user.id] = action.user
+      return newState;
+    case EDIT_USER_PROFILE:
+      newState = {
+        ...state,
+        entries: {
+          ...state.entries,
+        },
+      };
+      newState.profile[action.user.id] = action.user;
+      return newState;
 
-            return newState
-        case EDIT_USER_PROFILE:
-            newState = {
-                ...state, entries: {
-                    ...state.entries
-                }
-            }
-            newState.profile[action.user.id] = action.user
-            return newState
+    case CREATE_FOLLOW_USER:
+      newState = {
+        ...state,
+        entries: {
+          ...state.entries,
+        },
+        info: {
+          ...state.info,
+        },
+      };
+      newState.profile[action.user.id] = action.user;
 
-        case CREATE_FOLLOW_USER:
-            newState = {
-                ...state, entries: {
-                    ...state.entries
-                }, info: {
-                    ...state.info
-                }
-            }
-            newState.profile[action.user.id] = action.user
+      return newState;
+    case PROFILE_PAGE_FOLLOW:
+      newState = { ...state, profile: {} };
+      newState.profile[action.user.id] = action.user;
+      return newState;
+    case CLEAR_ALL_USER:
+      return { entries: {}, profile: {}, info: {}, isLoading: true };
+    default:
+      return state;
+  }
+};
 
-            return newState
-        case PROFILE_PAGE_FOLLOW:
-            newState = { ...state, profile: {} }
-            newState.profile[action.user.id] = action.user
-            return newState
-        case CLEAR_ALL_USER:
-            return { entries: {}, profile: {}, info: {}, isLoading: true }
-        default:
-            return state
-    }
-}
-
-export default userReducer
+export default userReducer;

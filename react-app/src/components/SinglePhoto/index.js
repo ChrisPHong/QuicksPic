@@ -23,7 +23,6 @@ function SinglePhotoDisplay() {
   useEffect(() => {
     dispatch(getOnePhoto(id));
   }, [dispatch, id]);
-  console.log(photo, "<<<<<<<<<<< photo");
   return (
     <>
       {photo && (
@@ -76,7 +75,7 @@ function SinglePhotoDisplay() {
               <div className="username-caption-container">
                 <div
                   onClick={() => {
-                    console.log(photo.userId);
+              
                     history.push(`/users/${photo.userId}`);
                   }}
                   className="username-input"
